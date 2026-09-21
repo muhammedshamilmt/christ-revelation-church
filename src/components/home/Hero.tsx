@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
@@ -24,10 +27,15 @@ export default function Hero() {
         <div />
 
         {/* Bottom Giant Text */}
-        <div className="w-full flex justify-center pb-4 sm:pb-8">
-          <h1 className="font-ancola text-[17vw] leading-[0.7] tracking-[0.01rem] text-white font-normal lowercase select-none drop-shadow-2xl">
+        <div className="w-full flex justify-center pb-4 sm:pb-8 ">
+          <motion.h1
+            initial={{ y: "100%", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1], delay: 4.3 }}
+            className="font-ancola text-[17vw] leading-[0.7] tracking-[0.01rem] text-white font-normal lowercase select-none drop-shadow-2xl"
+          >
             revelation
-          </h1>
+          </motion.h1>
         </div>
       </div>
     </section>

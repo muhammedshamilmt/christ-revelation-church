@@ -1,4 +1,5 @@
 import TextReveal from "@/components/ui/TextReveal";
+import Link from "next/link";
 
 export default function FeaturesGridSection() {
   return (
@@ -17,22 +18,22 @@ export default function FeaturesGridSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-[#0c0c0c]/10">
           
           {/* Feature 1 */}
-          <div className="flex flex-col p-8 sm:p-10 border-b lg:border-b-0 sm:border-r border-[#0c0c0c]/10">
+          <Link href="https://www.theglobalpeacemakers.org/donate#donate-section" className="flex flex-col p-8 sm:p-10 border-b lg:border-b-0 sm:border-r border-[#0c0c0c]/10 hover:bg-gray-50 transition-colors group">
             <div className="mb-16">
               {/* Simple SVG Icon placeholder matching the gauge */}
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:scale-110 transition-transform">
                 <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
                 <path d="M3 3v5h5" />
                 <path d="M12 7v5l3 3" />
               </svg>
             </div>
-            <h3 className="font-open-sauce text-lg font-semibold tracking-tight mb-3">
+            <h3 className="font-open-sauce text-lg font-semibold tracking-tight mb-3 group-hover:text-[#0048FF] transition-colors">
               GIVE TO THE CHURCH
             </h3>
             <p className="font-open-sauce text-sm leading-relaxed text-[#0c0c0c]/70">
               Donate to help a cause and support our mission to spread love and faith worldwide.
             </p>
-          </div>
+          </Link>
 
           {/* Feature 2 */}
           <div className="flex flex-col p-8 sm:p-10 border-b lg:border-b-0 lg:border-r border-[#0c0c0c]/10">
@@ -52,22 +53,22 @@ export default function FeaturesGridSection() {
           </div>
 
           {/* Feature 3 */}
-          <div className="flex flex-col p-8 sm:p-10 border-b sm:border-b-0 sm:border-r border-[#0c0c0c]/10">
+          <Link href="/prayer-request" className="flex flex-col p-8 sm:p-10 border-b sm:border-b-0 sm:border-r border-[#0c0c0c]/10 hover:bg-gray-50 transition-colors group">
             <div className="mb-16">
               {/* Target / Tailored Icon placeholder */}
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:scale-110 transition-transform">
                 <circle cx="12" cy="12" r="10" />
                 <circle cx="12" cy="12" r="6" />
                 <circle cx="12" cy="12" r="2" />
               </svg>
             </div>
-            <h3 className="font-open-sauce text-lg font-semibold tracking-tight mb-3">
+            <h3 className="font-open-sauce text-lg font-semibold tracking-tight mb-3 group-hover:text-[#0048FF] transition-colors">
               PRAYER REQUEST
             </h3>
             <p className="font-open-sauce text-sm leading-relaxed text-[#0c0c0c]/70">
               Let's pray together. Submit your prayer requests and our team will stand with you in faith.
             </p>
-          </div>
+          </Link>
 
           {/* Feature 4 */}
           <div className="flex flex-col p-8 sm:p-10">
