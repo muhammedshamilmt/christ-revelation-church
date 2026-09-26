@@ -56,7 +56,7 @@ export default function BlogsGrid() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 {/* Top Right small red accent like in image */}
-                <div className="absolute top-4 right-4 w-2 h-2 border-t-2 border-r-2 border-[#ff385c] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute top-4 right-4 w-2 h-2 border-t-2 border-r-2 border-black opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
 
               {/* Text Content */}

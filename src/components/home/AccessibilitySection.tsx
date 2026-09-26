@@ -39,7 +39,7 @@ export default function AccessibilitySection() {
             className="group flex items-center bg-[#0c0c0c] text-white  pl-6 pr-2 py-2 hover:bg-[#0048FF] transition-colors duration-300"
           >
             <span className="font-open-sauce text-sm font-semibold tracking-wide mr-4 uppercase">JOIN US THIS SUNDAY</span>
-            <span className="bg-white text-[#0c0c0c] w-8 h-8  flex items-center justify-center transform transition-transform group-hover:rotate-45">
+            <span className="bg-white text-[#0c0c0c] w-8 h-8  flex items-center justify-center ">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14"></path>
                 <path d="m12 5 7 7-7 7"></path>
