@@ -80,7 +80,7 @@ export default function SubadminDetailsPage({ params }: { params: Promise<{ id: 
             <div
               className="absolute  w-full h-full pointer-events-none"
               style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='150' height='150' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0h30v30H30zM0 30h30v30H0z' fill='%23ff385c' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='150' height='150' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0h30v30H30zM0 30h30v30H0z' fill='%230048ff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E")`,
                 maskImage: 'linear-gradient(to top, transparent, black)',
                 WebkitMaskImage: 'linear-gradient(to top, transparent, black)'
               }}

@@ -93,7 +93,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
           <button
             onClick={handleSave}
             disabled={saving}
-            className="bg-black hover:bg-neutral-800 text-white px-6 py-2 rounded-full text-sm font-bold flex items-center gap-2 transition-colors shadow-lg disabled:opacity-50"
+            className="bg-[#0ea5e9] hover:bg-[#0284c7] text-white px-6 py-2 rounded-full text-sm font-bold flex items-center gap-2 transition-colors shadow-lg disabled:opacity-50"
           >
             {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save size={16} />} 
             Save Campaign
@@ -114,7 +114,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
                   type="text"
                   value={campaign.title}
                   onChange={(e) => onChange({ ...campaign, title: e.target.value })}
-                  className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-black"
+                  className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9]"
                 />
               </div>
               <div>
@@ -123,7 +123,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
                   type="text"
                   value={campaign.org}
                   onChange={(e) => onChange({ ...campaign, org: e.target.value })}
-                  className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-black"
+                  className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9]"
                 />
               </div>
               <div>
@@ -132,7 +132,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
                   type="text"
                   value={campaign.id}
                   onChange={(e) => onChange({ ...campaign, id: e.target.value })}
-                  className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-black"
+                  className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9]"
                 />
               </div>
               <div>
@@ -140,7 +140,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
                 <select
                   value={campaign.status}
                   onChange={(e) => onChange({ ...campaign, status: e.target.value as AdminCampaign['status'] })}
-                  className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-black"
+                  className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9]"
                 >
                   <option value="Active">Active</option>
                   <option value="Draft">Draft</option>
@@ -153,7 +153,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
                   type="number"
                   value={campaign.goal || ''}
                   onChange={(e) => onChange({ ...campaign, goal: Number(e.target.value) })}
-                  className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-black"
+                  className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9]"
                 />
               </div>
               <div>
@@ -162,7 +162,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
                   type="number"
                   value={campaign.raised || ''}
                   onChange={(e) => onChange({ ...campaign, raised: Number(e.target.value) })}
-                  className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-black"
+                  className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9]"
                 />
               </div>
               <div>
@@ -171,7 +171,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
                   type="number"
                   value={campaign.daysLeft || ''}
                   onChange={(e) => onChange({ ...campaign, daysLeft: Number(e.target.value) })}
-                  className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-black"
+                  className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9]"
                 />
               </div>
               <div>
@@ -181,7 +181,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
                   value={campaign.image || ''}
                   onChange={(e) => onChange({ ...campaign, image: e.target.value })}
                   placeholder="/peace-1.jpg or https://..."
-                  className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-black"
+                  className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9]"
                 />
               </div>
             </div>
@@ -200,7 +200,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
                       onChange({ ...campaign, description: newDesc });
                     }}
                     rows={3}
-                    className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-2xl px-4 py-3 text-sm font-medium text-black focus:outline-none focus:bg-white focus:border-black resize-none"
+                    className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-2xl px-4 py-3 text-sm font-medium text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9] resize-none"
                   />
                   <button
                     onClick={() => {
@@ -248,7 +248,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
                         newUpdates[idx].date = e.target.value;
                         onChange({ ...campaign, updates: newUpdates });
                       }}
-                      className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-3 py-2 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-black"
+                      className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-3 py-2 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9]"
                     />
                   </div>
                   <div className="col-span-2">
@@ -261,7 +261,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
                         newUpdates[idx].title = e.target.value;
                         onChange({ ...campaign, updates: newUpdates });
                       }}
-                      className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-3 py-2 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-black"
+                      className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-3 py-2 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9]"
                     />
                   </div>
                 </div>
@@ -275,7 +275,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
                       onChange({ ...campaign, updates: newUpdates });
                     }}
                     rows={2}
-                    className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-2xl px-3 py-2 text-sm font-medium text-black focus:outline-none focus:bg-white focus:border-black resize-none"
+                    className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-2xl px-3 py-2 text-sm font-medium text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9] resize-none"
                   />
                 </div>
               </div>
@@ -299,7 +299,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
               <select
                 value={campaign.status}
                 onChange={(e) => onChange({ ...campaign, status: e.target.value as any })}
-                className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-3 py-2 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-black"
+                className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-3 py-2 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9]"
               >
                 {["Active", "Completed", "Draft"].map(s => <option key={s} value={s}>{s}</option>)}
               </select>
@@ -310,7 +310,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
                 type="number"
                 value={campaign.goal}
                 onChange={(e) => onChange({ ...campaign, goal: Number(e.target.value) })}
-                className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-3 py-2 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-black"
+                className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-3 py-2 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9]"
               />
             </div>
             <div>
@@ -319,7 +319,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
                 type="number"
                 value={campaign.raised}
                 onChange={(e) => onChange({ ...campaign, raised: Number(e.target.value) })}
-                className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-3 py-2 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-black"
+                className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-3 py-2 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9]"
               />
             </div>
             <div>
@@ -328,7 +328,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
                 type="number"
                 value={campaign.daysLeft}
                 onChange={(e) => onChange({ ...campaign, daysLeft: Number(e.target.value) })}
-                className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-3 py-2 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-black"
+                className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-3 py-2 text-sm font-semibold text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9]"
               />
             </div>
           </div>
@@ -380,7 +380,7 @@ export default function CampaignForm({ campaign, onChange, onSave, onCancel }: C
             {/* Content Tabs area mockup */}
             <div className="flex flex-col bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100">
               <div className="flex items-center gap-6 border-b border-gray-100 pb-4 mb-6">
-                <button className="font-semibold pb-4 -mb-[18px] text-black border-b-2 border-black">
+                <button className="font-semibold pb-4 -mb-[18px] text-black border-b-2 border-[#0ea5e9] text-[#0ea5e9]">
                   About
                 </button>
                 <button className="font-semibold pb-4 -mb-[18px] text-gray-500">

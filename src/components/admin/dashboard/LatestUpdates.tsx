@@ -43,7 +43,7 @@ export default function LatestUpdates() {
           <button
             key={t}
             onClick={() => setTab(t)}
-            className={`flex-1 py-1.5 text-[12px] font-semibold rounded-full transition-all ${tab === t ? 'bg-black text-white shadow-sm' : 'text-gray-500 hover:text-black hover:bg-gray-100'}`}
+            className={`flex-1 py-1.5 text-[12px] font-semibold rounded-full transition-all ${tab === t ? 'bg-[#0ea5e9] text-white shadow-sm' : 'text-gray-500 hover:text-[#0ea5e9] hover:bg-gray-100'}`}
           >
             {t}
           </button>
@@ -56,12 +56,12 @@ export default function LatestUpdates() {
         <input
           type="text"
           placeholder="Search activities"
-          className="w-full pl-8 pr-4 py-2 bg-white border border-gray-200 rounded-full text-[13px] outline-none focus:ring-1 focus:ring-gray-300 transition-shadow"
+          className="w-full pl-8 pr-4 py-2 bg-white border border-gray-200 rounded-full text-[13px] outline-none focus:ring-1 focus:ring-[#0ea5e9]/30 focus:border-[#0ea5e9] transition-shadow"
         />
       </div>
 
       <div className="text-[12px] font-medium text-gray-500 mb-4">
-        <span className="font-bold text-black">{activities.length}</span> new activities {tab.toLowerCase()}
+        <span className="font-bold text-[#0ea5e9]">{activities.length}</span> new activities {tab.toLowerCase()}
       </div>
 
       {/* Timeline */}
@@ -91,7 +91,7 @@ export default function LatestUpdates() {
             {/* Content */}
             <div className="flex flex-col flex-1 pb-1 pt-1.5">
               <div className="flex justify-between items-start mb-0.5">
-                <span className="text-[13px] font-bold text-black leading-none">{activity.title}</span>
+                <span className="text-[13px] font-bold text-[#0ea5e9] leading-none">{activity.title}</span>
                 <span className="text-[11px] font-medium text-gray-400">{activity.time}</span>
               </div>
               <span className="text-[12px] font-medium text-gray-500">{activity.desc}</span>

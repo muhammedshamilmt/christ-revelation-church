@@ -111,7 +111,7 @@ function EmptyState({ tab, onAdd }: { tab: string; onAdd: () => void }) {
         </p>
         <button
           onClick={onAdd}
-          className="bg-black hover:bg-neutral-800 text-white px-6 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors"
+          className="bg-[#0ea5e9] hover:bg-[#0284c7] text-white px-6 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors"
         >
           <Plus size={16} /> New Campaign
         </button>
@@ -131,7 +131,7 @@ function EmptyState({ tab, onAdd }: { tab: string; onAdd: () => void }) {
         </p>
         <button
           onClick={onAdd}
-          className="bg-black hover:bg-neutral-800 text-white px-6 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors"
+          className="bg-[#0ea5e9] hover:bg-[#0284c7] text-white px-6 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors"
         >
           <Plus size={16} /> Create Draft
         </button>
@@ -148,7 +148,7 @@ function EmptyState({ tab, onAdd }: { tab: string; onAdd: () => void }) {
       </p>
       <button
         onClick={onAdd}
-        className="bg-black hover:bg-neutral-800 text-white px-6 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors"
+        className="bg-[#0ea5e9] hover:bg-[#0284c7] text-white px-6 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors"
       >
         <Plus size={16} /> Create First Campaign
       </button>
@@ -260,7 +260,7 @@ function AdminCampaignsContent() {
           )}
         </div>
         <div className="flex items-center gap-4">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-black to-neutral-800 text-white flex items-center justify-center text-sm font-bold shadow-sm">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#0ea5e9] to-[#0284c7] text-white flex items-center justify-center text-sm font-bold shadow-sm">
             A
           </div>
         </div>
@@ -294,7 +294,7 @@ function AdminCampaignsContent() {
                       placeholder="Search campaigns..."
                       value={search}
                       onChange={(e) => setSearch(e.target.value)}
-                      className="w-full pl-11 pr-4 py-2 text-sm rounded-full bg-white border border-gray-200 text-black focus:outline-none focus:border-black transition-colors"
+                      className="w-full pl-11 pr-4 py-2 text-sm rounded-full bg-white border border-gray-200 text-black focus:outline-none focus:border-[#0ea5e9] transition-colors"
                     />
                   </div>
 
@@ -333,7 +333,7 @@ function AdminCampaignsContent() {
                   {/* New Campaign */}
                   <button
                     onClick={handleAddNew}
-                    className="inline-flex items-center justify-center px-5 py-2 bg-black text-white text-sm font-bold rounded-full hover:bg-neutral-800 transition-colors shadow-sm shrink-0"
+                    className="inline-flex items-center justify-center px-5 py-2 bg-[#0ea5e9] text-white text-sm font-bold rounded-full hover:bg-[#0284c7] transition-colors shadow-sm shrink-0"
                   >
                     <Plus className="w-4 h-4 mr-2" />
                     New Campaign
@@ -386,7 +386,7 @@ function AdminCampaignsContent() {
                       }
                       className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold transition-all duration-200 ${
                         isSelected
-                          ? "bg-black text-white shadow-sm"
+                          ? "bg-[#0ea5e9] text-white shadow-sm"
                           : "text-gray-500 hover:text-gray-800 hover:bg-gray-100"
                       }`}
                     >
@@ -490,7 +490,7 @@ function AdminCampaignsContent() {
                           {/* Progress */}
                           <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden mb-2">
                             <div
-                              className="h-full bg-gradient-to-r from-black to-neutral-800 rounded-full transition-all duration-700"
+                              className="h-full bg-gradient-to-r from-[#0ea5e9] to-[#0284c7] rounded-full transition-all duration-700"
                               style={{ width: `${progress}%` }}
                             />
                           </div>

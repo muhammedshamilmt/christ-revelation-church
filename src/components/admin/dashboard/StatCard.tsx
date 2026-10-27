@@ -24,8 +24,8 @@ export default function StatCard({ title, value, percentage, isPositive, icon, d
     return `${x},${y}`;
   }).join(' ');
 
-  const strokeColor = isPositive ? '#22c55e' : "#000000"; // green vs our theme red
-  const fillColor = isPositive ? 'rgba(34, 197, 94, 0.1)' : 'rgba(255, 56, 92, 0.1)';
+  const strokeColor = isPositive ? '#22c55e' : "#ef4444";
+  const fillColor = isPositive ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)';
 
   return (
     <div className="rounded-[20px] p-2 bg-[#f8f9fa] border border-gray-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] w-full flex flex-col relative overflow-hidden"

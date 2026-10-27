@@ -13,10 +13,10 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const categories = [
   { name: 'Active Contacts', color: 'bg-green-500' },
-  { name: 'Potential Clients', color: 'bg-blue-400' },
-  { name: 'Competition Tracking', color: 'bg-red-500' },
-  { name: 'Certain Sector', color: 'bg-purple-500' },
-  { name: 'Neutrals', color: 'bg-gray-400' },
+  { name: 'Prayer Requests', color: 'bg-blue-400' },
+  { name: 'New Believers', color: 'bg-purple-500' },
+  { name: 'Pastoral Care', color: 'bg-amber-500' },
+  { name: 'General Inquiries', color: 'bg-gray-400' },
 ];
 
 export default function ContactsManager() {
@@ -139,7 +139,7 @@ export default function ContactsManager() {
       {/* Left Sidebar (Categories) */}
       <div className="w-[240px] shrink-0 border-r border-gray-100 bg-gray-50/30 flex flex-col">
         <div className="p-4 border-b border-gray-100 h-16 flex items-center">
-          <div className="flex items-center gap-2 px-3 w-full bg-white border border-gray-200 rounded-full py-1.5 focus-within:border-black transition-colors">
+          <div className="flex items-center gap-2 px-3 w-full bg-white border border-gray-200 rounded-full py-1.5 focus-within:border-[#0ea5e9] transition-colors">
             <Search className="w-4 h-4 text-gray-400" />
             <input
               type="text"
@@ -154,7 +154,7 @@ export default function ContactsManager() {
         <div className="flex-1 overflow-y-auto p-3 flex flex-col gap-1">
           <button
             onClick={() => setActiveCategory('Display All')}
-            className={`flex items-center gap-3 px-3 py-2 text-[13px] font-medium rounded-full w-full text-left transition-colors ${activeCategory === 'Display All' ? 'bg-gray-100 text-black' : 'text-gray-600 hover:bg-gray-100/50'}`}
+            className={`flex items-center gap-3 px-3 py-2 text-[13px] font-medium rounded-full w-full text-left transition-colors ${activeCategory === 'Display All' ? 'bg-sky-50 text-[#0ea5e9] font-semibold' : 'text-gray-600 hover:bg-gray-100/50'}`}
           >
             <div className="w-3 h-3 rounded-full border-2 border-gray-400 flex items-center justify-center">
               <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
@@ -168,7 +168,7 @@ export default function ContactsManager() {
             <button
               key={cat.name}
               onClick={() => setActiveCategory(cat.name)}
-              className={`flex items-center gap-3 px-3 py-2 text-[13px] font-medium rounded-full w-full text-left transition-colors ${activeCategory === cat.name ? 'bg-gray-100 text-black' : 'text-gray-600 hover:bg-gray-100/50'}`}
+              className={`flex items-center gap-3 px-3 py-2 text-[13px] font-medium rounded-full w-full text-left transition-colors ${activeCategory === cat.name ? 'bg-sky-50 text-[#0ea5e9] font-semibold' : 'text-gray-600 hover:bg-gray-100/50'}`}
             >
               <div className={`w-2 h-2 rounded-full ${cat.color}`}></div>
               {cat.name}
@@ -226,14 +226,14 @@ export default function ContactsManager() {
               <div className="relative group">
                 <button className="flex items-center gap-1.5 hover:text-black transition-colors">
                   <Search className="w-3.5 h-3.5" />
-                  {searchQuery ? <span className="text-black font-bold">Search Active</span> : 'Search'}
+                  {searchQuery ? <span className="text-[#0ea5e9] font-bold">Search Active</span> : 'Search'}
                 </button>
                 {/* Invisible drop target just to show it's "working" intuitively */}
               </div>
 
               <button
                 onClick={() => setIsFilterActive(!isFilterActive)}
-                className={`flex items-center gap-1.5 transition-colors ${isFilterActive ? 'text-black font-bold' : 'hover:text-black'}`}
+                className={`flex items-center gap-1.5 transition-colors ${isFilterActive ? 'text-[#0ea5e9] font-bold' : 'hover:text-black'}`}
               >
                 <Filter className="w-3.5 h-3.5" /> Filters
               </button>
@@ -242,7 +242,7 @@ export default function ContactsManager() {
 
               <button
                 onClick={handleSort}
-                className={`flex items-center gap-1.5 transition-colors ${sortBy ? 'text-black font-bold' : 'hover:text-black'}`}
+                className={`flex items-center gap-1.5 transition-colors ${sortBy ? 'text-[#0ea5e9] font-bold' : 'hover:text-black'}`}
               >
                 <ArrowUpDown className="w-3.5 h-3.5" />
                 {sortBy ? `Sort by ${sortBy}` : 'Sort by'}
@@ -255,7 +255,7 @@ export default function ContactsManager() {
             <button className="px-3 py-1.5 text-[13px] font-semibold text-gray-700 bg-white border border-gray-200 rounded-full hover:bg-gray-50 transition-colors">
               Import
             </button>
-            <button className="px-3 py-1.5 text-[13px] font-semibold text-white bg-black hover:bg-[#e03150] rounded-full transition-colors flex items-center gap-1.5">
+            <button className="px-3 py-1.5 text-[13px] font-semibold text-white bg-[#0ea5e9] hover:bg-[#0284c7] rounded-full transition-colors flex items-center gap-1.5">
               <Plus className="w-3.5 h-3.5" /> New Contact
             </button>
           </div>
@@ -337,7 +337,7 @@ export default function ContactsManager() {
                 >
                   <td className="py-2 pl-6 pr-3 border-r border-gray-100">
                     <div
-                      className={`w-4 h-4 rounded-[4px] border flex items-center justify-center transition-colors ${selected.includes(contact.id) ? 'bg-black border-black' : 'border-gray-300 bg-white'}`}
+                      className={`w-4 h-4 rounded-[4px] border flex items-center justify-center transition-colors ${selected.includes(contact.id) ? 'bg-[#0ea5e9] border-[#0ea5e9]' : 'border-gray-300 bg-white'}`}
                     >
                       {selected.includes(contact.id) && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
                     </div>
@@ -399,7 +399,7 @@ export default function ContactsManager() {
         {selected.length > 0 && (
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-gray-900 text-white rounded-xl shadow-2xl flex items-center gap-4 px-2 py-2 animate-in slide-in-from-bottom-4 fade-in duration-200 z-50">
             <div className="flex items-center gap-2 pl-2">
-              <div className="w-6 h-6 rounded-full bg-black flex items-center justify-center text-[12px] font-bold">
+              <div className="w-6 h-6 rounded-full bg-[#0ea5e9] flex items-center justify-center text-[12px] font-bold">
                 {selected.length}
               </div>
               <span className="text-[13px] font-medium pr-2 border-r border-gray-700">Selected</span>

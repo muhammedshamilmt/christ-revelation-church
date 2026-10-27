@@ -37,7 +37,7 @@ const STATUS_CFG = {
 const Button = ({ children, variant = 'primary', className = '', ...props }: any) => {
   const base = "inline-flex items-center justify-center rounded-xl font-semibold transition-colors disabled:opacity-50 disabled:pointer-events-none";
   const variants = {
-    primary: "bg-black text-white hover:bg-neutral-800 px-4 py-2 text-sm",
+    primary: "bg-[#0ea5e9] text-white hover:bg-[#0284c7] px-4 py-2 text-sm",
     outline: "border border-[#e6ece7] text-black hover:bg-[#f4f8f4] px-4 py-2 text-sm",
     ghost: "text-gray-500 hover:bg-gray-100 hover:text-black px-3 py-2 text-sm",
   };
@@ -311,7 +311,7 @@ export default function CampaignAdminDetailPage({ params }: { params: Promise<{ 
               {(['general', 'transactions'] as const).map(t => (
                 <button key={t} onClick={() => setTab(t)}
                   className={`px-6 py-3 text-sm font-bold capitalize transition-all border-b-2
-                    ${tab === t ? 'border-black text-black' : 'border-transparent text-gray-400 hover:text-black hover:border-gray-200'}`}>
+                    ${tab === t ? 'border-[#0ea5e9] text-[#0ea5e9]' : 'border-transparent text-gray-400 hover:text-[#0ea5e9] hover:border-gray-200'}`}>
                   {t === 'transactions' ? `Transactions (${transactions.length})` : 'General Overview'}
                 </button>
               ))}
@@ -365,7 +365,7 @@ export default function CampaignAdminDetailPage({ params }: { params: Promise<{ 
                         </div>
                         <div className="h-2.5 w-full bg-gray-100 rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-black rounded-full" 
+                            className="h-full bg-[#0ea5e9] rounded-full" 
                             style={{ width: `${Math.min(((totalRaisedFromTxns > 0 ? totalRaisedFromTxns : (campaign.raised || 0)) / (campaign.goal || 1)) * 100, 100)}%` }} 
                           />
                         </div>
@@ -404,7 +404,7 @@ export default function CampaignAdminDetailPage({ params }: { params: Promise<{ 
                     <div className="relative w-full sm:w-80">
                       <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                       <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search transaction, name, email..."
-                        className="w-full pl-11 pr-4 py-2.5 rounded-full bg-white border border-[#e6ece7] text-black text-sm font-semibold placeholder:font-normal placeholder:text-gray-400 focus:outline-none focus:border-black" />
+                        className="w-full pl-11 pr-4 py-2.5 rounded-full bg-white border border-[#e6ece7] text-black text-sm font-semibold placeholder:font-normal placeholder:text-gray-400 focus:outline-none focus:border-[#0ea5e9]" />
                     </div>
                   </div>
 
@@ -458,7 +458,7 @@ export default function CampaignAdminDetailPage({ params }: { params: Promise<{ 
                                   >
                                     <td className="py-2 pl-4 pr-3 border-r border-gray-100" onClick={(e) => toggleSelectRow(txn.id, e)}>
                                       <div className="flex items-center justify-center">
-                                        <div className={`w-4 h-4 rounded-[4px] border flex items-center justify-center transition-colors ${selectedRows.includes(txn.id) ? 'bg-black border-black' : 'border-gray-300 bg-white'}`}>
+                                        <div className={`w-4 h-4 rounded-[4px] border flex items-center justify-center transition-colors ${selectedRows.includes(txn.id) ? 'bg-[#0ea5e9] border-[#0ea5e9]' : 'border-gray-300 bg-white'}`}>
                                           {selectedRows.includes(txn.id) && <CheckCircle2 className="w-3 h-3 text-white" strokeWidth={3} />}
                                         </div>
                                       </div>

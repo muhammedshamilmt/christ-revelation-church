@@ -34,6 +34,7 @@ export default function Footer() {
             <Link href="/blogs" className="hover:opacity-70 transition-opacity">Blogs</Link>
             <Link href="/sermons" className="hover:opacity-70 transition-opacity">Sermons</Link>
             <Link href="/events" className="hover:opacity-70 transition-opacity">Events</Link>
+            <Link href="/gallery" className="hover:opacity-70 transition-opacity">Gallery</Link>
             <a href="https://www.theglobalpeacemakers.org/donate#donate-section" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">Give</a>
             <Link href="/contacts" className="hover:opacity-70 transition-opacity">Contacts</Link>
           </div>

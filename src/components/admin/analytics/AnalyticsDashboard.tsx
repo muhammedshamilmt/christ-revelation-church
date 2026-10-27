@@ -15,15 +15,15 @@ const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 const chartConfig = {
   views: {
-    label: "Total Donations",
+    label: "Total Giving",
   },
   emergency: {
-    label: "Emergency Relief",
-    color: "#000000",
+    label: "Tithes & Offerings",
+    color: "#0ea5e9",
   },
   general: {
-    label: "General Fund",
-    color: "#fca5a5",
+    label: "Building & Missions",
+    color: "#3b82f6",
   },
 };
 
@@ -39,8 +39,8 @@ export default function AnalyticsDashboard() {
         totalAmount: 0, dailyAvg: 0, 
         salesData: [], 
         segmentData: [
-          { name: 'Emergency', value: 0, color: "#000000" },
-          { name: 'General', value: 0, color: '#fca5a5' }
+          { name: 'Tithes & Offerings', value: 0, color: "#0ea5e9" },
+          { name: 'Building & Missions', value: 0, color: '#3b82f6' }
         ],
         emergencyShare: 0
       };
@@ -63,7 +63,7 @@ export default function AnalyticsDashboard() {
       const dayName = days[d.getDay()];
       const current = volumeByDay.get(dayName)!;
 
-      if (txn.designation === 'Emergency Relief') {
+      if (txn.designation === 'Tithe & Offering' || txn.designation === 'Emergency Relief') {
         emergencyTotal += validAmount;
         current.emergency += validAmount;
       } else {
@@ -79,7 +79,7 @@ export default function AnalyticsDashboard() {
     }));
 
     const computedSegmentData = [
-      { name: 'Emergency', value: emergencyTotal, color: "#000000" },
+      { name: 'Emergency', value: emergencyTotal, color: "#0ea5e9" },
       { name: 'General', value: generalTotal, color: '#fca5a5' }
     ];
 
@@ -169,7 +169,7 @@ export default function AnalyticsDashboard() {
           <div className="flex border-t border-gray-100 sm:border-t-0">
             {["emergency", "general"].map((key) => {
               const isActive = activeChart === key;
-              const title = key === 'emergency' ? 'Emergency Relief' : 'General Fund';
+              const title = key === 'emergency' ? 'Tithes & Offerings' : 'Building & Missions';
               const total = salesData.reduce((acc, curr) => acc + (curr[key as keyof typeof curr] as number), 0);
               
               return (
@@ -222,10 +222,10 @@ export default function AnalyticsDashboard() {
               <Line 
                 dataKey={activeChart}
                 type="monotone" 
-                stroke={(chartConfig as any)[activeChart]?.color || "#000000"}
+                stroke={(chartConfig as any)[activeChart]?.color || "#0ea5e9"}
                 strokeWidth={3}
-                dot={{ r: 4, fill: (chartConfig as any)[activeChart]?.color || "#000000", strokeWidth: 2, stroke: '#fff' }}
-                activeDot={{ r: 6, fill: (chartConfig as any)[activeChart]?.color || "#000000", strokeWidth: 3, stroke: '#fff' }}
+                dot={{ r: 4, fill: (chartConfig as any)[activeChart]?.color || "#0ea5e9", strokeWidth: 2, stroke: '#fff' }}
+                activeDot={{ r: 6, fill: (chartConfig as any)[activeChart]?.color || "#0ea5e9", strokeWidth: 3, stroke: '#fff' }}
               />
             </LineChart>
           </ChartContainer>
@@ -268,7 +268,7 @@ export default function AnalyticsDashboard() {
                 Array.from({ length: 30 }).map((_, i) => (
                   <div
                     key={i}
-                    className={`flex-1 rounded-sm ${i < (emergencyShare / 100 * 30) ? 'bg-black' : 'bg-gray-200'}`}
+                    className={`flex-1 rounded-sm ${i < (emergencyShare / 100 * 30) ? 'bg-[#0ea5e9]' : 'bg-gray-200'}`}
                   />
                 ))
               )}
@@ -366,13 +366,13 @@ export default function AnalyticsDashboard() {
 
             {/* Custom dual progress bar */}
             <div className="flex h-3 w-full gap-1 mt-8 mb-4 rounded-full overflow-hidden bg-gray-100">
-              <div className="h-full bg-black" style={{ width: '65%' }}></div>
+              <div className="h-full bg-[#0ea5e9]" style={{ width: '65%' }}></div>
               <div className="h-full bg-[#fca5a5]" style={{ width: '25%' }}></div>
             </div>
 
             <div className="flex items-center gap-6 mt-6">
               <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-black"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-[#0ea5e9]"></div>
                 <span className="text-sm font-semibold text-gray-700">Organic Search</span>
               </div>
               <div className="flex items-center gap-2">

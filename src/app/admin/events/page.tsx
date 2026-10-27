@@ -193,7 +193,7 @@ export default function AdminEventPage() {
                   </div>
                   <button
                     onClick={handleAddNew}
-                    className="bg-black hover:bg-neutral-800 text-white px-5 py-2 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors shrink-0"
+                    className="bg-[#0ea5e9] hover:bg-[#0284c7] text-white px-5 py-2 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors shrink-0"
                   >
                     <Plus size={16} /> New Event
                   </button>
@@ -243,7 +243,7 @@ export default function AdminEventPage() {
                     </p>
                     <button
                       onClick={handleAddNew}
-                      className="bg-black hover:bg-neutral-800 text-white px-6 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors"
+                      className="bg-[#0ea5e9] hover:bg-[#0284c7] text-white px-6 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors"
                     >
                       <Plus size={16} /> Create First Event
                     </button>
@@ -274,7 +274,7 @@ export default function AdminEventPage() {
                             <ImageIcon size={32} />
                           </div>
                         )}
-                        <div className="absolute top-4 left-4 bg-black px-3 py-1.5 rounded-full">
+                        <div className="absolute top-4 left-4 bg-[#0ea5e9] px-3 py-1.5 rounded-full">
                           <span className="text-[13px] font-bold text-white tracking-tight">{event.status}</span>
                         </div>
                       </div>

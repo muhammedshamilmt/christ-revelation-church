@@ -110,7 +110,7 @@ export default function SubadminsManager() {
           {/* Toolbar */}
           <div className="h-14 px-6 border-b border-gray-100 flex items-center justify-between shrink-0 bg-gray-50/30">
             <div className="flex items-center gap-4">
-              <div className="relative group flex items-center bg-white border border-gray-200 rounded-full px-3 py-2 focus-within:border-black transition-colors ">
+              <div className="relative group flex items-center bg-white border border-gray-200 rounded-full px-3 py-2 focus-within:border-[#0ea5e9] transition-colors ">
                 <Search className="w-3.5 h-3.5 text-gray-400 mr-2" />
                 <input
                   type="text"
@@ -124,7 +124,7 @@ export default function SubadminsManager() {
               <div className="flex items-center gap-4 text-[13px] font-medium text-gray-600">
                 <button
                   onClick={handleSort}
-                  className={`flex items-center gap-1.5 transition-colors ${sortBy ? 'text-black font-bold' : 'hover:text-black'}`}
+                  className={`flex items-center gap-1.5 transition-colors ${sortBy ? 'text-[#0ea5e9] font-bold' : 'hover:text-[#0ea5e9]'}`}
                 >
                   <ArrowUpDown className="w-3.5 h-3.5" />
                   {sortBy ? `Sort by ${sortBy}` : 'Sort by'}
@@ -134,7 +134,7 @@ export default function SubadminsManager() {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="px-4 py-2 text-[13px] font-bold text-white bg-black hover:bg-black/90 rounded-full transition-colors flex items-center gap-1.5 shadow-sm"
+                className="px-4 py-2 text-[13px] font-bold text-white bg-[#0ea5e9] hover:bg-[#0284c7] rounded-full transition-colors flex items-center gap-1.5 shadow-sm"
               >
                 <Plus className="w-4 h-4" /> Add Subadmin
               </button>
@@ -218,7 +218,7 @@ export default function SubadminsManager() {
                     >
                       <td className="py-2 pl-6 pr-3 border-r border-gray-100" onClick={(e) => toggleSelect(subadmin.id, e)}>
                         <div
-                          className={`w-4 h-4 rounded-[4px] border flex items-center justify-center transition-colors ${selected.includes(subadmin.id) ? 'bg-black border-black' : 'border-gray-300 bg-white'}`}
+                          className={`w-4 h-4 rounded-[4px] border flex items-center justify-center transition-colors ${selected.includes(subadmin.id) ? 'bg-[#0ea5e9] border-[#0ea5e9]' : 'border-gray-300 bg-white'}`}
                         >
                           {selected.includes(subadmin.id) && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
                         </div>

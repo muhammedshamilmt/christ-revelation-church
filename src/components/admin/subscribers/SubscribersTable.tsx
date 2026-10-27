@@ -174,7 +174,7 @@ export default function SubscribersTable() {
                       <td className="py-3.5 pl-4 pr-3 border-r border-gray-100">
                         <div className="flex items-center justify-center">
                           <div
-                            className={`w-4 h-4 rounded-[4px] border flex items-center justify-center transition-colors ${selected.includes(subscriber.id) ? 'bg-black border-black' : 'border-gray-300 bg-white group-hover:border-gray-400'}`}
+                            className={`w-4 h-4 rounded-[4px] border flex items-center justify-center transition-colors ${selected.includes(subscriber.id) ? 'bg-[#0ea5e9] border-[#0ea5e9]' : 'border-gray-300 bg-white group-hover:border-gray-400'}`}
                           >
                             {selected.includes(subscriber.id) && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
                           </div>

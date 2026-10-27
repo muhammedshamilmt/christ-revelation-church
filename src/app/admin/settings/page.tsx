@@ -90,7 +90,7 @@ export default function AdminSettingsPage() {
                   : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100 border border-transparent'
                   }`}
               >
-                <tab.icon className={`w-[18px] h-[18px] ${activeTab === tab.id ? 'text-black' : 'text-gray-400'}`} />
+                <tab.icon className={`w-[18px] h-[18px] ${activeTab === tab.id ? 'text-[#0ea5e9]' : 'text-gray-400'}`} />
                 {tab.label}
               </button>
             ))}
@@ -130,7 +130,7 @@ export default function AdminSettingsPage() {
                     <input type="email" defaultValue="pastor.david@christrevelation.org" className="w-full bg-gray-50 border border-gray-200 rounded-full px-4 py-3 text-sm text-gray-900 focus:outline-none focus:bg-white focus:border-gray-400" />
                   </div>
                   <div className="space-y-2 md:col-span-2 pt-4">
-                    <button className="bg-black hover:bg-neutral-800 text-white px-8 py-3 rounded-full text-sm font-semibold transition-colors">
+                    <button className="bg-[#0ea5e9] hover:bg-[#0284c7] text-white px-8 py-3 rounded-full text-sm font-semibold transition-colors">
                       Save Changes
                     </button>
                   </div>
@@ -159,7 +159,7 @@ export default function AdminSettingsPage() {
                     <textarea rows={3} defaultValue="Birmingham, UK" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none focus:bg-white focus:border-gray-400 resize-none" />
                   </div>
                   <div className="space-y-2 pt-4">
-                    <button className="bg-black hover:bg-neutral-800 text-white px-8 py-3 rounded-full text-sm font-semibold transition-colors">
+                    <button className="bg-[#0ea5e9] hover:bg-[#0284c7] text-white px-8 py-3 rounded-full text-sm font-semibold transition-colors">
                       Update Organization
                     </button>
                   </div>
@@ -186,7 +186,7 @@ export default function AdminSettingsPage() {
                       </div>
                       <button
                         onClick={() => toggleNotification(item.key as keyof typeof notifications)}
-                        className={`w-12 h-6 rounded-full p-1 transition-colors ${notifications[item.key as keyof typeof notifications] ? 'bg-black' : 'bg-gray-300'}`}
+                        className={`w-12 h-6 rounded-full p-1 transition-colors ${notifications[item.key as keyof typeof notifications] ? 'bg-[#0ea5e9]' : 'bg-gray-300'}`}
                       >
                         <div className={`w-4 h-4 bg-white rounded-full transition-transform ${notifications[item.key as keyof typeof notifications] ? 'translate-x-6' : 'translate-x-0'}`} />
                       </button>
@@ -303,7 +303,7 @@ export default function AdminSettingsPage() {
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Billing integration not set up</h3>
                 <p className="text-[15px] text-gray-500 font-medium max-w-sm mb-6">Connect your payment processor to manage billing and subscription plans directly from here.</p>
-                <button className="bg-black hover:bg-neutral-800 hover:text-black text-white px-6 py-3 rounded-full text-sm font-semibold transition-colors">
+                <button className="bg-[#0ea5e9] hover:bg-[#0284c7] hover:text-white text-white px-6 py-3 rounded-full text-sm font-semibold transition-colors">
                   Setup Stripe Connect
                 </button>
               </div>

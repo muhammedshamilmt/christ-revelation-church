@@ -223,7 +223,7 @@ export default function NewSubadminSidebar({ open, onClose, editData }: NewSubad
                       placeholder="e.g. Emily Johnson"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] outline-none focus:bg-white focus:border-black focus:ring-2 focus:ring-black/20 transition-all font-medium"
+                      className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] outline-none focus:bg-white focus:border-[#0ea5e9] focus:ring-2 focus:ring-[#0ea5e9]/20 transition-all font-medium"
                     />
                   </div>
 
@@ -234,7 +234,7 @@ export default function NewSubadminSidebar({ open, onClose, editData }: NewSubad
                         type="date"
                         value={dob}
                         onChange={(e) => setDob(e.target.value)}
-                        className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] outline-none focus:bg-white focus:border-black focus:ring-2 focus:ring-black/20 transition-all font-medium text-gray-600"
+                        className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] outline-none focus:bg-white focus:border-[#0ea5e9] focus:ring-2 focus:ring-[#0ea5e9]/20 transition-all font-medium text-gray-600"
                       />
                     </div>
                     <div>
@@ -242,7 +242,7 @@ export default function NewSubadminSidebar({ open, onClose, editData }: NewSubad
                       <select
                         value={gender}
                         onChange={(e) => setGender(e.target.value)}
-                        className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] outline-none focus:bg-white focus:border-black focus:ring-2 focus:ring-black/20 transition-all font-medium appearance-none text-gray-600"
+                        className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] outline-none focus:bg-white focus:border-[#0ea5e9] focus:ring-2 focus:ring-[#0ea5e9]/20 transition-all font-medium appearance-none text-gray-600"
                       >
                         <option value="" disabled>Select</option>
                         <option value="Female">Female</option>
@@ -259,7 +259,7 @@ export default function NewSubadminSidebar({ open, onClose, editData }: NewSubad
                       placeholder="e.g. American"
                       value={nationality}
                       onChange={(e) => setNationality(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] outline-none focus:bg-white focus:border-black focus:ring-2 focus:ring-black/20 transition-all font-medium"
+                      className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] outline-none focus:bg-white focus:border-[#0ea5e9] focus:ring-2 focus:ring-[#0ea5e9]/20 transition-all font-medium"
                     />
                   </div>
 
@@ -270,7 +270,7 @@ export default function NewSubadminSidebar({ open, onClose, editData }: NewSubad
                       placeholder="e.g. California - United States"
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] outline-none focus:bg-white focus:border-black focus:ring-2 focus:ring-black/20 transition-all font-medium"
+                      className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] outline-none focus:bg-white focus:border-[#0ea5e9] focus:ring-2 focus:ring-[#0ea5e9]/20 transition-all font-medium"
                     />
                   </div>
 
@@ -281,7 +281,7 @@ export default function NewSubadminSidebar({ open, onClose, editData }: NewSubad
                       placeholder="e.g. (213) 555-1234"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] outline-none focus:bg-white focus:border-black focus:ring-2 focus:ring-black/20 transition-all font-medium"
+                      className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] outline-none focus:bg-white focus:border-[#0ea5e9] focus:ring-2 focus:ring-[#0ea5e9]/20 transition-all font-medium"
                     />
                   </div>
                 </div>
@@ -300,7 +300,7 @@ export default function NewSubadminSidebar({ open, onClose, editData }: NewSubad
                       placeholder="e.g. admin@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] outline-none focus:bg-white focus:border-black focus:ring-2 focus:ring-black/20 transition-all font-medium"
+                      className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] outline-none focus:bg-white focus:border-[#0ea5e9] focus:ring-2 focus:ring-[#0ea5e9]/20 transition-all font-medium"
                     />
                   </div>
 
@@ -310,7 +310,7 @@ export default function NewSubadminSidebar({ open, onClose, editData }: NewSubad
                     <select
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] outline-none focus:bg-white focus:border-black focus:ring-2 focus:ring-black/20 transition-all font-medium appearance-none text-gray-600"
+                      className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] outline-none focus:bg-white focus:border-[#0ea5e9] focus:ring-2 focus:ring-[#0ea5e9]/20 transition-all font-medium appearance-none text-gray-600"
                     >
                       <option value="Super Admin">Super Admin</option>
                       <option value="Editor">Editor</option>
@@ -331,7 +331,7 @@ export default function NewSubadminSidebar({ open, onClose, editData }: NewSubad
                         <span className="text-[13px] font-semibold text-gray-800">{route.label}</span>
                         <button
                           onClick={() => togglePermission(route.path)}
-                          className={`w-10 h-6 rounded-full transition-colors relative flex items-center ${permissions.includes(route.path) ? 'bg-black' : 'bg-gray-200'}`}
+                          className={`w-10 h-6 rounded-full transition-colors relative flex items-center ${permissions.includes(route.path) ? 'bg-[#0ea5e9]' : 'bg-gray-200'}`}
                         >
                           <div className={`w-4 h-4 bg-white rounded-full shadow-sm absolute transition-transform ${permissions.includes(route.path) ? 'translate-x-[20px]' : 'translate-x-[4px]'}`} />
                         </button>
@@ -359,7 +359,7 @@ export default function NewSubadminSidebar({ open, onClose, editData }: NewSubad
                 onClick={() => setStep(2)}
                 disabled={!isValid}
                 className={`flex-[2.5] py-3 rounded-full text-sm font-bold text-white flex items-center justify-center gap-2 transition-all shadow-sm ${isValid
-                  ? "bg-black hover:bg-black/90"
+                  ? "bg-[#0ea5e9] hover:bg-[#0284c7]"
                   : "bg-gray-200 text-gray-400 cursor-not-allowed shadow-none"}`}
               >
                 Next: Permissions <ChevronRight className="w-4 h-4" />
@@ -378,7 +378,7 @@ export default function NewSubadminSidebar({ open, onClose, editData }: NewSubad
                 disabled={saved}
                 className={`flex-[2.5] py-3 rounded-full text-sm font-bold text-white flex items-center justify-center gap-2 transition-all shadow-sm ${saved
                   ? "bg-emerald-500"
-                  : "bg-black hover:bg-black/90"}`}
+                  : "bg-[#0ea5e9] hover:bg-[#0284c7]"}`}
               >
                 {saved ? (
                   <><Check className="w-4 h-4" /> {editData ? "Subadmin Updated!" : "Subadmin Added!"}</>

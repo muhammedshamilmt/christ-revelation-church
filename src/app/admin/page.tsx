@@ -56,10 +56,10 @@ export default function AdminDashboardPage() {
         <div className="flex justify-between items-end mb-8">
           <div>
             <h1 className="text-[26px] font-bold text-gray-900 flex items-center gap-2 tracking-tight">
-              Hello, Admin <span className="text-2xl animate-wave origin-bottom-right inline-block">👋</span>
+              Welcome back, Pastor David <span className="text-2xl animate-wave origin-bottom-right inline-block">👋</span>
             </h1>
             <p className="text-gray-500 text-[14px] mt-1.5 font-medium">
-              Here are the latest insights from your donation platform.
+              Here are the latest ministry insights, tithes, campaigns, and church community activity.
             </p>
           </div>
 
@@ -106,7 +106,7 @@ export default function AdminDashboardPage() {
               <div className="flex justify-between items-center px-3 pt-2 pb-3">
                 <h3 className="text-[14px] font-semibold text-gray-600 flex items-center gap-2">
                   <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                  Donation Volume Trend
+                  Giving & Tithes Trend
                 </h3>
                 <div className="flex items-center border border-gray-200 bg-white rounded-full px-2 py-1  text-[12px] font-semibold text-gray-600 cursor-pointer hover:bg-gray-50 transition-colors">
                   Last week

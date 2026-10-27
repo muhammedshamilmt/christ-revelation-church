@@ -77,7 +77,7 @@ export default function VolumeChart() {
             content={({ active, payload }) => {
               if (active && payload && payload.length) {
                 return (
-                  <div className="bg-black text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
+                  <div className="bg-[#0ea5e9] text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
                     {payload[0].payload.name} : {payload[0].value}
                   </div>
                 );
@@ -97,7 +97,7 @@ export default function VolumeChart() {
             {data.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
-                fill={activeIndex === index ? "#000000" : '#f1f5f9'}
+                fill={activeIndex === index ? "#0ea5e9" : '#f1f5f9'}
                 className="transition-colors duration-300"
               />
             ))}

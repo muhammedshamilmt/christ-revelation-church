@@ -122,10 +122,10 @@ export default function ActivityMatrix({ subadminId }: { subadminId?: string }) 
   // Map levels to neutral black/gray brand color shades
   const getColor = (level: number) => {
     switch (level) {
-      case 4: return 'bg-black';            // Level 4 (Highest)
-      case 3: return 'bg-neutral-700';      // Level 3
-      case 2: return 'bg-neutral-400';      // Level 2
-      case 1: return 'bg-neutral-200';      // Level 1
+      case 4: return 'bg-[#0ea5e9]';            // Level 4 (Highest)
+      case 3: return 'bg-[#ff8233]';      // Level 3
+      case 2: return 'bg-[#ffaa66]';      // Level 2
+      case 1: return 'bg-[#ffd5b3]';      // Level 1
       case 0: return 'bg-gray-100';         // Level 0 (Empty)
       default: return 'bg-gray-100';
     }
@@ -230,13 +230,13 @@ export default function ActivityMatrix({ subadminId }: { subadminId?: string }) 
         <div className="w-[120px] shrink-0 pt-8 hidden lg:flex flex-col gap-2">
           <button
             onClick={() => setSelectedYear('2026')}
-            className={`px-4 py-2 text-left rounded-full transition-colors ${selectedYear === '2026' ? 'bg-black text-white font-semibold' : 'text-gray-600 hover:bg-gray-50'}`}
+            className={`px-4 py-2 text-left rounded-full transition-colors ${selectedYear === '2026' ? 'bg-[#0ea5e9] text-white font-semibold' : 'text-gray-600 hover:bg-gray-50'}`}
           >
             2026
           </button>
           <button
             onClick={() => setSelectedYear('2025')}
-            className={`px-4 py-2 text-left rounded-full transition-colors ${selectedYear === '2025' ? 'bg-black text-white font-semibold' : 'text-gray-600 hover:bg-gray-50'}`}
+            className={`px-4 py-2 text-left rounded-full transition-colors ${selectedYear === '2025' ? 'bg-[#0ea5e9] text-white font-semibold' : 'text-gray-600 hover:bg-gray-50'}`}
           >
             2025
           </button>
@@ -329,7 +329,7 @@ export default function ActivityMatrix({ subadminId }: { subadminId?: string }) 
 
             {/* Stacked Bar */}
             <div className="flex h-[8px] w-full rounded-full overflow-hidden gap-1 mb-6">
-              <div className="bg-black h-full transition-all" style={{ width: `${stats.efficiencyScore}%` }}></div>
+              <div className="bg-[#0ea5e9] h-full transition-all" style={{ width: `${stats.efficiencyScore}%` }}></div>
               <div className="bg-[#fc748d] h-full transition-all" style={{ width: `${stats.overestimation}%` }}></div>
               <div className="bg-[#fcdde2] h-full transition-all" style={{ width: `${stats.underestimation}%` }}></div>
             </div>
@@ -338,7 +338,7 @@ export default function ActivityMatrix({ subadminId }: { subadminId?: string }) 
             <div className="space-y-3">
               <div className="flex items-center justify-between text-[13px]">
                 <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-black"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#0ea5e9]"></div>
                   <span className="text-gray-600 font-medium">Efficiency Accuracy Score</span>
                 </div>
                 <span className="text-black font-bold">{stats.efficiencyScore}%</span>

@@ -191,14 +191,14 @@ export default function VolunteersTable() {
                         >
                           <td className="py-3 pl-4 pr-3 border-r border-gray-100" onClick={(e) => { e.stopPropagation(); toggleSelect(sub.id); }}>
                             <div className="flex items-center justify-center">
-                              <div className={`w-4 h-4 rounded-[4px] border flex items-center justify-center transition-colors ${isSelected ? 'bg-black border-black' : 'border-gray-300 bg-white group-hover:border-black/40'}`}>
+                              <div className={`w-4 h-4 rounded-[4px] border flex items-center justify-center transition-colors ${isSelected ? 'bg-[#0ea5e9] border-[#0ea5e9]' : 'border-gray-300 bg-white group-hover:border-[#0ea5e9]/40'}`}>
                                 {isSelected && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
                               </div>
                             </div>
                           </td>
                           <td className="py-3 px-4 border-r border-gray-100">
                             <div className="flex items-center gap-3">
-                              <img className="w-8 h-8 rounded-full border border-gray-200 shadow-sm" src={`https://ui-avatars.com/api/?name=${sub.firstName}+${sub.lastName}&background=ff385c&color=fff`} alt={sub.firstName} />
+                              <img className="w-8 h-8 rounded-full border border-gray-200 shadow-sm" src={`https://ui-avatars.com/api/?name=${sub.firstName}+${sub.lastName}&background=0048ff&color=fff`} alt={sub.firstName} />
                               <span className="text-[14px] font-bold text-gray-900 group-hover:text-black transition-colors">{sub.firstName} {sub.lastName}</span>
                             </div>
                           </td>

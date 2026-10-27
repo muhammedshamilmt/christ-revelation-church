@@ -20,15 +20,15 @@ const emptyPost: BlogPost = {
   excerpt: "",
   content: [{ text: "" }],
   pullQuote: "",
-  category: "Business Strategies",
+  category: "Faith",
   date: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
   readTime: "5 min read",
   image: "",
-  author: { name: "Admin User", role: "Author", avatar: "" },
+  author: { name: "Pastor David Vance", role: "Senior Pastor", avatar: "" },
   views: 0
 };
 
-const CATEGORIES = ["Marketing Tips", "Business Strategies", "Industry Insights", "Client Success", "Tutorials", "Development"];
+const CATEGORIES = ["Faith", "Outreach", "Spiritual Growth", "Community", "Discipleship", "Family & Marriage", "Testimonies"];
 
 export default function AdminBlogPage() {
   const { posts, isLoading, isError, mutate } = useAllBlogPosts();
@@ -182,7 +182,7 @@ export default function AdminBlogPage() {
                   </div>
                   <button
                     onClick={handleAddNew}
-                    className="bg-black hover:bg-neutral-800 text-white px-5 py-2 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors  shrink-0"
+                    className="bg-[#0ea5e9] hover:bg-[#0284c7] text-white px-5 py-2 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors shrink-0"
                   >
                     <Plus size={16} /> New Post
                   </button>
@@ -253,7 +253,7 @@ export default function AdminBlogPage() {
                             <BookOpen size={24} />
                           </div>
                         )}
-                        <div className="absolute top-3 left-3 bg-black px-3 py-1 rounded-full border border-gray-100  text-[10px] font-semibold text-white">
+                        <div className="absolute top-3 left-3 bg-[#0ea5e9] px-3 py-1 rounded-full border border-sky-200 text-[10px] font-semibold text-white">
                           {post.category}
                         </div>
                       </div>
@@ -351,7 +351,7 @@ export default function AdminBlogPage() {
                 <div className="flex items-center gap-3">
                   <button
                     onClick={handleSave}
-                    className="bg-black hover:bg-neutral-800 text-white px-6 py-2 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors "
+                    className="bg-[#0ea5e9] hover:bg-[#0284c7] text-white px-6 py-2 rounded-full text-sm font-semibold flex items-center gap-2 transition-colors "
                   >
                     <Save size={16} /> Save Post
                   </button>

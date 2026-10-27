@@ -180,7 +180,7 @@ export default function TransactionsTable() {
                       <td className="py-3 pl-4 pr-3 border-r border-gray-100" onClick={(e) => { e.stopPropagation(); toggleSelect(txn.id); }}>
                         <div className="flex items-center justify-center">
                           <div
-                            className={`w-4 h-4 rounded-[4px] border flex items-center justify-center transition-colors ${selected.includes(txn.id) ? 'bg-black border-black' : 'border-gray-300 bg-white'}`}
+                            className={`w-4 h-4 rounded-[4px] border flex items-center justify-center transition-colors ${selected.includes(txn.id) ? 'bg-[#0ea5e9] border-[#0ea5e9]' : 'border-gray-300 bg-white'}`}
                           >
                             {selected.includes(txn.id) && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
                           </div>

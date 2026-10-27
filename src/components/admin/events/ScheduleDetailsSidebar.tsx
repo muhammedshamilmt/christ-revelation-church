@@ -104,7 +104,7 @@ export default function ScheduleDetailsSidebar({ isOpen, onClose, event }: Sideb
         </div>
         
         <div className="p-6 border-t border-gray-100">
-          <button className="w-full py-3 bg-black text-white font-bold rounded-xl hover:bg-neutral-800 transition-colors">
+          <button className="w-full py-3 bg-[#0ea5e9] text-white font-bold rounded-xl hover:bg-[#0284c7] transition-colors">
             Join Meeting
           </button>
         </div>

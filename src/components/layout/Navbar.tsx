@@ -9,13 +9,11 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Ministries", href: "/ministries" },
-  { label: "Blogs", href: "/blogs" },
   { label: "Sermons", href: "/sermons" },
   { label: "Events", href: "/events" },
-  { label: "Prayer Request", href: "/prayer-request" },
-  { label: "Resources", href: "#" },
-  { label: "Contacts", href: "/contacts" },
-  { label: "Donate", href: "https://www.theglobalpeacemakers.org/donate#donate-section" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Blogs", href: "/blogs" },
+  { label: "Prayer", href: "/prayer-request" },
 ];
 
 export default function Navbar() {
@@ -144,29 +142,29 @@ export default function Navbar() {
                   </motion.p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-10 sm:gap-32">
-                  <div className="flex flex-col gap-4">
-                    {navLinks.slice(0, 3).map((link) => (
+                <div className="flex flex-col sm:flex-row gap-8 sm:gap-24 lg:gap-32">
+                  <div className="flex flex-col gap-3 sm:gap-4">
+                    {navLinks.slice(0, 4).map((link) => (
                       <div key={link.label} className="overflow-hidden">
                         <motion.a
                           href={link.href}
                           variants={itemVariants}
                           onClick={() => setIsOpen(false)}
-                          className="font-open-sauce text-[12vw] sm:text-7xl lg:text-8xl tracking-tight leading-none hover:opacity-50 transition-opacity block"
+                          className="font-open-sauce text-[11vw] sm:text-6xl lg:text-7xl tracking-tight leading-none hover:opacity-50 transition-opacity block"
                         >
                           {link.label}
                         </motion.a>
                       </div>
                     ))}
                   </div>
-                  <div className="flex flex-col gap-4">
-                    {navLinks.slice(3, 6).map((link) => (
+                  <div className="flex flex-col gap-3 sm:gap-4">
+                    {navLinks.slice(4, 8).map((link) => (
                       <div key={link.label} className="overflow-hidden">
                         <motion.a
                           href={link.href}
                           variants={itemVariants}
                           onClick={() => setIsOpen(false)}
-                          className="font-open-sauce text-[12vw] sm:text-7xl lg:text-8xl tracking-tight leading-none hover:opacity-50 transition-opacity block"
+                          className="font-open-sauce text-[11vw] sm:text-6xl lg:text-7xl tracking-tight leading-none hover:opacity-50 transition-opacity block"
                         >
                           {link.label}
                         </motion.a>

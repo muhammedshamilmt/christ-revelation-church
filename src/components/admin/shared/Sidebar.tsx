@@ -73,12 +73,12 @@ function ProfileDropdown({
                 onClick={() => setNotifPaused(p => !p)}
                 className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 transition-colors group"
               >
-                <BellOff size={18} className={`flex-shrink-0 ${notifPaused ? 'text-black' : 'text-gray-500'}`} />
+                <BellOff size={18} className={`flex-shrink-0 ${notifPaused ? 'text-[#0ea5e9]' : 'text-gray-500'}`} />
                 <span className="flex-1 text-left text-[13px] font-medium text-gray-700">
                   {notifPaused ? 'Resume Notifications' : 'Pause Notifications'}
                 </span>
                 {notifPaused && (
-                  <span className="text-[10px] font-bold text-white bg-black px-2 py-0.5 rounded-full">ON</span>
+                  <span className="text-[10px] font-bold text-white bg-[#0ea5e9] px-2 py-0.5 rounded-full">ON</span>
                 )}
               </button>
             </div>
@@ -116,7 +116,7 @@ function ProfileDropdown({
                 onClick={handleSignOut}
                 className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-100 transition-colors group"
               >
-                <LogOut size={18} className="text-gray-400 group-hover:text-black transition-colors flex-shrink-0" />
+                <LogOut size={18} className="text-gray-400 group-hover:text-[#0ea5e9] transition-colors flex-shrink-0" />
                 <span className="text-[13px] font-medium text-gray-600 group-hover:text-black transition-colors">
                   Sign out
                 </span>
@@ -165,11 +165,11 @@ function SidebarContent() {
 
   const linkClass = (path: string) =>
     isActive(path)
-      ? 'flex items-center gap-3 px-3 py-2 bg-white border border-gray-100 rounded-full text-black font-semibold shadow-lg relative'
+      ? 'flex items-center gap-3 px-3 py-2 bg-white border border-gray-100 rounded-full text-[#0ea5e9] font-semibold shadow-lg relative'
       : 'flex items-center gap-3 px-3 py-2 hover:bg-gray-100/50 rounded-full text-gray-600 transition-colors';
 
   const iconClass = (path: string) =>
-    isActive(path) ? 'w-[18px] h-[18px] text-black' : 'w-[18px] h-[18px] text-gray-400';
+    isActive(path) ? 'w-[18px] h-[18px] text-[#0ea5e9]' : 'w-[18px] h-[18px] text-gray-400';
 
   return (
     <aside className="w-[260px] bg-[#f8f9fa] border-r border-gray-200/60 h-full flex flex-col shrink-0">
@@ -177,7 +177,7 @@ function SidebarContent() {
       {/* Logo */}
       <div className="h-[72px] flex items-center px-6">
         <Link href="/admin" className="flex items-center gap-2.5 font-bold text-lg tracking-tight text-black hover:opacity-90 transition-opacity">
-          <div className="w-8 h-8 bg-gradient-to-br from-black to-neutral-800 rounded-xl flex items-center justify-center text-white text-xs font-black shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08)]">
+          <div className="w-8 h-8 bg-gradient-to-br from-[#0ea5e9] to-[#0284c7] rounded-xl flex items-center justify-center text-white text-xs font-black shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08)]">
             CRC
           </div>
           <div className="flex flex-col">
@@ -200,7 +200,7 @@ function SidebarContent() {
           <input
             type="text"
             placeholder="Search anything"
-            className="w-full pl-9 pr-10 py-2 bg-white border border-gray-200/80 rounded-full text-[13px] outline-none focus:ring-1 focus:ring-black/20 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.04)] transition-shadow"
+            className="w-full pl-9 pr-10 py-2 bg-white border border-gray-200/80 rounded-full text-[13px] outline-none focus:ring-1 focus:ring-[#0ea5e9]/20 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.04)] transition-shadow"
           />
           <div className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-50 border border-gray-200 rounded-full px-1.5 py-0.5 text-[10px] font-semibold text-gray-500 shadow-sm flex items-center gap-0.5">
             <span className="text-xs leading-none">⌘</span>K
@@ -226,8 +226,8 @@ function SidebarContent() {
                 onClick={() => setCampaignsOpen(!campaignsOpen)}
                 className="w-full flex items-center gap-3 px-3 py-2 hover:bg-gray-100/50 rounded-full text-gray-600 transition-colors"
               >
-                <Megaphone className={isActive('/admin/campaigns') ? 'w-[18px] h-[18px] text-black' : 'w-[18px] h-[18px] text-gray-400'} />
-                <span className={isActive('/admin/campaigns') ? 'text-[13px] font-semibold text-black' : 'text-[13px] font-medium'}>Campaigns</span>
+                <Megaphone className={isActive('/admin/campaigns') ? 'w-[18px] h-[18px] text-[#0ea5e9]' : 'w-[18px] h-[18px] text-gray-400'} />
+                <span className={isActive('/admin/campaigns') ? 'text-[13px] font-semibold text-[#0ea5e9]' : 'text-[13px] font-medium'}>Campaigns</span>
                 {campaignsOpen
                   ? <ChevronDown className="w-3.5 h-3.5 ml-auto text-gray-400" />
                   : <ChevronRight className="w-3.5 h-3.5 ml-auto text-gray-400" />
@@ -240,19 +240,19 @@ function SidebarContent() {
 
                   <div className="relative flex items-center">
                     <div className="absolute left-[-2px] w-3 h-px bg-gray-200 top-1/2"></div>
-                    <Link href="/admin/campaigns" className={`py-1.5 pl-6 pr-2 text-[13px] font-medium w-full rounded-full hover:bg-gray-100/50 transition-colors ${pathname === '/admin/campaigns' && !useSearchParam ? 'text-black' : 'text-gray-500 hover:text-black'}`}>All Campaigns</Link>
+                    <Link href="/admin/campaigns" className={`py-1.5 pl-6 pr-2 text-[13px] font-medium w-full rounded-full hover:bg-gray-100/50 transition-colors ${pathname === '/admin/campaigns' && !useSearchParam ? 'text-[#0ea5e9]' : 'text-gray-500 hover:text-[#0ea5e9]'}`}>All Campaigns</Link>
                   </div>
 
                   <div className="relative flex items-center">
                     <div className="absolute left-[-2px] w-3 h-px bg-gray-200 top-1/2"></div>
-                    <Link href="/admin/campaigns?tab=active" className={`py-1.5 pl-6 pr-2 text-[13px] font-medium w-full rounded-full hover:bg-gray-100/50 transition-colors ${activeTab === 'active' ? 'text-black' : 'text-gray-500 hover:text-black'}`}>Active</Link>
+                    <Link href="/admin/campaigns?tab=active" className={`py-1.5 pl-6 pr-2 text-[13px] font-medium w-full rounded-full hover:bg-gray-100/50 transition-colors ${activeTab === 'active' ? 'text-[#0ea5e9]' : 'text-gray-500 hover:text-[#0ea5e9]'}`}>Active</Link>
                   </div>
 
                   <div className="relative flex items-center">
                     <div className="absolute left-[-2px] w-3 h-px bg-gray-200 top-1/2"></div>
                     <div className="absolute left-[-2px] bottom-1/2 w-3 h-full border-b border-l border-gray-200 rounded-bl-[6px]"></div>
                     <div className="absolute left-[-2px] top-1/2 bottom-0 w-px bg-[#f8f9fa] z-10"></div>
-                    <Link href="/admin/campaigns?tab=drafts" className={`py-1.5 pl-6 pr-2 text-[13px] font-medium w-full rounded-full hover:bg-gray-100/50 transition-colors ${activeTab === 'drafts' ? 'text-black' : 'text-gray-500 hover:text-black'}`}>Drafts</Link>
+                    <Link href="/admin/campaigns?tab=drafts" className={`py-1.5 pl-6 pr-2 text-[13px] font-medium w-full rounded-full hover:bg-gray-100/50 transition-colors ${activeTab === 'drafts' ? 'text-[#0ea5e9]' : 'text-gray-500 hover:text-[#0ea5e9]'}`}>Drafts</Link>
                   </div>
                 </div>
               )}
@@ -345,8 +345,8 @@ function SidebarContent() {
                   onClick={() => setSettingsOpen(!settingsOpen)}
                   className="w-full flex items-center gap-3 px-3 py-2 hover:bg-gray-100/50 rounded-full text-gray-600 transition-colors"
                 >
-                  <Settings className={isActive('/admin/settings') ? 'w-[18px] h-[18px] text-black' : 'w-[18px] h-[18px] text-gray-400'} />
-                  <span className={isActive('/admin/settings') ? 'text-[13px] font-semibold text-black' : 'text-[13px] font-medium'}>Settings</span>
+                  <Settings className={isActive('/admin/settings') ? 'w-[18px] h-[18px] text-[#0ea5e9]' : 'w-[18px] h-[18px] text-gray-400'} />
+                  <span className={isActive('/admin/settings') ? 'text-[13px] font-semibold text-[#0ea5e9]' : 'text-[13px] font-medium'}>Settings</span>
                   {settingsOpen
                     ? <ChevronDown className="w-3.5 h-3.5 ml-auto text-gray-400" />
                     : <ChevronRight className="w-3.5 h-3.5 ml-auto text-gray-400" />
@@ -359,14 +359,14 @@ function SidebarContent() {
 
                     <div className="relative flex items-center">
                       <div className="absolute left-[-2px] w-3 h-px bg-gray-200 top-1/2"></div>
-                      <Link href="/admin/settings" className={`py-1.5 pl-6 pr-2 text-[13px] font-medium w-full rounded-full hover:bg-gray-100/50 transition-colors ${pathname === '/admin/settings' ? 'text-black' : 'text-gray-500 hover:text-black'}`}>Settings</Link>
+                      <Link href="/admin/settings" className={`py-1.5 pl-6 pr-2 text-[13px] font-medium w-full rounded-full hover:bg-gray-100/50 transition-colors ${pathname === '/admin/settings' ? 'text-[#0ea5e9]' : 'text-gray-500 hover:text-[#0ea5e9]'}`}>Settings</Link>
                     </div>
 
                     <div className="relative flex items-center">
                       <div className="absolute left-[-2px] w-3 h-px bg-gray-200 top-1/2"></div>
                       <div className="absolute left-[-2px] bottom-1/2 w-3 h-full border-b border-l border-gray-200 rounded-bl-[6px]"></div>
                       <div className="absolute left-[-2px] top-1/2 bottom-0 w-px bg-[#f8f9fa] z-10"></div>
-                      <Link href="/admin/settings/subadmins" className={`py-1.5 pl-6 pr-2 text-[13px] font-medium w-full rounded-full hover:bg-gray-100/50 transition-colors ${pathname?.startsWith('/admin/settings/subadmins') ? 'text-black' : 'text-gray-500 hover:text-black'}`}>Subadmins</Link>
+                      <Link href="/admin/settings/subadmins" className={`py-1.5 pl-6 pr-2 text-[13px] font-medium w-full rounded-full hover:bg-gray-100/50 transition-colors ${pathname?.startsWith('/admin/settings/subadmins') ? 'text-[#0ea5e9]' : 'text-gray-500 hover:text-[#0ea5e9]'}`}>Subadmins</Link>
                     </div>
                   </div>
                 )}
@@ -393,7 +393,7 @@ function SidebarContent() {
               {user?.user_metadata?.avatar_url ? (
                 <img src={user.user_metadata.avatar_url} className="w-8 h-8 rounded-full shadow-sm" alt="" />
               ) : (
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-black to-neutral-800 flex items-center justify-center text-white text-xs font-bold shadow-sm">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#0ea5e9] to-[#0284c7] flex items-center justify-center text-white text-xs font-bold shadow-sm">
                   {user?.user_metadata?.full_name?.substring(0, 2).toUpperCase() || 'AD'}
                 </div>
               )}

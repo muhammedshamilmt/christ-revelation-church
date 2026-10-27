@@ -69,21 +69,21 @@ const CONTACTS = [
   {
     icon: Mail,
     label: "Email Support",
-    value: "support@theglobalpeacemakers.org",
+    value: "support@christrevelationchurch.org",
     sub: "Response within 24 hours",
     color: "bg-gray-100 text-black",
   },
   {
     icon: GitBranch,
     label: "GitHub Repository",
-    value: "github.com/theglobalpeacemakers",
+    value: "github.com/christrevelationchurch",
     sub: "Issues & PRs",
     color: "bg-gray-100 text-gray-700",
   },
   {
     icon: Phone,
     label: "Emergency Line",
-    value: "+1 (555) 000-PEACE",
+    value: "+44 (0) 121 000-HOPE",
     sub: "Critical issues only",
     color: "bg-emerald-50 text-emerald-500",
   },
@@ -93,13 +93,13 @@ const CONTACTS = [
 const DEVELOPER = {
   name: "Shamil",
   role: "Lead Developer & System Architect",
-  org: "The Global Peacemakers",
-  location: "Global Operations",
-  email: "shamil@theglobalpeacemakers.org",
+  org: "Christ Revelation Church",
+  location: "United Kingdom & Global",
+  email: "admin@christrevelationchurch.org",
   github: "github.com/shamil-dev",
   since: "2024",
-  stack: ["Next.js", "TypeScript", "Tailwind", "Supabase", "Framer Motion"],
-  bio: "Designed and built The Global Peacemakers platform from the ground up — public site, admin panel, donation infrastructure, and internal tooling. Focused on performance, aesthetics, and clean architecture.",
+  stack: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
+  bio: "Lead Developer & System Architect for Christ Revelation Church — public site, admin portal, sermons & media archives, donation infrastructure, and internal ministry management.",
 };
 
 // ── VERSION INFO ──────────────────────────────────────────────────────────────
@@ -166,13 +166,13 @@ export default function AdminHelpPage() {
 
         {/* Version card */}
         <div className="lg:col-span-2 rounded-3xl bg-white border border-gray-200 p-6 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-          <div className="w-14 h-14 rounded-full bg-black flex items-center justify-center shrink-0">
+          <div className="w-14 h-14 rounded-full bg-[#0ea5e9] flex items-center justify-center shrink-0">
             <span className="text-white font-black text-xl">CRC</span>
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex flex-wrap items-center gap-2 mb-1">
               <span className="text-lg font-black text-gray-900">Admin Panel</span>
-              <span className="px-2 py-0.5 rounded-full bg-gray-100 border border-black/20 text-[10px] font-bold text-black uppercase tracking-widest">
+              <span className="px-2 py-0.5 rounded-full bg-gray-100 border border-[#0ea5e9]/20 text-[10px] font-bold text-[#0ea5e9] uppercase tracking-widest">
                 {VERSION.panel}
               </span>
             </div>
@@ -219,12 +219,12 @@ export default function AdminHelpPage() {
 
             {/* Avatar + identity */}
             <div className="flex flex-col items-center md:items-start gap-4 shrink-0">
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-black/10 to-gray-200 border border-gray-100 flex items-center justify-center text-3xl font-black text-black">
+              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#0ea5e9]/10 to-sky-100 border border-sky-200 flex items-center justify-center text-3xl font-black text-[#0ea5e9]">
                 S
               </div>
               <div className="text-center md:text-left">
                 <h2 className="text-xl font-black text-gray-900 tracking-tight">{DEVELOPER.name}</h2>
-                <p className="text-xs text-black font-bold mt-0.5">{DEVELOPER.role}</p>
+                <p className="text-xs text-[#0ea5e9] font-bold mt-0.5">{DEVELOPER.role}</p>
                 <p className="text-xs text-gray-500 mt-0.5">{DEVELOPER.org}</p>
               </div>
               <div className="flex flex-col gap-2 w-full mt-2">

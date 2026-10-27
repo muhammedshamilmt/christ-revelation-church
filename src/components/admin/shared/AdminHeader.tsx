@@ -110,7 +110,7 @@ export default function AdminHeader({
           >
             <Bell className="w-[18px] h-[18px]" />
             {notifications.filter(n => !n.isRead).length > 0 && (
-              <span className="absolute -top-1 -right-1 flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-black text-white text-[10px] font-bold border-2 border-white">
+              <span className="absolute -top-1 -right-1 flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-[#0ea5e9] text-white text-[10px] font-bold border-2 border-white">
                 {notifications.filter(n => !n.isRead).length}
               </span>
             )}
@@ -121,42 +121,42 @@ export default function AdminHeader({
             <div className="absolute right-0 top-12 w-[380px] bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
               <div className="p-4 flex items-center justify-between">
                 <h3 className="font-bold text-gray-900 text-[15px]">Notifications</h3>
-                <button className="text-[13px] text-white hover:text-white rounded-full font-medium px-3 py-0.5 bg-black transition-colors">Mark all as read</button>
+                <button className="text-[13px] text-white hover:text-white rounded-full font-medium px-3 py-0.5 bg-[#0ea5e9] hover:bg-[#0284c7] transition-colors">Mark all as read</button>
               </div>
 
               {/* Tabs */}
               <div className="flex items-center gap-6 px-4 border-b border-gray-100 text-[13px] font-medium">
                 <div
                   onClick={() => setActiveNotifTab('general')}
-                  className={`relative pb-3 cursor-pointer transition-colors ${activeNotifTab === 'general' ? 'text-black' : 'text-gray-400 hover:text-gray-600'} flex items-center gap-1.5`}
+                  className={`relative pb-3 cursor-pointer transition-colors ${activeNotifTab === 'general' ? 'text-[#0ea5e9]' : 'text-gray-400 hover:text-gray-600'} flex items-center gap-1.5`}
                 >
                   General
-                  <span className={activeNotifTab === 'general' ? "bg-black text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold" : "border border-gray-200 text-gray-400 text-[10px] px-1.5 py-0.5 rounded-full font-bold"}>
+                  <span className={activeNotifTab === 'general' ? "bg-[#0ea5e9] text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold" : "border border-gray-200 text-gray-400 text-[10px] px-1.5 py-0.5 rounded-full font-bold"}>
                     {notifications.filter(n => n.type === 'general').length}
                   </span>
-                  {activeNotifTab === 'general' && <div className="absolute bottom-0 left-0 w-full h-[2px] bg-black rounded-t-full"></div>}
+                  {activeNotifTab === 'general' && <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#0ea5e9] rounded-t-full"></div>}
                 </div>
 
                 <div
                   onClick={() => setActiveNotifTab('inbox')}
-                  className={`relative pb-3 cursor-pointer transition-colors ${activeNotifTab === 'inbox' ? 'text-black' : 'text-gray-400 hover:text-gray-600'} flex items-center gap-1.5`}
+                  className={`relative pb-3 cursor-pointer transition-colors ${activeNotifTab === 'inbox' ? 'text-[#0ea5e9]' : 'text-gray-400 hover:text-gray-600'} flex items-center gap-1.5`}
                 >
                   Inbox
-                  <span className={activeNotifTab === 'inbox' ? "bg-black text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold" : "border border-gray-200 text-gray-400 text-[10px] px-1.5 py-0.5 rounded-full font-bold"}>
+                  <span className={activeNotifTab === 'inbox' ? "bg-[#0ea5e9] text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold" : "border border-gray-200 text-gray-400 text-[10px] px-1.5 py-0.5 rounded-full font-bold"}>
                     {notifications.filter(n => n.type === 'inbox').length}
                   </span>
-                  {activeNotifTab === 'inbox' && <div className="absolute bottom-0 left-0 w-full h-[2px] bg-black rounded-t-full"></div>}
+                  {activeNotifTab === 'inbox' && <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#0ea5e9] rounded-t-full"></div>}
                 </div>
 
                 <div
                   onClick={() => setActiveNotifTab('archived')}
-                  className={`relative pb-3 cursor-pointer transition-colors ${activeNotifTab === 'archived' ? 'text-black' : 'text-gray-400 hover:text-gray-600'} flex items-center gap-1.5`}
+                  className={`relative pb-3 cursor-pointer transition-colors ${activeNotifTab === 'archived' ? 'text-[#0ea5e9]' : 'text-gray-400 hover:text-gray-600'} flex items-center gap-1.5`}
                 >
                   Archived
-                  <span className={activeNotifTab === 'archived' ? "bg-black text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold" : "border border-gray-200 text-gray-400 text-[10px] px-1.5 py-0.5 rounded-full font-bold"}>
+                  <span className={activeNotifTab === 'archived' ? "bg-[#0ea5e9] text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold" : "border border-gray-200 text-gray-400 text-[10px] px-1.5 py-0.5 rounded-full font-bold"}>
                     {notifications.filter(n => n.type === 'archived').length}
                   </span>
-                  {activeNotifTab === 'archived' && <div className="absolute bottom-0 left-0 w-full h-[2px] bg-black rounded-t-full"></div>}
+                  {activeNotifTab === 'archived' && <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#0ea5e9] rounded-t-full"></div>}
                 </div>
 
                 <div className="pb-3 ml-auto text-gray-400 hover:text-gray-600 cursor-pointer transition-colors">
@@ -194,7 +194,7 @@ export default function AdminHeader({
                             {notif.action.includes('shared') ? (
                               <>
                                 <button className="px-4 py-1.5 border border-gray-200 rounded-full text-gray-700 font-semibold hover:bg-gray-50 transition-colors">Decline</button>
-                                <button className="px-4 py-1.5 bg-black text-white rounded-full font-semibold hover:bg-[#e03150] transition-colors">Accept</button>
+                                <button className="px-4 py-1.5 bg-[#0ea5e9] text-white rounded-full font-semibold hover:bg-[#0284c7] transition-colors">Accept</button>
                               </>
                             ) : (
                               <button className="px-4 py-1.5 border border-gray-200 rounded-full text-gray-700 font-semibold hover:bg-gray-50 transition-colors">Reply</button>
@@ -203,7 +203,7 @@ export default function AdminHeader({
                         )}
                       </div>
                       {!notif.isRead && (
-                        <div className="w-2 h-2 bg-black rounded-full mt-2 shrink-0"></div>
+                        <div className="w-2 h-2 bg-[#0ea5e9] rounded-full mt-2 shrink-0"></div>
                       )}
                     </div>
                   ));
@@ -220,8 +220,8 @@ export default function AdminHeader({
           </div>
           <input
             type="text"
-            placeholder="Search for Courses, Resources etc..."
-            className="w-[300px] h-10 pl-9 pr-4 rounded-full bg-gray-50 border-2 border-transparent text-[13px] font-medium text-gray-700 outline-none focus:bg-white focus:border-black focus:ring-black/20 transition-all placeholder:text-gray-400"
+            placeholder="Search sermons, events, transactions, members..."
+            className="w-[320px] h-10 pl-9 pr-4 rounded-full bg-gray-50 border-2 border-transparent text-[13px] font-medium text-gray-700 outline-none focus:bg-white focus:border-[#0ea5e9] focus:ring-[#0ea5e9]/20 transition-all placeholder:text-gray-400"
           />
         </div>
 
@@ -229,7 +229,7 @@ export default function AdminHeader({
         <div className="relative ml-1">
           <button
             onClick={() => { setIsProfileOpen(!isProfileOpen); setIsNotifOpen(false); }}
-            className={`w-10 h-10 rounded-full overflow-hidden border-2 transition-all ${isProfileOpen ? 'border-black ring-2 ring-black/20' : 'border-transparent hover:border-black'}`}
+            className={`w-10 h-10 rounded-full overflow-hidden border-2 transition-all ${isProfileOpen ? 'border-[#0ea5e9] ring-2 ring-[#0ea5e9]/20' : 'border-transparent hover:border-[#0ea5e9]'}`}
           >
             <img
               src={profileImage}
@@ -251,7 +251,7 @@ export default function AdminHeader({
                     <p className="text-[12px] text-gray-500 mt-1">{userEmail}</p>
                   </div>
                 </div>
-                <span className="text-[10px] font-semibold tracking-wider text-white border border-gray-200 px-2 py-0.5 rounded-full bg-black">
+                <span className="text-[10px] font-semibold tracking-wider text-white border border-gray-200 px-2 py-0.5 rounded-full bg-[#0ea5e9]">
                   {role?.toUpperCase() || 'ADMIN'}
                 </span>
               </div>
@@ -283,7 +283,7 @@ export default function AdminHeader({
 
                 {/* Progress Bar */}
                 <div className="w-full h-2 bg-gray-100 rounded-full mb-3 overflow-hidden">
-                  <div className="h-full bg-black rounded-full" style={{ width: '60%' }}></div>
+                  <div className="h-full bg-[#0ea5e9] rounded-full" style={{ width: '60%' }}></div>
                 </div>
 
                 <div className="flex items-center gap-1.5 text-black text-[12px] font-medium mb-4">
@@ -292,7 +292,7 @@ export default function AdminHeader({
 
                 <div className="flex items-center justify-between text-[12px]">
                   <span className="text-gray-500 flex items-center gap-1"><span className="w-3 h-3 border border-gray-400 rounded-full flex items-center justify-center text-[8px] font-bold">L</span> Resets in 23 days</span>
-                  <button className="text-black font-bold hover:underline">Upgrade Plan</button>
+                  <button className="text-[#0ea5e9] font-bold hover:underline">Upgrade Plan</button>
                 </div>
               </div>
 

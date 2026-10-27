@@ -25,7 +25,7 @@ export default function TeamsView() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => { setEditingTeam(null); setSidebarOpen(true); }}
-              className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full text-sm font-medium hover:bg-neutral-800 transition-colors shadow-sm shadow-black/10"
+              className="flex items-center gap-2 px-4 py-2 bg-[#0ea5e9] text-white rounded-full text-sm font-medium hover:bg-[#0284c7] transition-colors shadow-sm shadow-[#0ea5e9]/20"
             >
               <UserPlus className="w-4 h-4" /> New Team
             </button>
@@ -44,7 +44,7 @@ export default function TeamsView() {
             <button
               key={tab}
               onClick={() => setViewTab(tab)}
-              className={`pb-3 text-sm font-semibold transition-colors border-b-2 ${viewTab === tab ? 'border-black text-black' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
+              className={`pb-3 text-sm font-semibold transition-colors border-b-2 ${viewTab === tab ? 'border-[#0ea5e9] text-[#0ea5e9]' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
             >
               {tab}
             </button>
@@ -60,7 +60,7 @@ export default function TeamsView() {
               <input
                 type="text"
                 placeholder="Search"
-                className="pl-9 pr-4 py-2 rounded-full border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black w-64 bg-gray-50/50"
+                className="pl-9 pr-4 py-2 rounded-full border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0ea5e9]/20 focus:border-[#0ea5e9] w-64 bg-gray-50/50"
               />
               <div className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-medium text-gray-400 border border-gray-200 px-1.5 rounded bg-white">⌘F</div>
             </div>

@@ -229,7 +229,7 @@ export default function NewTeamSidebar({ open, onClose, onSave, editData }: NewT
                     value={teamName}
                     onChange={e => setTeamName(e.target.value)}
                     placeholder="e.g. Alpha Squad"
-                    className="w-full px-3.5 py-2.5 rounded-full border border-gray-200 text-sm font-medium text-black placeholder:text-gray-400 focus:outline-none focus:border-black focus:ring-2 focus:ring-black/20 transition-all"
+                    className="w-full px-3.5 py-2.5 rounded-full border border-gray-200 text-sm font-medium text-black placeholder:text-gray-400 focus:outline-none focus:border-[#0ea5e9] focus:ring-2 focus:ring-[#0ea5e9]/20 transition-all"
                   />
                 </div>
                 <div>
@@ -268,7 +268,7 @@ export default function NewTeamSidebar({ open, onClose, onSave, editData }: NewT
                         onClick={() => setStatus(s)}
                         className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${status === s
                           ? s === "Active"
-                            ? "bg-black text-white shadow-sm"
+                            ? "bg-[#0ea5e9] text-white shadow-sm"
                             : "bg-gray-700 text-white shadow-sm"
                           : "text-gray-500 hover:text-gray-700"}`}
                       >
@@ -340,7 +340,7 @@ export default function NewTeamSidebar({ open, onClose, onSave, editData }: NewT
               <div className="divide-y divide-gray-100 max-h-[240px] overflow-y-auto">
                 {loadingVolunteers ? (
                   <div className="py-6 flex flex-col items-center justify-center gap-2">
-                    <div className="w-5 h-5 border-2 border-gray-300 border-t-black rounded-full animate-spin"></div>
+                    <div className="w-5 h-5 border-2 border-gray-300 border-t-[#0ea5e9] rounded-full animate-spin"></div>
                     <p className="text-[12px] font-medium text-gray-400 animate-pulse">Loading volunteers...</p>
                   </div>
                 ) : filteredMembers.length === 0 ? (
@@ -354,7 +354,7 @@ export default function NewTeamSidebar({ open, onClose, onSave, editData }: NewT
                         {/* Checkbox-style toggle */}
                         <button
                           onClick={() => toggleMember(m)}
-                          className={`w-5 h-5 rounded-[5px] border-2 flex items-center justify-center flex-shrink-0 transition-all ${isSelected ? "bg-black border-black" : "border-gray-300 hover:border-black"}`}
+                          className={`w-5 h-5 rounded-[5px] border-2 flex items-center justify-center flex-shrink-0 transition-all ${isSelected ? "bg-[#0ea5e9] border-[#0ea5e9]" : "border-gray-300 hover:border-[#0ea5e9]"}`}
                         >
                           {isSelected && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
                         </button>
@@ -417,7 +417,7 @@ export default function NewTeamSidebar({ open, onClose, onSave, editData }: NewT
                     key={tag}
                     onClick={() => toggleTag(tag)}
                     className={`px-3.5 py-1.5 rounded-full text-[12px] font-semibold transition-all border ${activeTags.includes(tag)
-                      ? "bg-black text-white border-black"
+                      ? "bg-[#0ea5e9] text-white border-[#0ea5e9]"
                       : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"}`}
                   >
                     {tag}
@@ -426,7 +426,7 @@ export default function NewTeamSidebar({ open, onClose, onSave, editData }: NewT
               </div>
 
               {/* Custom tag input — like "Add custom tag" in reference */}
-              <div className="flex items-center gap-2 border border-gray-200 rounded-full px-3.5 py-2.5 focus-within:border-black focus-within:ring-2 focus-within:ring-black/20 transition-all">
+              <div className="flex items-center gap-2 border border-gray-200 rounded-full px-3.5 py-2.5 focus-within:border-[#0ea5e9] focus-within:ring-2 focus-within:ring-[#0ea5e9]/20 transition-all">
                 <Tag className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
                 <input
                   type="text"
@@ -453,7 +453,7 @@ export default function NewTeamSidebar({ open, onClose, onSave, editData }: NewT
                   onChange={e => setNotes(e.target.value)}
                   rows={3}
                   placeholder="Add any notes or goals for this team…"
-                  className="w-full px-3.5 py-2.5 rounded-[20px] border border-gray-200 text-sm font-medium text-black placeholder:text-gray-400 focus:outline-none focus:border-black focus:ring-2 focus:ring-black/20 transition-all resize-none bg-gray-50/40"
+                  className="w-full px-3.5 py-2.5 rounded-[20px] border border-gray-200 text-sm font-medium text-black placeholder:text-gray-400 focus:outline-none focus:border-[#0ea5e9] focus:ring-2 focus:ring-[#0ea5e9]/20 transition-all resize-none bg-gray-50/40"
                 />
               </div>
             </div>
@@ -475,7 +475,7 @@ export default function NewTeamSidebar({ open, onClose, onSave, editData }: NewT
             className={`flex-[2.5] py-3 rounded-full text-sm font-bold text-white flex items-center justify-center gap-2 transition-all ${saved
               ? "bg-emerald-500"
               : isValid
-                ? "bg-black hover:bg-neutral-800 hover:text-white"
+                ? "bg-[#0ea5e9] hover:bg-[#0284c7] hover:text-white"
                 : "bg-gray-200 text-gray-400 cursor-not-allowed"}`}
           >
             {saved ? (

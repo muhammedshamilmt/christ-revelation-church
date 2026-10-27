@@ -48,7 +48,7 @@ const Label = ({ children }: { children: React.ReactNode }) => (
   </label>
 );
 
-const InputCls = "w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-2.5 text-sm font-medium text-black focus:outline-none focus:bg-white focus:border-black transition-colors";
+const InputCls = "w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-full px-4 py-2.5 text-sm font-medium text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9] transition-colors";
 
 export default function EventForm({ event, onChange, onSave, onCancel }: EventFormProps) {
   const [formTab, setFormTab] = useState<"edit" | "preview">("edit");
@@ -110,7 +110,7 @@ export default function EventForm({ event, onChange, onSave, onCancel }: EventFo
           <button
             onClick={handleSave}
             disabled={saving}
-            className="bg-black hover:bg-neutral-800 disabled:opacity-60 text-white px-6 py-2 rounded-full text-sm font-bold flex items-center gap-2 transition-colors shadow-sm"
+            className="bg-[#0ea5e9] hover:bg-[#0284c7] disabled:opacity-60 text-white px-6 py-2 rounded-full text-sm font-bold flex items-center gap-2 transition-colors shadow-sm"
           >
             {saving ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
             {saving ? "Saving…" : "Save Event"}
@@ -168,7 +168,7 @@ export default function EventForm({ event, onChange, onSave, onCancel }: EventFo
                         set({ description: newDesc });
                       }}
                       rows={3}
-                      className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-2xl px-4 py-3 text-sm font-medium text-black focus:outline-none focus:bg-white focus:border-black resize-none transition-colors"
+                      className="w-full bg-[#f4f8f4] border border-[#e6ece7] rounded-2xl px-4 py-3 text-sm font-medium text-black focus:outline-none focus:bg-white focus:border-[#0ea5e9] resize-none transition-colors"
                       placeholder="Paragraph text…"
                     />
                     <button
@@ -253,7 +253,7 @@ export default function EventForm({ event, onChange, onSave, onCancel }: EventFo
                           a[idx] = { ...a[idx], time: e.target.value };
                           set({ agenda: a });
                         }}
-                        className="w-full bg-white border border-[#e6ece7] rounded-full px-3 py-2 text-sm font-medium text-black focus:outline-none focus:border-black transition-colors"
+                        className="w-full bg-white border border-[#e6ece7] rounded-full px-3 py-2 text-sm font-medium text-black focus:outline-none focus:border-[#0ea5e9] transition-colors"
                         placeholder="10:00"
                       />
                     </div>
@@ -267,7 +267,7 @@ export default function EventForm({ event, onChange, onSave, onCancel }: EventFo
                           a[idx] = { ...a[idx], title: e.target.value };
                           set({ agenda: a });
                         }}
-                        className="w-full bg-white border border-[#e6ece7] rounded-full px-3 py-2 text-sm font-medium text-black focus:outline-none focus:border-black transition-colors"
+                        className="w-full bg-white border border-[#e6ece7] rounded-full px-3 py-2 text-sm font-medium text-black focus:outline-none focus:border-[#0ea5e9] transition-colors"
                         placeholder="Session title"
                       />
                     </div>
@@ -282,7 +282,7 @@ export default function EventForm({ event, onChange, onSave, onCancel }: EventFo
                         set({ agenda: a });
                       }}
                       rows={2}
-                      className="w-full bg-white border border-[#e6ece7] rounded-2xl px-3 py-2 text-sm font-medium text-black focus:outline-none focus:border-black resize-none transition-colors"
+                      className="w-full bg-white border border-[#e6ece7] rounded-2xl px-3 py-2 text-sm font-medium text-black focus:outline-none focus:border-[#0ea5e9] resize-none transition-colors"
                     />
                   </div>
                 </div>
@@ -474,7 +474,7 @@ export default function EventForm({ event, onChange, onSave, onCancel }: EventFo
               )}
             </div>
             <div className="flex shrink-0 items-center gap-3">
-              <button className="flex items-center gap-2 rounded-full bg-black px-6 py-2.5 text-sm font-bold text-white hover:bg-neutral-800 transition">
+              <button className="flex items-center gap-2 rounded-full bg-[#0ea5e9] px-6 py-2.5 text-sm font-bold text-white hover:bg-[#0284c7] transition">
                 Reserve space
               </button>
             </div>

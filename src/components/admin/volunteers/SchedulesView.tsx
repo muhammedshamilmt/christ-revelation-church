@@ -79,7 +79,7 @@ export default function SchedulesView() {
           <button className="flex items-center gap-2 px-4 py-2 border border-gray-200 text-gray-700 rounded-full text-sm font-semibold hover:bg-gray-50 transition-colors">
             <CalendarIcon className="w-4 h-4" /> Schedule
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full text-sm font-semibold hover:bg-neutral-800 transition-colors">
+          <button className="flex items-center gap-2 px-4 py-2 bg-[#0ea5e9] text-white rounded-full text-sm font-semibold hover:bg-[#0284c7] transition-colors">
             <Plus className="w-4 h-4" /> Create a Request
           </button>
         </div>
@@ -120,7 +120,7 @@ export default function SchedulesView() {
             <input
               type="text"
               placeholder="Search..."
-              className="pl-9 pr-4 py-2 rounded-full border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black w-64 bg-gray-50/50"
+              className="pl-9 pr-4 py-2 rounded-full border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0ea5e9]/20 focus:border-[#0ea5e9] w-64 bg-gray-50/50"
             />
           </div>
           <button className="flex items-center gap-2 px-4 py-2 border border-gray-200 text-gray-700 rounded-full text-sm font-semibold hover:bg-gray-50 transition-colors bg-white">
@@ -138,7 +138,7 @@ export default function SchedulesView() {
           <button
             key={tab}
             onClick={() => setViewTab(tab)}
-            className={`pb-3 text-[13px] font-bold transition-colors border-b-2 flex items-center gap-2 ${viewTab === tab ? 'border-black text-black' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
+            className={`pb-3 text-[13px] font-bold transition-colors border-b-2 flex items-center gap-2 ${viewTab === tab ? 'border-[#0ea5e9] text-[#0ea5e9]' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
           >
             {tab === 'All Scheduled' && <LayoutGrid className="w-4 h-4" />}
             {tab}
@@ -152,7 +152,7 @@ export default function SchedulesView() {
           {/* Summary Cards */}
           <div className="grid grid-cols-4 gap-4 mb-6">
             {mockSummaryCards.map(card => (
-              <div key={card.id} className="border border-gray-200 rounded-xl p-4 bg-white flex flex-col justify-between h-28 hover:border-black/30 hover:shadow-md transition-all cursor-pointer">
+              <div key={card.id} className="border border-gray-200 rounded-xl p-4 bg-white flex flex-col justify-between h-28 hover:border-[#0ea5e9]/40 hover:shadow-md transition-all cursor-pointer">
                 <div>
                   <div className="flex justify-between items-start mb-1">
                     <h4 className="text-sm font-bold text-black truncate pr-2">{card.title}</h4>
@@ -269,7 +269,7 @@ export default function SchedulesView() {
             <div
               key={event.id}
               onClick={() => openSidebar(event as unknown as ScheduleEvent)}
-              className="flex items-center justify-between p-4 border border-gray-100 rounded-full hover:border-black/30 hover:shadow-md transition-all cursor-pointer bg-white group"
+              className="flex items-center justify-between p-4 border border-gray-100 rounded-full hover:border-[#0ea5e9]/40 hover:shadow-md transition-all cursor-pointer bg-white group"
             >
               <div className="flex items-center gap-4">
                 <div className={`w-12 h-12 rounded-full flex items-center justify-center ${event.color.split(' ')[0]}`}>

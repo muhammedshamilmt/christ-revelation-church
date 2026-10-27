@@ -90,7 +90,7 @@ export default function MonitoringTable() {
                     <td className="py-3.5 pl-6 pr-2">
                       <div
                         onClick={() => toggleSelect(txn.id)}
-                        className={`w-[18px] h-[18px] rounded-md border cursor-pointer flex items-center justify-center transition-colors ${selected.includes(txn.id) ? 'bg-black border-black' : 'border-gray-200 bg-gray-50'}`}
+                        className={`w-[18px] h-[18px] rounded-md border cursor-pointer flex items-center justify-center transition-colors ${selected.includes(txn.id) ? 'bg-[#0ea5e9] border-[#0ea5e9]' : 'border-gray-200 bg-gray-50'}`}
                       >
                         {selected.includes(txn.id) && <Check className="w-3.5 h-3.5 text-white" />}
                       </div>

@@ -8,28 +8,29 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import DateRangePicker from '@/components/admin/shared/DateRangePicker';
 
 const mockSummaryCards = [
-  { id: 1, title: 'Weekly Team Meeting', time: '3:00 PM - 4:30 PM', status: 'Today', statusColor: 'bg-emerald-100 text-emerald-700', action: 'Join Meeting', actionColor: 'text-emerald-700' },
-  { id: 2, title: 'Product Launch Event', time: '3:00 PM - 4:30 PM', status: '2 Conflicted', statusColor: 'bg-orange-100 text-orange-700', action: 'See Conflict', actionColor: 'text-gray-600' },
-  { id: 3, title: 'Team Building Workshop', time: '9:00 AM - 12:00 PM', status: 'Cancelled', statusColor: 'bg-red-100 text-red-700', date: 'Aug 06, 2023' },
-  { id: 4, title: 'Marketing Campaign Strategy', time: '2:30 PM - 4:00 PM', status: '3 days later', statusColor: 'bg-gray-100 text-gray-700', date: 'Aug 07, 2023' },
+  { id: 1, title: 'Sunday Worship Service', time: '10:00 AM - 1:00 PM', status: 'Upcoming', statusColor: 'bg-emerald-100 text-emerald-700', action: 'Join Service', actionColor: 'text-emerald-700' },
+  { id: 2, title: 'Midweek Bible Study', time: '6:30 PM - 8:00 PM', status: 'Scheduled', statusColor: 'bg-blue-100 text-blue-700', action: 'View Details', actionColor: 'text-blue-700' },
+  { id: 3, title: 'Ignite Youth Gathering', time: '5:00 PM - 7:30 PM', status: 'Active', statusColor: 'bg-purple-100 text-purple-700', date: 'Upcoming Friday' },
+  { id: 4, title: 'Community Outreach & Food Drive', time: '11:00 AM - 2:00 PM', status: 'Planning', statusColor: 'bg-amber-100 text-amber-700', date: 'Saturday' },
 ];
 
 const mockEvents = [
-  { id: 1, day: 0, start: 9, duration: 0.5, title: 'Brainstorming Session', time: '9:00 - 9:30 AM', color: 'bg-blue-50 border-blue-200' },
-  { id: 2, day: 0, start: 9.5, duration: 0.5, title: 'Bi-Weekly Marketing Team Meet...', time: '9:30 - 10:00 AM', color: 'bg-gray-50 border-gray-200' },
-  { id: 3, day: 0, start: 11.5, duration: 1.5, title: 'Workshop: "Mastering Design Thinking"', time: '11:30 AM - 1:00 PM', color: 'bg-orange-50 border-orange-200', location: 'Venue: XYZ Conference Cen...' },
+  { id: 1, day: 0, start: 9, duration: 1, title: 'Morning Intercessory Prayer', time: '9:00 - 10:00 AM', color: 'bg-blue-50 border-blue-200' },
+  { id: 2, day: 0, start: 10.5, duration: 1, title: 'Pastoral Team Planning', time: '10:30 - 11:30 AM', color: 'bg-gray-50 border-gray-200' },
+  { id: 3, day: 0, start: 12, duration: 1.5, title: 'Community Counseling Session', time: '12:00 - 1:30 PM', color: 'bg-purple-50 border-purple-200', location: 'Sanctuary Counseling Rm' },
 
-  { id: 4, day: 1, start: 9, duration: 0.5, title: 'Project Review Meeting', time: '9:00 - 9:30 AM', color: 'bg-blue-100 border-blue-200' },
-  { id: 5, day: 1, start: 10, duration: 1.5, title: 'Sales Team Training Session - Improving Sales Techniques', time: '10:00 - 11:30 AM', color: 'bg-blue-100 border-blue-200', participants: 7, platform: 'on Zoom' },
-  { id: 6, day: 1, start: 12, duration: 0.5, title: 'Quarterly Financial Review', time: '12:00 PM - 12:30 PM', color: 'bg-blue-100 border-blue-200' },
-  { id: 7, day: 1, start: 12.5, duration: 0.5, title: 'Sales Performance Review', time: '12:30 PM - 1:00 PM', color: 'bg-blue-100 border-blue-200' },
+  { id: 4, day: 1, start: 9.5, duration: 1, title: 'Deacons & Ushers Briefing', time: '9:30 - 10:30 AM', color: 'bg-blue-100 border-blue-200' },
+  { id: 5, day: 1, start: 11, duration: 1.5, title: 'Choir & Orchestra Rehearsal', time: '11:00 AM - 12:30 PM', color: 'bg-emerald-50 border-emerald-200', participants: 18, platform: 'Main Sanctuary' },
+  { id: 6, day: 1, start: 13, duration: 1, title: 'Media & Livestream Soundcheck', time: '1:00 - 2:00 PM', color: 'bg-blue-100 border-blue-200' },
 
-  { id: 8, day: 2, start: 9.5, duration: 0.5, title: 'Marketing Strategy Discussion', time: '9:30 - 10:00 AM', color: 'bg-blue-100 border-blue-200' },
-  { id: 9, day: 2, start: 11, duration: 0.5, title: 'Strategy Planning for Company E...', time: '11:00 - 11:30 AM', color: 'bg-blue-100 border-blue-200' },
-  { id: 10, day: 2, start: 11.5, duration: 1.5, title: 'New Feature Implementation and Roadmap Discussion', time: '11:30 AM - 1:00 PM', color: 'bg-blue-100 border-blue-200', participants: 4, platform: 'on Zoom' },
+  { id: 7, day: 2, start: 9, duration: 1, title: 'Prayer Chapel Fasting Watch', time: '9:00 - 10:00 AM', color: 'bg-blue-100 border-blue-200' },
+  { id: 8, day: 2, start: 10.5, duration: 1.5, title: 'Midweek Discipleship & Study', time: '10:30 AM - 12:00 PM', color: 'bg-amber-50 border-amber-200' },
+  { id: 9, day: 2, start: 12.5, duration: 1.5, title: 'Online Prayer Fellowship', time: '12:30 - 2:00 PM', color: 'bg-blue-100 border-blue-200', participants: 25, platform: 'on Zoom' },
 
-  { id: 11, day: 3, start: 9, duration: 1, title: 'Customer Feedback Analysis', time: '9:00 - 10:00 AM', color: 'bg-blue-100 border-blue-200', participants: 4, platform: 'on Meet' },
-  { id: 12, day: 3, start: 11.5, duration: 1.5, title: 'Webinar: "Digital Marketing Trends for 2023"', time: '11:30 AM - 1:00 PM', color: 'bg-orange-50 border-orange-200', location: 'http://www.examplewebinar....' },
+  { id: 10, day: 3, start: 9.5, duration: 1, title: 'Outreach Pantry Packaging', time: '9:30 - 10:30 AM', color: 'bg-blue-100 border-blue-200', participants: 12, platform: 'Fellowship Hall' },
+  { id: 11, day: 3, start: 11, duration: 2, title: 'Ignite Youth Camp Committee', time: '11:00 AM - 1:00 PM', color: 'bg-purple-100 border-purple-200', location: 'Youth Center' },
+
+  { id: 12, day: 4, start: 10, duration: 2, title: 'Sunday Service Run-Through', time: '10:00 AM - 12:00 PM', color: 'bg-emerald-100 border-emerald-200', location: 'Main Sanctuary' },
 ];
 
 const days = ['04 MON', '05 TUE', '06 WED', '07 THU', '08 FRI'];
@@ -79,7 +80,7 @@ export default function SchedulesView() {
           <button className="flex items-center gap-2 px-4 py-2 border border-gray-200 text-gray-700 rounded-full text-sm font-semibold hover:bg-gray-50 transition-colors">
             <CalendarIcon className="w-4 h-4" /> Schedule
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full text-sm font-semibold hover:bg-neutral-800 transition-colors">
+          <button className="flex items-center gap-2 px-4 py-2 bg-[#0ea5e9] text-white rounded-full text-sm font-semibold hover:bg-[#0284c7] transition-colors">
             <Plus className="w-4 h-4" /> Create a Request
           </button>
         </div>
@@ -120,7 +121,7 @@ export default function SchedulesView() {
             <input
               type="text"
               placeholder="Search..."
-              className="pl-9 pr-4 py-2 rounded-full border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black w-64 bg-gray-50/50"
+              className="pl-9 pr-4 py-2 rounded-full border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0ea5e9]/20 focus:border-[#0ea5e9] w-64 bg-gray-50/50"
             />
           </div>
           <button className="flex items-center gap-2 px-4 py-2 border border-gray-200 text-gray-700 rounded-full text-sm font-semibold hover:bg-gray-50 transition-colors bg-white">
@@ -138,7 +139,7 @@ export default function SchedulesView() {
           <button
             key={tab}
             onClick={() => setViewTab(tab)}
-            className={`pb-3 text-[13px] font-bold transition-colors border-b-2 flex items-center gap-2 ${viewTab === tab ? 'border-black text-black' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
+            className={`pb-3 text-[13px] font-bold transition-colors border-b-2 flex items-center gap-2 ${viewTab === tab ? 'border-[#0ea5e9] text-[#0ea5e9]' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
           >
             {tab === 'All Scheduled' && <LayoutGrid className="w-4 h-4" />}
             {tab}
@@ -152,7 +153,7 @@ export default function SchedulesView() {
           {/* Summary Cards */}
           <div className="grid grid-cols-4 gap-4 mb-6">
             {mockSummaryCards.map(card => (
-              <div key={card.id} className="border border-gray-200 rounded-xl p-4 bg-white flex flex-col justify-between h-28 hover:border-black/30 hover:shadow-md transition-all cursor-pointer">
+              <div key={card.id} className="border border-gray-200 rounded-xl p-4 bg-white flex flex-col justify-between h-28 hover:border-[#0ea5e9]/40 hover:shadow-md transition-all cursor-pointer">
                 <div>
                   <div className="flex justify-between items-start mb-1">
                     <h4 className="text-sm font-bold text-black truncate pr-2">{card.title}</h4>
@@ -269,7 +270,7 @@ export default function SchedulesView() {
             <div
               key={event.id}
               onClick={() => openSidebar(event as unknown as ScheduleEvent)}
-              className="flex items-center justify-between p-4 border border-gray-100 rounded-full hover:border-black/30 hover:shadow-md transition-all cursor-pointer bg-white group"
+              className="flex items-center justify-between p-4 border border-gray-100 rounded-full hover:border-[#0ea5e9]/40 hover:shadow-md transition-all cursor-pointer bg-white group"
             >
               <div className="flex items-center gap-4">
                 <div className={`w-12 h-12 rounded-full flex items-center justify-center ${event.color.split(' ')[0]}`}>

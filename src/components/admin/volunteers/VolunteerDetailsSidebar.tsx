@@ -92,7 +92,7 @@ export default function VolunteerDetailsSidebar({ isOpen, onClose, volunteer }: 
           <div className="flex items-start justify-between mb-8">
             <div className="flex items-center gap-4">
               <img
-                src={`https://ui-avatars.com/api/?name=${volunteer.firstName}+${volunteer.lastName}&background=ff385c&color=fff&size=64`}
+                src={`https://ui-avatars.com/api/?name=${volunteer.firstName}+${volunteer.lastName}&background=0048ff&color=fff&size=64`}
                 alt="Avatar"
                 className="w-16 h-16 rounded-full border-2 border-white shadow-sm"
               />
@@ -115,7 +115,7 @@ export default function VolunteerDetailsSidebar({ isOpen, onClose, volunteer }: 
                   Approve
                 </button>
               )}
-              <button className="px-4 py-2 bg-black text-white font-semibold rounded-full text-sm hover:bg-neutral-800 transition-colors flex items-center gap-2 shadow-sm">
+              <button className="px-4 py-2 bg-[#0ea5e9] text-white font-semibold rounded-full text-sm hover:bg-[#0284c7] transition-colors flex items-center gap-2 shadow-sm">
                 <Calendar className="w-4 h-4" /> Schedule Call
               </button>
               <button className="p-2 text-gray-400 border border-gray-200 rounded-full hover:bg-gray-50 transition-colors">
@@ -159,7 +159,7 @@ export default function VolunteerDetailsSidebar({ isOpen, onClose, volunteer }: 
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`pb-3 text-sm font-semibold transition-colors ${activeTab === tab ? 'text-black border-b-2 border-black font-bold' : 'text-gray-500 hover:text-gray-700 border-b-2 border-transparent'}`}
+                className={`pb-3 text-sm font-semibold transition-colors ${activeTab === tab ? 'text-[#0ea5e9] border-b-2 border-[#0ea5e9] font-bold' : 'text-gray-500 hover:text-gray-700 border-b-2 border-transparent'}`}
               >
                 {tab}
               </button>
@@ -255,7 +255,7 @@ export default function VolunteerDetailsSidebar({ isOpen, onClose, volunteer }: 
               <section>
                 <h3 className="text-base font-bold text-black mb-3">Previous Experience</h3>
                 {volunteer.hasExperience === 'yes' ? (
-                  <div className="pl-4 border-l-2 border-black py-1">
+                  <div className="pl-4 border-l-2 border-[#0ea5e9] py-1">
                     <p className="text-sm font-bold text-black mb-1">Volunteering History</p>
                     <p className="text-sm text-gray-600 leading-relaxed">
                       {volunteer.experienceDetails || 'Has previously worked with local NGOs focusing on community outreach and food distribution.'}
