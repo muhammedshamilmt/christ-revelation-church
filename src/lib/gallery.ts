@@ -1,16 +1,39 @@
+export type GalleryMediaType = 'image' | 'video';
+
 export interface GalleryItem {
   id: string;
   title: string;
   category: 'Worship' | 'Gatherings' | 'Conferences' | 'Fellowship' | 'Youth' | 'Prayer';
+  mediaType?: GalleryMediaType;
   imageUrl: string;
+  videoUrl?: string;
+  fileName?: string;
+  fileSize?: number;
+  mimeType?: string;
   date: string;
   location?: string;
   description: string;
   aspectRatio?: 'tall' | 'wide' | 'square';
+  featured?: boolean;
 }
+
+export const ALLOWED_IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.avif'] as const;
+export const ALLOWED_VIDEO_EXTENSIONS = ['.mp4', '.mkv', '.webm', '.mov', '.avi', '.m4v'] as const;
+
+export const MAX_IMAGE_SIZE_BYTES = 5 * 1024 * 1024; // 5 MB
+export const MAX_VIDEO_SIZE_BYTES = 50 * 1024 * 1024; // 50 MB
 
 export const GALLERY_CATEGORIES = [
   'All',
+  'Worship',
+  'Gatherings',
+  'Conferences',
+  'Fellowship',
+  'Youth',
+  'Prayer',
+] as const;
+
+export const GALLERY_ITEM_CATEGORIES = [
   'Worship',
   'Gatherings',
   'Conferences',

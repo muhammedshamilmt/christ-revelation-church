@@ -106,11 +106,120 @@ export const INITIAL_CAMPAIGNS = [
 
 export const INITIAL_EVENTS = [
   {
+    id: "annual-youth-conference-2026",
+    title: "Annual Youth Conference 2026",
+    subtitle: "Join thousands of young believers for five unforgettable days of worship, teachings, and community building.",
+    type: "CONFERENCE",
+    date: "May 30 - Jun 3, 2026",
+    time: "09:00 AM - 09:00 PM",
+    location: "Main Auditorium",
+    capacity: "800 Attendees",
+    accessibility: "Wheelchair accessible, Sign language interpreter, Quiet prayer rooms",
+    price: "Free Registration",
+    status: "Open" as const,
+    images: [
+      "/images/hero-bg.png",
+      "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1200&q=80"
+    ],
+    description: [
+      "Join thousands of young believers for five unforgettable days celebrating faith, culture, and community at the heart of our vibrant congregation.",
+      "Experience dynamic keynote sessions, breakout leadership workshops, creative arts showcases, and late-night prophetic worship designed to ignite the next generation."
+    ],
+    perfectFor: ["Youth & Young Adults (13–30)", "Youth Pastors & Mentors", "University Students", "Worship Teams"],
+    agenda: [
+      { time: "09:00 AM", title: "Doors Open & Welcome Registration", desc: "Check-in, welcome merch pack pickup, and fellowship coffee in the main courtyard." },
+      { time: "10:30 AM", title: "Morning Glory Worship & Keynote", desc: "Opening praise with CRC Youth Collective followed by Pastor David Vance." },
+      { time: "02:00 PM", title: "Breakout Labs & Leadership Tracks", desc: "Interactive workshops on purpose, creative ministry, evangelism, and mental resilience." },
+      { time: "07:00 PM", title: "Encounter Night & Altar Call", desc: "An extended evening of live worship, testimonies, and personal prayer ministry." }
+    ],
+    highlights: ["5 Days of Live Worship", "Breakout Leadership Labs", "Complimentary Lunch & Refreshments", "Youth Creative Showcase"],
+    host: {
+      name: "Sarah Jenkins",
+      role: "Youth Director",
+      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80"
+    },
+    views: 940,
+    createdAt: "2026-02-10T09:00:00.000Z"
+  },
+  {
+    id: "community-outreach-drive",
+    title: "Community Outreach Drive",
+    subtitle: "A day dedicated to serving our local community with food distribution, free medical checkups, and prayers.",
+    type: "COMMUNITY OUTREACH",
+    date: "June 15, 2026",
+    time: "09:30 AM - 04:00 PM",
+    location: "Downtown Plaza",
+    capacity: "350 Volunteers & Guests",
+    accessibility: "Outdoor step-free access, Mobile medical vans, Family friendly",
+    price: "Free",
+    status: "Open" as const,
+    images: [
+      "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80",
+      "/images/hero-bg.png",
+      "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=1200&q=80"
+    ],
+    description: [
+      "A day dedicated to serving our local community with fresh grocery distribution, free health and wellness screenings, hot meals, and compassionate prayer support.",
+      "Whether you are coming to receive support or volunteering alongside our outreach teams, everyone is welcome at Downtown Plaza."
+    ],
+    perfectFor: ["Local Families", "Community Volunteers", "Medical Professionals", "Outreach Teams"],
+    agenda: [
+      { time: "09:30 AM", title: "Volunteer Briefing & Setup", desc: "Team prayer, station assignments, and food parcel preparation." },
+      { time: "10:30 AM", title: "Food Pantry & Hot Meal Service", desc: "Distribution of fresh produce boxes and hot lunches for families." },
+      { time: "12:00 PM", title: "Free Health & Wellness Clinic", desc: "Blood pressure checks, general consultations, and family care packs." },
+      { time: "02:30 PM", title: "Community Praise & Prayer Tent", desc: "Uplifting acoustic music, encouragement, and one-on-one prayer." }
+    ],
+    highlights: ["500+ Family Grocery Hampers", "Free Medical Checkups", "Kids Clothing & Toy Corner", "Prayer & Counseling Tent"],
+    host: {
+      name: "Emily Davis",
+      role: "Community Outreach Coordinator",
+      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
+    },
+    views: 520,
+    createdAt: "2026-02-14T10:00:00.000Z"
+  },
+  {
+    id: "worship-night-encounter",
+    title: "Worship Night: Encounter",
+    subtitle: "An extended evening of prophetic worship and prayer. Come experience a transformative encounter with the Holy Spirit.",
+    type: "CONFERENCE",
+    date: "July 02, 2026",
+    time: "07:00 PM - 10:30 PM",
+    location: "Worship Center",
+    capacity: "450 Seats",
+    accessibility: "Hearing loop installed, Ground level entry, Wheelchair seating",
+    price: "Free Admission",
+    status: "Upcoming" as const,
+    images: [
+      "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1510525009512-ad7fc13eefab?auto=format&fit=crop&w=1200&q=80"
+    ],
+    description: [
+      "An extended evening of prophetic worship and prayer. Come experience a transformative encounter with the Holy Spirit in an atmosphere of unhurried praise.",
+      "Bring friends, family, and anyone seeking physical healing, spiritual renewal, or deep peace in God's presence."
+    ],
+    perfectFor: ["Worshippers", "Prayer Intercessors", "Seekers", "Anyone in need of renewal"],
+    agenda: [
+      { time: "07:00 PM", title: "Acoustic Worship Prelude", desc: "Quiet prayer, scripture meditation, and sanctuary preparation." },
+      { time: "07:30 PM", title: "Congregational Praise & Worship", desc: "Led by the Christ Revelation Worship Collective & Choir." },
+      { time: "08:45 PM", title: "Prophetic Ministry & Healing Prayer", desc: "Ministers available for laying on of hands and personal intercession." }
+    ],
+    highlights: ["Unhurried Live Worship", "Healing & Prayer Ministry", "Testimony Sharing", "Live Sanctuary Recording"],
+    host: {
+      name: "Pastor David Vance",
+      role: "Senior Pastor",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80"
+    },
+    views: 618,
+    createdAt: "2026-02-20T11:00:00.000Z"
+  },
+  {
     id: "event-1",
     title: "Sunday Celebration Service & Communion",
     subtitle: "Encounter God's presence, anointed praise, and transformative Word",
     type: "GENERAL",
-    date: "2026-03-29",
+    date: "August 09, 2026",
     time: "10:00 AM - 12:30 PM",
     location: "Main Sanctuary & Online Broadcast",
     capacity: "500 Attendees",
@@ -142,45 +251,11 @@ export const INITIAL_EVENTS = [
     createdAt: "2026-02-15T09:00:00.000Z"
   },
   {
-    id: "event-2",
-    title: "Night of Healing & Prophetic Worship",
-    subtitle: "A continuous night of soaking worship, biblical declarations, and miraculous healing",
-    type: "CONFERENCE",
-    date: "2026-04-03",
-    time: "07:00 PM - 10:30 PM",
-    location: "Christ Revelation Church Sanctuary",
-    capacity: "450 Seats",
-    accessibility: "Hearing loop installed, Ground level entry",
-    price: "Free Admission",
-    status: "Upcoming" as const,
-    images: [
-      "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80"
-    ],
-    description: [
-      "An evening dedicated to unhurried praise, intercession for the sick, and opening our hearts to the Holy Spirit's touch.",
-      "Bring friends, family, and anyone seeking physical or emotional restoration."
-    ],
-    perfectFor: ["Youth & Adults", "Seekers", "Anyone in need of prayer & healing"],
-    agenda: [
-      { time: "07:00 PM", title: "Acoustic Worship Prelude", desc: "Quiet prayer and contemplation" },
-      { time: "07:30 PM", title: "Congregational Worship", desc: "High praise and thanksgiving" },
-      { time: "08:45 PM", title: "Healing Prayer & Anointing", desc: "Ministers available for laying on of hands" }
-    ],
-    highlights: ["Extended Worship", "Special Ministry Guests", "Testimony Sharing"],
-    host: {
-      name: "Pastor Sarah Jenkins",
-      role: "Worship & Prayer Director",
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80"
-    },
-    views: 618,
-    createdAt: "2026-02-20T11:00:00.000Z"
-  },
-  {
     id: "event-3",
     title: "Midweek Bible Study: Faith Foundations",
     subtitle: "Interactive chapter-by-chapter study through the Book of Romans",
     type: "WORKSHOP",
-    date: "2026-04-01",
+    date: "August 19, 2026",
     time: "07:00 PM - 08:30 PM",
     location: "Fellowship Hall & Zoom Link",
     capacity: "120 Participants",
@@ -384,18 +459,20 @@ export const INITIAL_BLOGS = [
     title: "The Power of Community Worship in Modern Times",
     excerpt: "Discover how gathering together strengthens our faith, deepens love, and brings us into God's presence.",
     content: [
-      { heading: "A Sacred Rhythm", text: "Worship is more than singing songs on Sunday morning; it is the collective heartbeat of believers who choose unity over isolation." },
-      { heading: "Overcoming Digital Fragmentation", text: "In an era of hyper-connected screens, standing shoulder-to-shoulder with brothers and sisters in Christ reminds us that we are members of one body." }
+      { heading: "Understanding the foundation", text: "Worship is more than singing songs on Sunday morning; it is the collective heartbeat of believers who choose unity over isolation. In our fast-paced modern world, taking time to gather with fellow believers has never been more vital." },
+      { heading: "Overcoming Digital Fragmentation", text: "In an era of hyper-connected screens, standing shoulder-to-shoulder with brothers and sisters in Christ reminds us that we are members of one body, called to encourage and uplift one another daily." }
     ],
     pullQuote: "Worship is our highest calling and the soil in which deep community flourishes.",
     category: "Faith",
+    tags: ["WORSHIP", "COMMUNITY"],
     date: "10 June 2026",
-    readTime: "5 min read",
+    readTime: "5 MIN",
     image: "https://images.unsplash.com/photo-1510525009512-ad7fc13eefab?auto=format&fit=crop&w=1200&q=80",
     author: {
       name: "Pastor David Vance",
       role: "Senior Pastor",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+      bio: "Dedicated to sharing insights and stories from our vibrant community."
     },
     views: 1240
   },
@@ -404,17 +481,20 @@ export const INITIAL_BLOGS = [
     title: "Youth Outreach: Building the Next Generation",
     excerpt: "Our recent youth initiatives demonstrate the immense potential and passion of young disciples.",
     content: [
-      { heading: "Leading with Authenticity", text: "Young people are looking for genuine mentors who listen before they preach, living out grace in everyday decisions." }
+      { heading: "Understanding the foundation", text: "The youth are not just the future of the church; they are the church of today. Our recent youth outreach program saw incredible participation and spiritual growth among teenagers in our community." },
+      { heading: "Leading with Authenticity", text: "Young people are looking for genuine mentors who listen before they preach, living out grace in everyday decisions and empowering the next generation to lead with boldness." }
     ],
     pullQuote: "The youth are not merely the church of tomorrow; they are active ministers today.",
     category: "Outreach",
+    tags: ["YOUTH", "EVENTS"],
     date: "15 July 2026",
-    readTime: "4 min read",
+    readTime: "4 MIN",
     image: "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1200&q=80",
     author: {
       name: "Sarah Jenkins",
       role: "Youth Director",
-      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80"
+      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
+      bio: "Passionate about mentoring young believers and building transformative youth ministry spaces."
     },
     views: 890
   },
@@ -423,19 +503,44 @@ export const INITIAL_BLOGS = [
     title: "Finding Peace Through Daily Prayer & Contemplation",
     excerpt: "Practical steps to cultivate an unshakeable inner calm amidst life's storms.",
     content: [
-      { heading: "Quieting the Mind", text: "Start your morning with scripture recitation before checking your smartphone notifications." }
+      { heading: "Understanding the foundation", text: "Prayer is our direct line of communication with our Creator. Yet, finding time to pray effectively can often feel like a challenge in the midst of our daily responsibilities." },
+      { heading: "Quieting the Mind", text: "Start your morning with scripture recitation before checking your smartphone notifications, inviting God's presence into the very first moments of your day." }
     ],
     pullQuote: "When we pray, we trade our anxieties for His peace that surpasses understanding.",
     category: "Spiritual Growth",
+    tags: ["PRAYER", "GUIDANCE"],
     date: "22 August 2026",
-    readTime: "6 min read",
+    readTime: "6 MIN",
     image: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=1200&q=80",
     author: {
       name: "Rev. Michael Smith",
       role: "Associate Minister",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
+      bio: "Guiding congregations in contemplative prayer, biblical foundations, and spiritual formation."
     },
     views: 1530
+  },
+  {
+    id: "blog-4",
+    title: "Annual Charity Drive Success",
+    excerpt: "How our community came together to provide for over 500 families this season.",
+    content: [
+      { heading: "Understanding the foundation", text: "We are overwhelmed with gratitude for the generosity shown by our congregation during the annual charity drive. Together, we were able to provide essential supplies, food, and clothing to over 500 families." },
+      { heading: "Deep Dive", text: "Every volunteer hour and donated parcel reflects the tangible love of Christ in action, strengthening the bonds between our church family and the wider neighborhood." }
+    ],
+    pullQuote: "Generosity is faith made visible in the lives of our neighbors.",
+    category: "Community",
+    tags: ["CHARITY", "LOVE"],
+    date: "05 September 2026",
+    readTime: "3 MIN",
+    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80",
+    author: {
+      name: "Emily Davis",
+      role: "Community Outreach Coordinator",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      bio: "Serving local families through compassionate outreach, food drives, and community partnerships."
+    },
+    views: 740
   }
 ];
 
@@ -733,5 +838,113 @@ export const INITIAL_SUBSCRIBERS = [
     region: "Asia",
     engagement: "New",
     createdAt: "2026-03-05T08:30:00.000Z"
+  }
+];
+
+export const INITIAL_PRAYER_REQUESTS = [
+  {
+    id: "pray-1",
+    category: "Healing",
+    title: "Mrs.",
+    firstName: "Victoria",
+    lastName: "Hughes",
+    email: "victoria.hughes@gmail.com",
+    street: "42 Kensington High St",
+    apt: "Flat 3B",
+    city: "London",
+    state: "Greater London",
+    zip: "W8 5SA",
+    country: "United Kingdom",
+    request:
+      "Kindly pray for my mother who is undergoing cardiac surgery this coming Thursday. We trust the Lord for full restoration, peace for our family, and wisdom for the surgical team.",
+    contactPreference: "yes" as const,
+    isConfidential: true,
+    status: "Praying" as const,
+    notes: "Pastor David called the family on Tuesday evening to pray with them prior to hospital admission.",
+    createdAt: "2026-03-26T09:30:00.000Z"
+  },
+  {
+    id: "pray-2",
+    category: "Guidance",
+    title: "Mr.",
+    firstName: "Daniel",
+    lastName: "Osei",
+    email: "daniel.osei@outlook.com",
+    street: "18 Victoria Park Road",
+    apt: "",
+    city: "Manchester",
+    state: "Lancashire",
+    zip: "M14 5AA",
+    country: "United Kingdom",
+    request:
+      "Seeking God's clear direction and open doors as I transition careers and relocate my young family. Praying for discernment, financial stability, and a supportive church home.",
+    contactPreference: "yes" as const,
+    isConfidential: false,
+    status: "New" as const,
+    notes: "",
+    createdAt: "2026-03-25T15:45:00.000Z"
+  },
+  {
+    id: "pray-3",
+    category: "Thanksgiving",
+    title: "Dr.",
+    firstName: "Evelyn",
+    lastName: "Wright",
+    email: "evelyn.wright@nhs.net",
+    street: "740 Market Street",
+    apt: "Suite 210",
+    city: "San Francisco",
+    state: "CA",
+    zip: "94102",
+    country: "United States",
+    request:
+      "Giving glory and thanksgiving to God! After six months of intercession with the church prayer team, my brother's medical scans came back completely clear. Thank you to every prayer warrior who stood with us!",
+    contactPreference: "no" as const,
+    isConfidential: false,
+    status: "Answered" as const,
+    notes: "Shared during Sunday morning testimony time with Evelyn's permission.",
+    createdAt: "2026-03-24T11:20:00.000Z"
+  },
+  {
+    id: "pray-4",
+    category: "Healing",
+    title: "Ms.",
+    firstName: "Rebecca",
+    lastName: "Thornton",
+    email: "r.thornton@btinternet.com",
+    street: "95 St. Aldates",
+    apt: "Apt 12",
+    city: "Oxford",
+    state: "Oxfordshire",
+    zip: "OX1 1BT",
+    country: "United Kingdom",
+    request:
+      "Please pray for emotional healing, peace of mind, and restful sleep during a season of grief after losing my father earlier this year.",
+    contactPreference: "yes" as const,
+    isConfidential: true,
+    status: "Followed Up" as const,
+    notes: "Connected with Care & Bereavement Ministry small group.",
+    createdAt: "2026-03-22T18:10:00.000Z"
+  },
+  {
+    id: "pray-5",
+    category: "Other",
+    title: "Mr.",
+    firstName: "Marcus",
+    lastName: "Vance",
+    email: "marcus.v@gmail.com",
+    street: "512 Elmwood Ave",
+    apt: "",
+    city: "Chicago",
+    state: "IL",
+    zip: "60611",
+    country: "United States",
+    request:
+      "Praying for unity, spiritual revival, and protection over our local youth and university students as they prepare for final exams.",
+    contactPreference: "no" as const,
+    isConfidential: false,
+    status: "Praying" as const,
+    notes: "Added to Wednesday evening intercessory prayer bulletin.",
+    createdAt: "2026-03-20T08:05:00.000Z"
   }
 ];

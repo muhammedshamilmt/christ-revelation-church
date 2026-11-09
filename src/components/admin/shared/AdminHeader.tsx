@@ -3,10 +3,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import {
   MessageSquare, Bell, Search, MoreHorizontal, Settings,
-  Headphones, Activity, LogOut, AlertTriangle, ChevronDown, Check, Building2
+  Headphones, Activity, LogOut, AlertTriangle, ChevronDown, Check, Building2,
+  Menu, PanelLeftOpen, PanelLeftClose
 } from 'lucide-react';
 
 import { useAdminAuth } from './AdminAuthProvider';
+import { toggleAdminSidebar, ADMIN_SIDEBAR_STATE_EVENT } from './Sidebar';
+import { createClient } from '@/lib/supabase/client';
 
 interface AdminHeaderProps {
   subtitle?: string;
@@ -46,7 +49,21 @@ export default function AdminHeader({
     { id: '4', type: 'inbox', user: 'David', avatar: 'https://i.pravatar.cc/150?u=4', action: 'shared the file Isometric 2.0 with you', time: '5 hours ago', source: 'Design Team', isRead: false, isOnline: false }
   ]);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [isMobileView, setIsMobileView] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleSidebarState = (e: Event) => {
+      const custom = e as CustomEvent<{ isOpen: boolean; isMobile: boolean }>;
+      if (custom.detail) {
+        setSidebarOpen(custom.detail.isOpen);
+        setIsMobileView(custom.detail.isMobile);
+      }
+    };
+    window.addEventListener(ADMIN_SIDEBAR_STATE_EVENT, handleSidebarState);
+    return () => window.removeEventListener(ADMIN_SIDEBAR_STATE_EVENT, handleSidebarState);
+  }, []);
 
   // Close dropdowns on click outside
   useEffect(() => {
@@ -80,11 +97,31 @@ export default function AdminHeader({
   return (
     <div className="w-full bg-white px-6 py-4 flex items-center justify-between border-b border-gray-100 z-50 relative" ref={dropdownRef}>
 
-      {/* Left Section: Welcome Text */}
-      <div className="flex flex-col">
-        <h1 className="text-[18px] font-bold text-gray-900 tracking-tight capitalize">
-          {pageTitle} Overview
-        </h1>
+      {/* Left Section: Sidebar Toggle & Welcome Text */}
+      <div className="flex items-center gap-3">
+        <button
+          type="button"
+          onClick={toggleAdminSidebar}
+          title={sidebarOpen ? "Hide sidebar" : "Open sidebar"}
+          aria-label={sidebarOpen ? "Hide sidebar" : "Open sidebar"}
+          className={`w-10 h-10 rounded-xl border border-gray-200/80 bg-gray-50 hover:bg-gray-100 text-gray-600 hover:text-black flex items-center justify-center transition-all shrink-0 ${
+            !isMobileView && sidebarOpen ? 'lg:hidden' : 'flex'
+          }`}
+        >
+          {isMobileView ? (
+            <Menu className="w-[18px] h-[18px]" />
+          ) : sidebarOpen ? (
+            <PanelLeftClose className="w-[18px] h-[18px]" />
+          ) : (
+            <PanelLeftOpen className="w-[18px] h-[18px]" />
+          )}
+        </button>
+
+        <div className="flex flex-col">
+          <h1 className="text-[18px] font-bold text-gray-900 tracking-tight capitalize">
+            {pageTitle} Overview
+          </h1>
+        </div>
       </div>
 
       {/* Right Section: Actions & Profile */}
@@ -321,7 +358,9 @@ export default function AdminHeader({
 
               <div className="p-2">
                 <button 
-                  onClick={() => {
+                  onClick={async () => {
+                    const supabase = createClient();
+                    await supabase.auth.signOut();
                     window.location.href = '/';
                   }}
                   className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[13px] font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors"

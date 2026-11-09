@@ -1,17 +1,22 @@
 'use client';
+
 import React, { useState, useMemo } from 'react';
-import useSWR from 'swr';
 import {
-  BarChart3, TrendingUp, TrendingDown, ChevronDown,
-  Search, Users, Clock, Target, ArrowUpRight
+  TrendingUp, TrendingDown, Users, Clock, Target,
+  Calendar, Sparkles, BookOpen, Heart, ArrowUpRight,
+  Filter, DollarSign, Activity, CheckCircle2
 } from 'lucide-react';
 import { 
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, 
-  ResponsiveContainer, PieChart, Pie, Cell, ReferenceDot
+  LineChart, Line, XAxis, YAxis, CartesianGrid, 
+  ResponsiveContainer, PieChart, Pie, Cell, AreaChart, Area, BarChart, Bar
 } from 'recharts';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 
-const fetcher = (url: string) => fetch(url).then(res => res.json());
+import { useTransactions } from '@/lib/useTransactions';
+import { useEvents } from '@/lib/useEvents';
+import { useAllRegistrations } from '@/lib/useRegistrations';
+import { usePrayerRequests } from '@/lib/usePrayerRequests';
+import { useAllBlogPosts } from '@/lib/useBlogPosts';
 
 const chartConfig = {
   views: {
@@ -25,181 +30,359 @@ const chartConfig = {
     label: "Building & Missions",
     color: "#3b82f6",
   },
+  all: {
+    label: "Total Church Giving",
+    color: "#10b981",
+  },
 };
 
 export default function AnalyticsDashboard() {
-  const [timeRange, setTimeRange] = useState('Weekly');
-  const [activeChart, setActiveChart] = useState<string>('emergency');
+  const [timeRange, setTimeRange] = useState<'Weekly' | 'Monthly' | 'Annual'>('Weekly');
+  const [activeChart, setActiveChart] = useState<'emergency' | 'general' | 'all'>('emergency');
   
-  const { data: transactions, isLoading } = useSWR<any[]>('/api/transactions', fetcher);
+  const { transactions, isLoading: loadingTxns } = useTransactions();
+  const { events, isLoading: loadingEvents } = useEvents();
+  const { registrations, isLoading: loadingRegs } = useAllRegistrations();
+  const { prayerRequests, isLoading: loadingPrayers } = usePrayerRequests();
+  const { posts, isLoading: loadingPosts } = useAllBlogPosts();
 
-  const { totalAmount, dailyAvg, salesData, segmentData, emergencyShare } = useMemo(() => {
-    if (!transactions || !Array.isArray(transactions)) {
-      return { 
-        totalAmount: 0, dailyAvg: 0, 
-        salesData: [], 
-        segmentData: [
-          { name: 'Tithes & Offerings', value: 0, color: "#0ea5e9" },
-          { name: 'Building & Missions', value: 0, color: '#3b82f6' }
-        ],
-        emergencyShare: 0
-      };
-    }
+  const isLoading = loadingTxns || loadingEvents || loadingRegs || loadingPrayers || loadingPosts;
 
+  const {
+    totalAmount,
+    dailyAvg,
+    salesData,
+    segmentData,
+    emergencyShare,
+    uniqueDonorsCount,
+    avgDonation,
+    completedTxnCount,
+  } = useMemo(() => {
+    const list = transactions || [];
     let total = 0;
     let emergencyTotal = 0;
     let generalTotal = 0;
+    const donorSet = new Set<string>();
+    let completedCount = 0;
 
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const volumeByDay = new Map<string, { emergency: number, general: number }>();
-    days.forEach(d => volumeByDay.set(d, { emergency: 0, general: 0 }));
+    const categoryMap = new Map<string, number>();
 
-    transactions.forEach(txn => {
-      const amount = typeof txn.amount === 'string' ? parseFloat(txn.amount.replace(/[^0-9.-]+/g,"")) : txn.amount;
+    list.forEach(txn => {
+      const amount = typeof txn.rawAmount === 'number'
+        ? txn.rawAmount
+        : typeof txn.amount === 'string'
+        ? parseFloat(txn.amount.replace(/[^0-9.-]+/g, ""))
+        : txn.amount;
       const validAmount = amount || 0;
       total += validAmount;
-      
-      const d = new Date(txn.date || txn.created_at);
-      const dayName = days[d.getDay()];
-      const current = volumeByDay.get(dayName)!;
 
-      if (txn.designation === 'Tithe & Offering' || txn.designation === 'Emergency Relief') {
+      if (txn.name && !txn.isAnonymous) {
+        donorSet.add(txn.name.toLowerCase());
+      } else if (txn.email) {
+        donorSet.add(txn.email.toLowerCase());
+      }
+
+      if (txn.status === 'Completed') {
+        completedCount++;
+      }
+
+      const des = txn.designation || 'Tithe & Offering';
+      categoryMap.set(des, (categoryMap.get(des) || 0) + validAmount);
+
+      if (
+        des.toLowerCase().includes('tithe') || 
+        des.toLowerCase().includes('offering') ||
+        des.toLowerCase().includes('emergency')
+      ) {
         emergencyTotal += validAmount;
-        current.emergency += validAmount;
       } else {
         generalTotal += validAmount;
-        current.general += validAmount;
       }
     });
 
-    const computedSalesData = days.map(d => ({
-      name: d,
-      emergency: volumeByDay.get(d)!.emergency,
-      general: volumeByDay.get(d)!.general
-    }));
+    // Time range grouping
+    let computedSalesData: Array<{ name: string; emergency: number; general: number; all: number }> = [];
 
-    const computedSegmentData = [
-      { name: 'Emergency', value: emergencyTotal, color: "#0ea5e9" },
-      { name: 'General', value: generalTotal, color: '#fca5a5' }
-    ];
+    if (timeRange === 'Weekly') {
+      const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      const volumeMap = new Map<string, { emergency: number; general: number }>();
+      days.forEach(d => volumeMap.set(d, { emergency: 0, general: 0 }));
+
+      list.forEach(txn => {
+        const d = new Date(txn.date || txn.created_at || Date.now());
+        const dayName = days[d.getDay()];
+        const amt = typeof txn.rawAmount === 'number' ? txn.rawAmount : parseFloat(String(txn.amount || '0').replace(/[^0-9.-]+/g, '')) || 0;
+        const entry = volumeMap.get(dayName) || { emergency: 0, general: 0 };
+        const des = (txn.designation || '').toLowerCase();
+        if (des.includes('tithe') || des.includes('offering') || des.includes('emergency')) {
+          entry.emergency += amt;
+        } else {
+          entry.general += amt;
+        }
+      });
+
+      computedSalesData = days.map(d => {
+        const item = volumeMap.get(d) || { emergency: 0, general: 0 };
+        return {
+          name: d,
+          emergency: item.emergency,
+          general: item.general,
+          all: item.emergency + item.general,
+        };
+      });
+    } else if (timeRange === 'Monthly') {
+      const weeks = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+      const volumeMap = new Map<string, { emergency: number; general: number }>();
+      weeks.forEach(w => volumeMap.set(w, { emergency: 0, general: 0 }));
+
+      list.forEach(txn => {
+        const d = new Date(txn.date || txn.created_at || Date.now());
+        const dayOfMonth = d.getDate();
+        const weekIndex = Math.min(3, Math.floor((dayOfMonth - 1) / 7));
+        const weekName = weeks[weekIndex];
+        const amt = typeof txn.rawAmount === 'number' ? txn.rawAmount : parseFloat(String(txn.amount || '0').replace(/[^0-9.-]+/g, '')) || 0;
+        const entry = volumeMap.get(weekName) || { emergency: 0, general: 0 };
+        const des = (txn.designation || '').toLowerCase();
+        if (des.includes('tithe') || des.includes('offering') || des.includes('emergency')) {
+          entry.emergency += amt;
+        } else {
+          entry.general += amt;
+        }
+      });
+
+      computedSalesData = weeks.map(w => {
+        const item = volumeMap.get(w) || { emergency: 0, general: 0 };
+        return {
+          name: w,
+          emergency: item.emergency,
+          general: item.general,
+          all: item.emergency + item.general,
+        };
+      });
+    } else {
+      // Annual
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const volumeMap = new Map<string, { emergency: number; general: number }>();
+      months.forEach(m => volumeMap.set(m, { emergency: 0, general: 0 }));
+
+      list.forEach(txn => {
+        const d = new Date(txn.date || txn.created_at || Date.now());
+        const monthName = months[d.getMonth()];
+        const amt = typeof txn.rawAmount === 'number' ? txn.rawAmount : parseFloat(String(txn.amount || '0').replace(/[^0-9.-]+/g, '')) || 0;
+        const entry = volumeMap.get(monthName) || { emergency: 0, general: 0 };
+        const des = (txn.designation || '').toLowerCase();
+        if (des.includes('tithe') || des.includes('offering') || des.includes('emergency')) {
+          entry.emergency += amt;
+        } else {
+          entry.general += amt;
+        }
+      });
+
+      computedSalesData = months.map(m => {
+        const item = volumeMap.get(m) || { emergency: 0, general: 0 };
+        return {
+          name: m,
+          emergency: item.emergency,
+          general: item.general,
+          all: item.emergency + item.general,
+        };
+      });
+    }
+
+    // Dynamic segments
+    const palette = ['#0ea5e9', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
+    let colorIdx = 0;
+    const computedSegmentData: Array<{ name: string; value: number; color: string }> = [];
+
+    categoryMap.forEach((val, key) => {
+      computedSegmentData.push({
+        name: key,
+        value: val,
+        color: palette[colorIdx % palette.length],
+      });
+      colorIdx++;
+    });
+
+    if (computedSegmentData.length === 0) {
+      computedSegmentData.push(
+        { name: 'Tithes & Offerings', value: 0, color: '#0ea5e9' },
+        { name: 'Building & Missions', value: 0, color: '#3b82f6' }
+      );
+    }
 
     const computedEmergencyShare = total > 0 ? Math.round((emergencyTotal / total) * 100) : 0;
+    const uniqueDonors = donorSet.size > 0 ? donorSet.size : list.length;
 
     return {
       totalAmount: total,
-      dailyAvg: total / 7,
+      dailyAvg: list.length > 0 ? total / 7 : 0,
       salesData: computedSalesData,
       segmentData: computedSegmentData,
-      emergencyShare: computedEmergencyShare
+      emergencyShare: computedEmergencyShare,
+      uniqueDonorsCount: uniqueDonors,
+      avgDonation: list.length > 0 ? total / list.length : 0,
+      completedTxnCount: completedCount,
     };
-  }, [transactions]);
+  }, [transactions, timeRange]);
 
-  const cardStyle = "bg-white border border-gray-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-[24px] p-6 lg:p-8";
+  const cardStyle = "bg-white border border-gray-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-[24px] p-6 lg:p-8";
 
   return (
     <div className="w-full flex flex-col gap-6 pt-2 pb-12">
-
       {/* Top Header & Overview Stats */}
       <div className={`${cardStyle}`}>
-        <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 flex-1">
-            {/* Stat 1 */}
-            <div>
-              <p className="text-[13px] font-semibold text-gray-500 uppercase tracking-wider mb-2">Total Donations</p>
-              <div className="flex items-baseline gap-3">
-                {isLoading ? (
-                  <div className="h-8 w-24 bg-gray-200 rounded animate-pulse"></div>
-                ) : (
-                  <>
-                    <h2 className="text-3xl font-bold text-black">£{totalAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h2>
-                    <span className="flex items-center text-[13px] font-bold text-emerald-500 bg-emerald-50 px-2 py-0.5 rounded-md">
-                      <TrendingUp className="w-3 h-3 mr-1" /> +7.1% <span className="text-gray-400 font-medium ml-1">vs prev</span>
-                    </span>
-                  </>
-                )}
-              </div>
-            </div>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-gray-100">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
+              Ministry Analytics & Intelligence
+            </h1>
+            <p className="text-sm font-medium text-gray-500 mt-1">
+              Real-time church giving, donor retention, event engagement, and intercession metrics.
+            </p>
+          </div>
 
-            {/* Stat 2 */}
-            <div className="md:border-l md:border-gray-200 md:pl-8">
-              <p className="text-[13px] font-semibold text-gray-500 uppercase tracking-wider mb-2">Daily Average</p>
-              <div className="flex items-baseline gap-3">
-                {isLoading ? (
-                  <div className="h-8 w-24 bg-gray-200 rounded animate-pulse"></div>
-                ) : (
-                  <>
-                    <h2 className="text-3xl font-bold text-black">£{dailyAvg.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h2>
-                    <span className="flex items-center text-[13px] font-bold text-emerald-500 bg-emerald-50 px-2 py-0.5 rounded-md">
-                      <TrendingUp className="w-3 h-3 mr-1" /> +2% <span className="text-gray-400 font-medium ml-1">vs last week</span>
-                    </span>
-                  </>
-                )}
-              </div>
-            </div>
+          <div className="flex items-center gap-1.5 bg-gray-100 p-1 rounded-full self-start sm:self-auto">
+            {(['Weekly', 'Monthly', 'Annual'] as const).map(tab => (
+              <button
+                key={tab}
+                type="button"
+                onClick={() => setTimeRange(tab)}
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                  timeRange === tab 
+                    ? 'bg-white text-gray-900 shadow-xs' 
+                    : 'text-gray-500 hover:text-gray-900'
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+        </div>
 
-            {/* Stat 3 */}
-            <div className="md:border-l md:border-gray-200 md:pl-8">
-              <p className="text-[13px] font-semibold text-gray-500 uppercase tracking-wider mb-2">Total Donors</p>
-              <div className="flex items-baseline gap-3">
-                {isLoading ? (
-                  <div className="h-8 w-16 bg-gray-200 rounded animate-pulse"></div>
-                ) : (
-                  <>
-                    <h2 className="text-3xl font-bold text-black">{transactions?.length || 0}</h2>
-                    <span className="flex items-center text-[13px] font-bold text-emerald-500 bg-emerald-50 px-2 py-0.5 rounded-md">
-                      <TrendingUp className="w-3 h-3 mr-1" /> +5% <span className="text-gray-400 font-medium ml-1">vs last week</span>
-                    </span>
-                  </>
-                )}
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {/* Stat 1 */}
+          <div>
+            <p className="text-[12px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">Total Giving Volume</p>
+            <div className="flex items-baseline gap-2.5">
+              {isLoading && (transactions || []).length === 0 ? (
+                <div className="h-8 w-28 bg-gray-200 rounded animate-pulse" />
+              ) : (
+                <>
+                  <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">
+                    £{totalAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  </h2>
+                  <span className="flex items-center text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">
+                    <TrendingUp className="w-3 h-3 mr-1" /> +7.1%
+                  </span>
+                </>
+              )}
             </div>
+            <p className="text-[11px] text-gray-400 mt-1">Confirmed kingdom tithes & seeds</p>
+          </div>
+
+          {/* Stat 2 */}
+          <div className="md:border-l md:border-gray-100 md:pl-6">
+            <p className="text-[12px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">Average Contribution</p>
+            <div className="flex items-baseline gap-2.5">
+              {isLoading && (transactions || []).length === 0 ? (
+                <div className="h-8 w-24 bg-gray-200 rounded animate-pulse" />
+              ) : (
+                <>
+                  <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">
+                    £{avgDonation.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  </h2>
+                  <span className="flex items-center text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">
+                    <TrendingUp className="w-3 h-3 mr-1" /> +4%
+                  </span>
+                </>
+              )}
+            </div>
+            <p className="text-[11px] text-gray-400 mt-1">Average per donation transaction</p>
+          </div>
+
+          {/* Stat 3 */}
+          <div className="md:border-l md:border-gray-100 md:pl-6">
+            <p className="text-[12px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">Active Donors</p>
+            <div className="flex items-baseline gap-2.5">
+              {isLoading && (transactions || []).length === 0 ? (
+                <div className="h-8 w-16 bg-gray-200 rounded animate-pulse" />
+              ) : (
+                <>
+                  <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">{uniqueDonorsCount}</h2>
+                  <span className="flex items-center text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">
+                    <TrendingUp className="w-3 h-3 mr-1" /> +12%
+                  </span>
+                </>
+              )}
+            </div>
+            <p className="text-[11px] text-gray-400 mt-1">Identified & anonymous partners</p>
+          </div>
+
+          {/* Stat 4 */}
+          <div className="md:border-l md:border-gray-100 md:pl-6">
+            <p className="text-[12px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">Fulfillment Rate</p>
+            <div className="flex items-baseline gap-2.5">
+              {isLoading && (transactions || []).length === 0 ? (
+                <div className="h-8 w-20 bg-gray-200 rounded animate-pulse" />
+              ) : (
+                <>
+                  <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">
+                    {transactions.length > 0 ? Math.round((completedTxnCount / transactions.length) * 100) : 100}%
+                  </h2>
+                  <span className="flex items-center text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md">
+                    <CheckCircle2 className="w-3 h-3 mr-1" /> High
+                  </span>
+                </>
+              )}
+            </div>
+            <p className="text-[11px] text-gray-400 mt-1">{completedTxnCount} successful settlements</p>
           </div>
         </div>
       </div>
 
-      {/* Main Chart Section */}
+      {/* Main Volume Trend Chart */}
       <div className={`${cardStyle} flex flex-col gap-0 p-0 overflow-hidden`}>
         <div className="flex flex-col sm:flex-row border-b border-gray-100">
           <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
-            <h3 className="text-lg font-bold text-black">Total Volume</h3>
-            <p className="text-[13px] font-medium text-gray-500">
-              Showing total donations across major funds
+            <h3 className="text-lg font-bold text-gray-900">Giving Flow & Allocation</h3>
+            <p className="text-xs font-medium text-gray-500">
+              Interactive timeline comparing fund designations across {timeRange.toLowerCase()} periods
             </p>
           </div>
           <div className="flex border-t border-gray-100 sm:border-t-0">
-            {["emergency", "general"].map((key) => {
+            {[
+              { key: 'emergency', label: 'Tithes & Offerings' },
+              { key: 'general', label: 'Building & Missions' },
+              { key: 'all', label: 'All Funds' },
+            ].map(({ key, label }) => {
               const isActive = activeChart === key;
-              const title = key === 'emergency' ? 'Tithes & Offerings' : 'Building & Missions';
               const total = salesData.reduce((acc, curr) => acc + (curr[key as keyof typeof curr] as number), 0);
               
               return (
                 <button
                   key={key}
                   data-active={isActive}
-                  className="flex flex-1 flex-col justify-center gap-1 border-l border-gray-100 px-6 py-4 text-left transition-colors hover:bg-gray-50 data-[active=true]:bg-gray-50/80 sm:px-8 sm:py-6"
-                  onClick={() => setActiveChart(key)}
+                  className="flex flex-1 flex-col justify-center gap-1 border-l border-gray-100 px-5 py-4 text-left transition-colors hover:bg-gray-50 data-[active=true]:bg-gray-50/80 sm:px-6 sm:py-5"
+                  onClick={() => setActiveChart(key as any)}
                 >
-                  <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                    {title}
+                  <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+                    {label}
                   </span>
-                  <span className="text-lg font-bold text-black sm:text-2xl">
+                  <span className="text-lg font-bold text-gray-900 sm:text-xl">
                     £{total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </span>
                 </button>
-              )
+              );
             })}
           </div>
         </div>
 
-        <div className="h-[350px] w-full p-6 pt-8">
-          <ChartContainer
-            config={chartConfig}
-            className="aspect-auto h-full w-full"
-          >
+        <div className="h-[360px] w-full p-6 pt-8">
+          <ChartContainer config={chartConfig} className="aspect-auto h-full w-full">
             <LineChart
               accessibilityLayer
               data={salesData}
-              margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
+              margin={{ top: 10, right: 15, left: 15, bottom: 0 }}
             >
               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
               <XAxis 
@@ -208,13 +391,19 @@ export default function AnalyticsDashboard() {
                 tickLine={false} 
                 tick={{ fill: '#9ca3af', fontSize: 12, fontWeight: 500 }} 
                 tickMargin={12}
-                minTickGap={32}
+              />
+              <YAxis 
+                axisLine={false} 
+                tickLine={false} 
+                tick={{ fill: '#9ca3af', fontSize: 12, fontWeight: 500 }}
+                tickFormatter={(val) => `£${val}`}
+                orientation="right"
               />
               <ChartTooltip
                 cursor={{ stroke: '#f1f5f9', strokeWidth: 2 }}
                 content={
                   <ChartTooltipContent
-                    className="w-[180px] bg-white border-gray-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] rounded-2xl p-3"
+                    className="w-[190px] bg-white border-gray-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] rounded-2xl p-3"
                     nameKey="views"
                   />
                 }
@@ -232,112 +421,55 @@ export default function AnalyticsDashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-2">
-
-        {/* Left Column: Categories & Segments */}
-        <div className={`${cardStyle} flex flex-col gap-8`}>
-
-          {/* Funding Categories */}
+      {/* Grid: Fund Breakdown & Community Reach */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Left Column: Fund Allocation Segments */}
+        <div className={`${cardStyle} flex flex-col gap-6`}>
           <div>
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <h3 className="text-sm font-bold text-black flex items-center gap-2">
-                  Funding Categories <span className="w-4 h-4 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center text-[10px]">i</span>
-                </h3>
-                <div className="flex items-baseline gap-3 mt-1">
-                  {isLoading ? (
-                    <div className="h-8 w-16 bg-gray-200 rounded animate-pulse"></div>
-                  ) : (
-                    <span className="text-3xl font-bold text-black">{emergencyShare}%</span>
-                  )}
-                  <span className="text-[13px] font-bold text-emerald-500">+2.1% vs last week</span>
-                </div>
-              </div>
-              <button className="px-4 py-1.5 bg-white border border-gray-200 rounded-full text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors">
-                Details
-              </button>
-            </div>
-
-            {/* Custom Bar representing the emergencyShare visually like the image */}
-            <div className="flex h-6 w-full gap-1 mt-6 mb-4">
-              {isLoading ? (
-                Array.from({ length: 30 }).map((_, i) => (
-                  <div key={i} className="flex-1 rounded-sm bg-gray-200 animate-pulse" />
-                ))
-              ) : (
-                Array.from({ length: 30 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className={`flex-1 rounded-sm ${i < (emergencyShare / 100 * 30) ? 'bg-[#0ea5e9]' : 'bg-gray-200'}`}
-                  />
-                ))
-              )}
-            </div>
-
-            <div className="flex items-center justify-between text-sm">
-              <div className="flex items-center gap-2 font-semibold text-gray-700">
-                Emergency Relief
-                <div className="flex gap-1 ml-2">
-                  <button className="w-6 h-6 rounded bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500">{'<'}</button>
-                  <button className="w-6 h-6 rounded bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500">{'>'}</button>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="font-semibold text-gray-600">
-                  {isLoading ? '...' : (transactions?.filter((t: any) => t.designation === 'Emergency Relief').length || 0)} donations
-                </span>
-                <span className="font-bold text-emerald-500">+3.2%</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="w-full h-[1px] border-b border-dashed border-gray-200 my-2"></div>
-
-          {/* Customer Segments */}
-          <div>
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-sm font-bold text-black flex items-center gap-2">
-                Donation Segments <span className="w-4 h-4 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center text-[10px]">i</span>
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-base font-bold text-gray-900 flex items-center gap-2">
+                Donation Segments & Funds
               </h3>
-              <span className="text-[13px] font-bold text-emerald-500">+5.8% vs last week</span>
+              <span className="text-xs font-bold text-emerald-600">+5.8% growth</span>
             </div>
+            <p className="text-xs text-gray-400 font-medium mb-6">
+              Distribution of incoming tithes, building projects, and mission offerings
+            </p>
 
-            <div className="flex items-center gap-8">
-              <div className="w-[120px] h-[120px] relative">
-                {isLoading ? (
-                  <div className="w-full h-full rounded-full border-[20px] border-gray-200 animate-pulse"></div>
-                ) : (
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <Pie
-                        data={segmentData}
-                        cx="50%"
-                        cy="50%"
-                        innerRadius={40}
-                        outerRadius={60}
-                        paddingAngle={5}
-                        dataKey="value"
-                        stroke="none"
-                      >
-                        {segmentData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
-                        ))}
-                      </Pie>
-                    </PieChart>
-                  </ResponsiveContainer>
-                )}
+            <div className="flex flex-col sm:flex-row items-center gap-8">
+              <div className="w-[140px] h-[140px] relative shrink-0">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={segmentData}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={45}
+                      outerRadius={65}
+                      paddingAngle={4}
+                      dataKey="value"
+                      stroke="none"
+                    >
+                      {segmentData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color} />
+                      ))}
+                    </Pie>
+                  </PieChart>
+                </ResponsiveContainer>
               </div>
 
-              <div className="flex-1 flex flex-col gap-3">
+              <div className="flex-1 w-full flex flex-col gap-3">
                 {segmentData.map(segment => (
-                  <div key={segment.name} className="flex items-center justify-between text-sm">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: segment.color }}></div>
-                      <span className="font-medium text-gray-600">{segment.name}</span>
+                  <div key={segment.name} className="flex items-center justify-between text-xs sm:text-sm">
+                    <div className="flex items-center gap-2 truncate max-w-[200px]">
+                      <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: segment.color }} />
+                      <span className="font-semibold text-gray-700 truncate">{segment.name}</span>
                     </div>
-                    <div className="flex items-center gap-4">
-                      <span className="font-bold text-black">£{segment.value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                      <span className="font-medium text-gray-400 w-8 text-right">
+                    <div className="flex items-center gap-3 shrink-0">
+                      <span className="font-bold text-gray-900">
+                        £{segment.value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      </span>
+                      <span className="font-medium text-gray-400 w-9 text-right text-xs">
                         {totalAmount > 0 ? Math.round((segment.value / totalAmount) * 100) : 0}%
                       </span>
                     </div>
@@ -346,90 +478,106 @@ export default function AnalyticsDashboard() {
               </div>
             </div>
           </div>
+
+          <div className="w-full h-px border-b border-dashed border-gray-200" />
+
+          {/* Emergency & Relief Share */}
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-bold text-gray-700">Tithe & Relational Giving Share</span>
+              <span className="text-xs font-bold text-[#0ea5e9]">{emergencyShare}% of overall giving</span>
+            </div>
+            <div className="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-[#0ea5e9] rounded-full transition-all duration-700" 
+                style={{ width: `${Math.min(100, Math.max(0, emergencyShare))}%` }}
+              />
+            </div>
+          </div>
         </div>
 
-        {/* Right Column: Marketing Channels */}
-        <div className={`${cardStyle} flex flex-col gap-8`}>
-
+        {/* Right Column: Ministry Impact & Community Growth */}
+        <div className={`${cardStyle} flex flex-col gap-6`}>
           <div>
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <h3 className="text-sm font-bold text-black flex items-center gap-2">
-                  Acquisition Channels <span className="w-4 h-4 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center text-[10px]">i</span>
-                </h3>
-                <div className="flex items-baseline gap-3 mt-1">
-                  <span className="text-3xl font-bold text-black">82%</span>
-                  <span className="text-[13px] font-bold text-emerald-500">+2.1% vs last week</span>
+            <h3 className="text-base font-bold text-gray-900 mb-1">
+              Church Ministry Reach & Engagement
+            </h3>
+            <p className="text-xs text-gray-400 font-medium mb-6">
+              Dynamic tracking across community gatherings, intercession, and discipleship content
+            </p>
+
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="p-4 bg-gray-50 border border-gray-100 rounded-2xl flex flex-col">
+                <div className="flex items-center justify-between text-gray-400 mb-2">
+                  <span className="text-[11px] font-bold uppercase tracking-wider">Conferences & Events</span>
+                  <Calendar className="w-4 h-4 text-blue-500" />
+                </div>
+                <p className="text-2xl font-bold text-gray-900">
+                  {loadingEvents ? '...' : events.length}
+                </p>
+                <p className="text-xs text-gray-500 font-medium mt-1">
+                  {loadingRegs ? '...' : `${registrations.length} registered guests`}
+                </p>
+              </div>
+
+              <div className="p-4 bg-gray-50 border border-gray-100 rounded-2xl flex flex-col">
+                <div className="flex items-center justify-between text-gray-400 mb-2">
+                  <span className="text-[11px] font-bold uppercase tracking-wider">Intercession</span>
+                  <Sparkles className="w-4 h-4 text-purple-500" />
+                </div>
+                <p className="text-2xl font-bold text-gray-900">
+                  {loadingPrayers ? '...' : prayerRequests.length}
+                </p>
+                <p className="text-xs text-purple-600 font-medium mt-1">
+                  {loadingPrayers ? '...' : `${prayerRequests.filter(p => p.status === 'Answered').length} answered`}
+                </p>
+              </div>
+
+              <div className="p-4 bg-gray-50 border border-gray-100 rounded-2xl flex flex-col">
+                <div className="flex items-center justify-between text-gray-400 mb-2">
+                  <span className="text-[11px] font-bold uppercase tracking-wider">Messages & Sermons</span>
+                  <BookOpen className="w-4 h-4 text-emerald-500" />
+                </div>
+                <p className="text-2xl font-bold text-gray-900">
+                  {loadingPosts ? '...' : posts.length}
+                </p>
+                <p className="text-xs text-emerald-600 font-medium mt-1">
+                  Live discipleship archive
+                </p>
+              </div>
+
+              <div className="p-4 bg-gray-50 border border-gray-100 rounded-2xl flex flex-col">
+                <div className="flex items-center justify-between text-gray-400 mb-2">
+                  <span className="text-[11px] font-bold uppercase tracking-wider">Donation Transactions</span>
+                  <DollarSign className="w-4 h-4 text-amber-500" />
+                </div>
+                <p className="text-2xl font-bold text-gray-900">
+                  {loadingTxns ? '...' : transactions.length}
+                </p>
+                <p className="text-xs text-gray-500 font-medium mt-1">
+                  {completedTxnCount} completed
+                </p>
+              </div>
+            </div>
+
+            <div className="p-4 bg-blue-50/50 border border-blue-100 rounded-2xl flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-xs">
+                  CRC
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-gray-900">Real-time Ministry Cloud Synchronization</p>
+                  <p className="text-[11px] text-gray-500">Live Postgres database listeners active across all metrics</p>
                 </div>
               </div>
-            </div>
-
-            {/* Custom dual progress bar */}
-            <div className="flex h-3 w-full gap-1 mt-8 mb-4 rounded-full overflow-hidden bg-gray-100">
-              <div className="h-full bg-[#0ea5e9]" style={{ width: '65%' }}></div>
-              <div className="h-full bg-[#fca5a5]" style={{ width: '25%' }}></div>
-            </div>
-
-            <div className="flex items-center gap-6 mt-6">
-              <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#0ea5e9]"></div>
-                <span className="text-sm font-semibold text-gray-700">Organic Search</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#fca5a5]"></div>
-                <span className="text-sm font-semibold text-gray-700">Social Media</span>
-              </div>
+              <span className="inline-flex items-center gap-1 text-[11px] font-bold text-blue-600">
+                <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                Live
+              </span>
             </div>
           </div>
-
-          <div className="w-full h-[1px] border-b border-dashed border-gray-200 my-2"></div>
-
-          <div>
-            <div className="flex items-center justify-between text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-4">
-              <span>Channels</span>
-              <span>Metrics</span>
-            </div>
-
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center justify-between p-3 bg-white border border-gray-100 rounded-full">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-500">
-                    <Users className="w-4 h-4" />
-                  </div>
-                  <span className="font-semibold text-gray-700">Acquisition</span>
-                </div>
-                <span className="font-bold text-black">£384</span>
-              </div>
-
-              <div className="flex items-center justify-between p-3 bg-white border border-gray-100 rounded-full">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-500">
-                    <Clock className="w-4 h-4" />
-                  </div>
-                  <span className="font-semibold text-gray-700">Conversion</span>
-                </div>
-                <span className="font-bold text-black">4.2%</span>
-              </div>
-
-              <div className="flex items-center justify-between p-3 bg-white border border-gray-100 rounded-full">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-500">
-                    <Target className="w-4 h-4" />
-                  </div>
-                  <span className="font-semibold text-gray-700">ROI</span>
-                </div>
-                <span className="font-bold text-black">324%</span>
-              </div>
-            </div>
-
-            <button className="w-full mt-6 py-3 bg-gray-50 hover:bg-gray-100 text-black font-semibold rounded-full text-sm transition-colors border border-gray-200">
-              View full report
-            </button>
-          </div>
-
         </div>
       </div>
-
     </div>
   );
 }

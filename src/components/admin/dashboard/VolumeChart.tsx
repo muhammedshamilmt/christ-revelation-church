@@ -1,14 +1,12 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import useSWR from 'swr';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, ReferenceLine } from 'recharts';
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import { useTransactions } from '@/lib/useTransactions';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
 export default function VolumeChart() {
   const [activeIndex, setActiveIndex] = React.useState<number | null>(2);
-  const { data: transactions, isLoading } = useSWR<any[]>('/api/transactions', fetcher);
+  const { transactions, isLoading } = useTransactions();
 
   const data = useMemo(() => {
     if (!transactions || !Array.isArray(transactions)) {
@@ -24,7 +22,7 @@ export default function VolumeChart() {
     days.forEach(d => volumeByDay.set(d, 0));
 
     transactions.forEach(txn => {
-      const d = new Date(txn.date || txn.created_at);
+      const d = new Date(txn.date || txn.created_at || Date.now());
       const dayName = days[d.getDay()];
       const amount = typeof txn.amount === 'string' ? parseFloat(txn.amount.replace(/[^0-9.-]+/g,"")) : txn.amount;
       volumeByDay.set(dayName, (volumeByDay.get(dayName) || 0) + (amount || 0));

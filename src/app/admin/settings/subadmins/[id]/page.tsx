@@ -241,6 +241,7 @@ export default function SubadminDetailsPage({ params }: { params: Promise<{ id: 
                             { path: '/admin/events', label: 'Events' },
                             { path: '/admin/volunteers', label: 'Volunteers' },
                             { path: '/admin/blog', label: 'Blogs' },
+                            { path: '/admin/gallery', label: 'Gallery' },
                             { path: '/admin/subscribers', label: 'Subscribers' },
                             { path: '/admin/contacts', label: 'Contacts' },
                             { path: '/admin/transactions', label: 'Transactions' },

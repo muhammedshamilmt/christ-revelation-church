@@ -16,6 +16,7 @@ export const PERMISSION_SECTIONS = [
     title: 'Content',
     routes: [
       { path: '/admin/blog', label: 'Blogs' },
+      { path: '/admin/gallery', label: 'Gallery' },
       { path: '/admin/subscribers', label: 'Subscribers' }
     ]
   },

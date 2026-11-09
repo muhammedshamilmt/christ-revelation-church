@@ -59,6 +59,9 @@ const openSauce = localFont({
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Toaster } from "react-hot-toast";
+import { ConfirmDialogProvider } from "@/components/ui/ConfirmDialogProvider";
+import AdminLoginModal from "@/components/AdminLoginModal";
+import ErrorToastHandler from "@/components/ErrorToastHandler";
 
 export const metadata: Metadata = {
   title: "Christ Revelation Church",
@@ -73,10 +76,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        <Navbar />
-        {children}
-        <Footer />
-        <Toaster position="top-center" />
+        <ConfirmDialogProvider>
+          <Navbar />
+          {children}
+          <Footer />
+          <AdminLoginModal />
+          <ErrorToastHandler />
+          <Toaster position="top-center" />
+        </ConfirmDialogProvider>
       </body>
     </html>
   );

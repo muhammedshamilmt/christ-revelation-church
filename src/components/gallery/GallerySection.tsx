@@ -3,20 +3,31 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { GALLERY_ITEMS, GALLERY_CATEGORIES, GalleryCategory, GalleryItem } from "@/lib/gallery";
+import { GALLERY_CATEGORIES, GalleryCategory, GalleryItem } from "@/lib/gallery";
+import { useGallery } from "@/lib/useGallery";
 
 type ViewLayout = "masonry" | "grid" | "showcase";
+type MediaFilter = "all" | "image" | "video";
+
+function isLocalBlobOrDataUrl(src?: string): boolean {
+  if (!src) return false;
+  return src.startsWith("blob:") || src.startsWith("data:") || src.endsWith(".svg");
+}
 
 export default function GallerySection() {
+  const { items: galleryItems, isLoading } = useGallery();
   const [selectedCategory, setSelectedCategory] = useState<GalleryCategory>("All");
+  const [mediaFilter, setMediaFilter] = useState<MediaFilter>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [viewLayout, setViewLayout] = useState<ViewLayout>("masonry");
   const [visibleCount, setVisibleCount] = useState(12);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  // Filter items based on category and search query
+  // Filter items based on category, media type, and search query
   const filteredItems = useMemo(() => {
-    return GALLERY_ITEMS.filter((item) => {
+    return galleryItems.filter((item) => {
+      const itemMedia = item.mediaType || "image";
+      const matchesMedia = mediaFilter === "all" || itemMedia === mediaFilter;
       const matchesCategory =
         selectedCategory === "All" || item.category === selectedCategory;
       const matchesSearch =
@@ -25,9 +36,9 @@ export default function GallerySection() {
         item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (item.location && item.location.toLowerCase().includes(searchQuery.toLowerCase()));
 
-      return matchesCategory && matchesSearch;
+      return matchesMedia && matchesCategory && matchesSearch;
     });
-  }, [selectedCategory, searchQuery]);
+  }, [galleryItems, mediaFilter, selectedCategory, searchQuery]);
 
   const displayedItems = useMemo(() => {
     return filteredItems.slice(0, visibleCount);
@@ -49,14 +60,14 @@ export default function GallerySection() {
   };
 
   const nextLightboxImage = useCallback(() => {
-    if (lightboxIndex !== null) {
-      setLightboxIndex((prev) => ((prev! + 1) % filteredItems.length));
+    if (lightboxIndex !== null && filteredItems.length > 0) {
+      setLightboxIndex((prev) => (prev! + 1) % filteredItems.length);
     }
   }, [lightboxIndex, filteredItems.length]);
 
   const prevLightboxImage = useCallback(() => {
-    if (lightboxIndex !== null) {
-      setLightboxIndex((prev) => ((prev! - 1 + filteredItems.length) % filteredItems.length));
+    if (lightboxIndex !== null && filteredItems.length > 0) {
+      setLightboxIndex((prev) => (prev! - 1 + filteredItems.length) % filteredItems.length);
     }
   }, [lightboxIndex, filteredItems.length]);
 
@@ -107,43 +118,72 @@ export default function GallerySection() {
               <h2 className="font-open-sauce text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight">
                 Explore Archives
                 <span className="text-sm sm:text-base font-normal text-[#0c0c0c]/40 ml-3">
-                  ({filteredItems.length} photos)
+                  ({filteredItems.length} moments)
                 </span>
               </h2>
             </div>
 
-            {/* Search Input */}
-            <div className="w-full md:w-72 relative">
-              <input
-                type="text"
-                placeholder="Search moments..."
-                value={searchQuery}
-                onChange={(e) => {
-                  setSearchQuery(e.target.value);
-                  setVisibleCount(12);
-                }}
-                className="w-full px-4 py-2.5 pl-10 bg-[#FAFAFA] border border-[#0c0c0c]/15 text-sm font-open-sauce text-[#0c0c0c] placeholder:text-[#0c0c0c]/40 focus:outline-none focus:border-[#0048ff] transition-colors"
-              />
-              <svg
-                className="w-4 h-4 text-[#0c0c0c]/40 absolute left-3.5 top-1/2 -translate-y-1/2"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.3-4.3" />
-              </svg>
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#0c0c0c]/50 hover:text-[#0c0c0c]"
+            <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+              {/* Media Type Filter */}
+              <div className="flex items-center bg-[#FAFAFA] p-1 border border-[#0c0c0c]/15">
+                {(
+                  [
+                    { id: "all", label: "All Media" },
+                    { id: "image", label: "Photos" },
+                    { id: "video", label: "Videos" },
+                  ] as const
+                ).map((m) => (
+                  <button
+                    key={m.id}
+                    type="button"
+                    onClick={() => {
+                      setMediaFilter(m.id);
+                      setVisibleCount(12);
+                    }}
+                    className={`px-3 py-1.5 text-xs font-open-sauce uppercase tracking-wider transition-colors ${
+                      mediaFilter === m.id
+                        ? "bg-[#0c0c0c] text-white font-semibold"
+                        : "text-[#0c0c0c]/60 hover:text-[#0c0c0c]"
+                    }`}
+                  >
+                    {m.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Search Input */}
+              <div className="w-full sm:w-72 relative">
+                <input
+                  type="text"
+                  placeholder="Search moments..."
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setVisibleCount(12);
+                  }}
+                  className="w-full px-4 py-2.5 pl-10 bg-[#FAFAFA] border border-[#0c0c0c]/15 text-sm font-open-sauce text-[#0c0c0c] placeholder:text-[#0c0c0c]/40 focus:outline-none focus:border-[#0048ff] transition-colors"
+                />
+                <svg
+                  className="w-4 h-4 text-[#0c0c0c]/40 absolute left-3.5 top-1/2 -translate-y-1/2"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
-                  ✕
-                </button>
-              )}
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.3-4.3" />
+                </svg>
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#0c0c0c]/50 hover:text-[#0c0c0c]"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
             </div>
           </div>
 
@@ -155,8 +195,8 @@ export default function GallerySection() {
                 const isSelected = selectedCategory === category;
                 const count =
                   category === "All"
-                    ? GALLERY_ITEMS.length
-                    : GALLERY_ITEMS.filter((i) => i.category === category).length;
+                    ? galleryItems.length
+                    : galleryItems.filter((i) => i.category === category).length;
 
                 return (
                   <button
@@ -242,7 +282,19 @@ export default function GallerySection() {
         </div>
 
         {/* Gallery Items Grid */}
-        {filteredItems.length === 0 ? (
+        {isLoading && galleryItems.length === 0 ? (
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 animate-pulse">
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={i}
+                className="w-full aspect-[4/3] bg-[#0c0c0c]/5 border border-[#0c0c0c]/10 rounded flex flex-col justify-end p-4"
+              >
+                <div className="w-1/3 h-4 bg-[#0c0c0c]/10 rounded mb-2" />
+                <div className="w-2/3 h-3 bg-[#0c0c0c]/10 rounded" />
+              </div>
+            ))}
+          </div>
+        ) : filteredItems.length === 0 ? (
           <div className="py-24 text-center flex flex-col items-center justify-center">
             <div className="w-16 h-16 rounded-full bg-[#FAFAFA] border border-[#0c0c0c]/10 flex items-center justify-center text-[#0c0c0c]/40 mb-4">
               <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -251,20 +303,25 @@ export default function GallerySection() {
               </svg>
             </div>
             <h3 className="font-open-sauce text-xl font-medium text-[#0c0c0c] mb-2">
-              No moments match your criteria
+              {galleryItems.length === 0 ? "No gallery moments found" : "No moments match your criteria"}
             </h3>
             <p className="font-open-sauce text-sm text-[#0c0c0c]/60 max-w-sm mb-6">
-              Try adjusting your search terms or selecting a different category.
+              {galleryItems.length === 0
+                ? "There are currently no moments in the church gallery archive."
+                : "Try adjusting your search terms or selecting a different category."}
             </p>
-            <button
-              onClick={() => {
-                setSelectedCategory("All");
-                setSearchQuery("");
-              }}
-              className="px-6 py-2.5 bg-[#0c0c0c] text-white text-xs font-open-sauce uppercase tracking-wider hover:bg-[#0048ff] transition-colors"
-            >
-              Reset Filters
-            </button>
+            {galleryItems.length > 0 && (
+              <button
+                onClick={() => {
+                  setSelectedCategory("All");
+                  setMediaFilter("all");
+                  setSearchQuery("");
+                }}
+                className="px-6 py-2.5 bg-[#0c0c0c] text-white text-xs font-open-sauce uppercase tracking-wider hover:bg-[#0048ff] transition-colors"
+              >
+                Reset Filters
+              </button>
+            )}
           </div>
         ) : (
           <div
@@ -277,7 +334,6 @@ export default function GallerySection() {
             }`}
           >
             {displayedItems.map((item, index) => {
-              // Aspect ratio calculation for responsive layout
               const aspectClass =
                 viewLayout === "masonry"
                   ? item.aspectRatio === "tall"
@@ -288,6 +344,8 @@ export default function GallerySection() {
                   : viewLayout === "grid"
                   ? "aspect-square"
                   : "aspect-[16/10]";
+
+              const isVideo = item.mediaType === "video";
 
               return (
                 <motion.div
@@ -303,19 +361,49 @@ export default function GallerySection() {
                     onClick={() => openLightbox(index)}
                     className={`relative w-full ${aspectClass} overflow-hidden bg-gray-100 cursor-pointer group border border-[#0c0c0c]/10`}
                   >
-                    <Image
-                      src={item.imageUrl}
-                      alt={item.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
+                    {isVideo && item.videoUrl ? (
+                      <video
+                        src={item.videoUrl}
+                        poster={item.imageUrl}
+                        muted
+                        playsInline
+                        onMouseEnter={(e) => e.currentTarget.play().catch(() => {})}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.pause();
+                          e.currentTarget.currentTime = 0;
+                        }}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                    ) : isLocalBlobOrDataUrl(item.imageUrl) ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={item.imageUrl}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                    ) : (
+                      <Image
+                        src={item.imageUrl}
+                        alt={item.title}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                    )}
 
-                    {/* Category Chip Always Visible at Top Left */}
-                    <div className="absolute top-3 left-3 z-10">
+                    {/* Category Chip & Video Badge Always Visible at Top Left */}
+                    <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5">
                       <span className="px-2.5 py-1 bg-white/90 backdrop-blur-md text-[#0c0c0c] text-[10px] font-open-sauce font-semibold uppercase tracking-wider shadow-sm">
                         {item.category}
                       </span>
+                      {isVideo && (
+                        <span className="px-2.5 py-1 bg-[#0048ff] text-white text-[10px] font-open-sauce font-semibold uppercase tracking-wider shadow-sm flex items-center gap-1">
+                          <svg className="w-2.5 h-2.5 fill-current" viewBox="0 0 24 24">
+                            <polygon points="5 3 19 12 5 21 5 3" />
+                          </svg>
+                          Video
+                        </span>
+                      )}
                     </div>
 
                     {/* Gradient Overlay with Details on Hover */}
@@ -341,11 +429,17 @@ export default function GallerySection() {
                         )}
                       </div>
 
-                      {/* Expand Icon at Top Right */}
+                      {/* Expand / Play Icon at Top Right */}
                       <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:scale-110 transition-transform">
-                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-                        </svg>
+                        {isVideo ? (
+                          <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                            <polygon points="5 3 19 12 5 21 5 3" />
+                          </svg>
+                        ) : (
+                          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                          </svg>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -403,7 +497,7 @@ export default function GallerySection() {
         </div>
       </div>
 
-      {/* Fullscreen Lightbox Modal */}
+      {/* Fullscreen Lightbox Modal (Supports Photos & Videos) */}
       <AnimatePresence>
         {activeLightboxItem && (
           <motion.div
@@ -425,7 +519,11 @@ export default function GallerySection() {
 
               <div className="flex items-center gap-4">
                 <a
-                  href={activeLightboxItem.imageUrl}
+                  href={
+                    activeLightboxItem.mediaType === "video" && activeLightboxItem.videoUrl
+                      ? activeLightboxItem.videoUrl
+                      : activeLightboxItem.imageUrl
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hidden sm:flex items-center gap-1.5 text-xs font-open-sauce uppercase tracking-wider text-white/70 hover:text-white transition-colors"
@@ -433,7 +531,9 @@ export default function GallerySection() {
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
                   </svg>
-                  <span>Open Full Image</span>
+                  <span>
+                    {activeLightboxItem.mediaType === "video" ? "Open Full Video" : "Open Full Image"}
+                  </span>
                 </a>
 
                 <button
@@ -448,7 +548,7 @@ export default function GallerySection() {
               </div>
             </div>
 
-            {/* Center Area: Prev Button, Image, Next Button */}
+            {/* Center Area: Prev Button, Media (Image or Video), Next Button */}
             <div className="relative flex-1 flex items-center justify-center my-4 overflow-hidden">
               {/* Prev Button */}
               <button
@@ -457,22 +557,41 @@ export default function GallerySection() {
                   prevLightboxImage();
                 }}
                 className="absolute left-2 sm:left-4 z-30 w-12 h-12 rounded-full bg-white/10 hover:bg-[#0048ff] text-white flex items-center justify-center transition-colors duration-200"
-                aria-label="Previous Image"
+                aria-label="Previous Item"
               >
                 <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="m15 18-6-6 6-6" />
                 </svg>
               </button>
 
-              {/* Main Image */}
+              {/* Main Media */}
               <div className="relative w-full h-full max-w-5xl max-h-[75vh] flex items-center justify-center">
-                <Image
-                  src={activeLightboxItem.imageUrl}
-                  alt={activeLightboxItem.title}
-                  fill
-                  priority
-                  className="object-contain"
-                />
+                {activeLightboxItem.mediaType === "video" && activeLightboxItem.videoUrl ? (
+                  <video
+                    key={activeLightboxItem.id}
+                    src={activeLightboxItem.videoUrl}
+                    poster={activeLightboxItem.imageUrl}
+                    controls
+                    autoPlay
+                    playsInline
+                    className="max-w-full max-h-[75vh] w-full h-full object-contain"
+                  />
+                ) : isLocalBlobOrDataUrl(activeLightboxItem.imageUrl) ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={activeLightboxItem.imageUrl}
+                    alt={activeLightboxItem.title}
+                    className="max-w-full max-h-[75vh] object-contain"
+                  />
+                ) : (
+                  <Image
+                    src={activeLightboxItem.imageUrl}
+                    alt={activeLightboxItem.title}
+                    fill
+                    priority
+                    className="object-contain"
+                  />
+                )}
               </div>
 
               {/* Next Button */}
@@ -482,7 +601,7 @@ export default function GallerySection() {
                   nextLightboxImage();
                 }}
                 className="absolute right-2 sm:right-4 z-30 w-12 h-12 rounded-full bg-white/10 hover:bg-[#0048ff] text-white flex items-center justify-center transition-colors duration-200"
-                aria-label="Next Image"
+                aria-label="Next Item"
               >
                 <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="m9 18 6-6-6-6" />

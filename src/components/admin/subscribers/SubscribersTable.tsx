@@ -8,7 +8,7 @@ import { useConfirm } from '@/components/ui/ConfirmDialogProvider';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function SubscribersTable() {
-  const { data: subscribers, error, isLoading, mutate } = useSWR<any[]>('/api/subscribers', fetcher);
+  const { data: subscribers, isLoading, mutate } = useSWR<any[]>('/api/subscribers', fetcher);
   const [selected, setSelected] = useState<string[]>([]);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const { confirm } = useConfirm();

@@ -1,7 +1,7 @@
 "use client";
 
 import useSWR, { mutate as globalMutate } from 'swr';
-import { INITIAL_SUBADMINS } from './mockData';
+import { createClient } from '@/lib/supabase/client';
 
 export const SUBADMINS_KEY = 'admin_subadmins';
 
@@ -29,106 +29,165 @@ export interface SubadminActivity {
   count: number;
 }
 
-function getStoredSubadmins(): Subadmin[] {
-  if (typeof window === 'undefined') return INITIAL_SUBADMINS;
-  try {
-    const raw = localStorage.getItem('crc_mock_subadmins');
-    if (raw) return JSON.parse(raw);
-  } catch (e) {
-    console.error(e);
-  }
-  return INITIAL_SUBADMINS;
-}
-
-function saveStoredSubadmins(subadmins: Subadmin[]) {
-  if (typeof window !== 'undefined') {
+// ── Row mapper: DB → Subadmin ──
+function mapRow(row: any): Subadmin {
+  let permissions: string[] = [];
+  if (Array.isArray(row.permissions)) {
+    permissions = row.permissions;
+  } else if (typeof row.permissions === 'string') {
     try {
-      localStorage.setItem('crc_mock_subadmins', JSON.stringify(subadmins));
-    } catch (e) {
-      console.error(e);
+      permissions = JSON.parse(row.permissions);
+    } catch {
+      permissions = [];
     }
   }
+
+  return {
+    id: row.id,
+    fullName: row.full_name || '',
+    email: row.email || '',
+    phone: row.phone || undefined,
+    dob: row.dob || undefined,
+    gender: row.gender || undefined,
+    nationality: row.nationality || undefined,
+    address: row.address || undefined,
+    role: row.role || 'Admin',
+    permissions,
+    location: row.location || undefined,
+    avatar: row.avatar || undefined,
+    color: row.color || 'bg-black',
+    createdAt: row.created_at || new Date().toISOString(),
+  };
 }
 
+// ── Row mapper: Subadmin → DB ──
+function toDbRow(s: Partial<Subadmin>) {
+  const row: Record<string, any> = {};
+  if (s.fullName !== undefined) row.full_name = s.fullName;
+  if (s.email !== undefined) row.email = s.email.trim().toLowerCase();
+  if (s.phone !== undefined) row.phone = s.phone || null;
+  if (s.dob !== undefined) row.dob = s.dob || null;
+  if (s.gender !== undefined) row.gender = s.gender || null;
+  if (s.nationality !== undefined) row.nationality = s.nationality || null;
+  if (s.address !== undefined) row.address = s.address || null;
+  if (s.role !== undefined) row.role = s.role;
+  if (s.permissions !== undefined) row.permissions = s.permissions;
+  if (s.location !== undefined) row.location = s.location || null;
+  if (s.avatar !== undefined) row.avatar = s.avatar || null;
+  if (s.color !== undefined) row.color = s.color || null;
+  return row;
+}
+
+// ── Fetcher: all subadmins ──
+const fetcherAll = async (): Promise<Subadmin[]> => {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from('subadmins')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching subadmins:', error);
+    throw error;
+  }
+  return (data || []).map(mapRow);
+};
+
+// ── Fetcher: single subadmin by ID ──
+const fetcherSingle = async (key: string): Promise<Subadmin | null> => {
+  const id = key.replace('subadmin/', '');
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from('subadmins')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error) return null;
+  return mapRow(data);
+};
+
+/** Fetch all subadmins */
 export function useSubadmins() {
   const { data, error, isLoading, mutate } = useSWR<Subadmin[]>(
     SUBADMINS_KEY,
-    async () => getStoredSubadmins(),
+    fetcherAll,
     {
-      fallbackData: INITIAL_SUBADMINS,
-      revalidateOnFocus: false,
+      revalidateOnFocus: true,
+      revalidateOnReconnect: true,
+      dedupingInterval: 5000,
     }
   );
 
   return {
-    subadmins: data || INITIAL_SUBADMINS,
-    isLoading: false,
+    subadmins: data || [],
+    isLoading,
     isError: error,
     mutate,
   };
 }
 
+/** Fetch a single subadmin by ID */
 export function useSubadmin(id: string | null) {
   const { data, error, isLoading, mutate } = useSWR<Subadmin | null>(
     id ? `subadmin/${id}` : null,
-    async () => {
-      const list = getStoredSubadmins();
-      return list.find(s => s.id === id) || null;
-    },
+    fetcherSingle,
     {
-      revalidateOnFocus: false,
+      revalidateOnFocus: true,
+      revalidateOnReconnect: true,
+      dedupingInterval: 10000,
     }
   );
 
   return {
     subadmin: data ?? null,
-    isLoading: false,
+    isLoading,
     isError: error,
     mutate,
   };
 }
 
 export async function addSubadmin(subadmin: Omit<Subadmin, 'id' | 'createdAt'>) {
-  const list = getStoredSubadmins();
-  const colors = ['bg-black', 'bg-blue-500', 'bg-emerald-500', 'bg-amber-500', 'bg-purple-500'];
-  const newSub: Subadmin = {
-    ...subadmin,
-    id: `sub-${Date.now()}`,
-    color: subadmin.color || colors[Math.floor(Math.random() * colors.length)],
-    avatar: subadmin.avatar || (subadmin.fullName ? subadmin.fullName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() : 'AD'),
-    createdAt: new Date().toISOString(),
-  };
+  const supabase = createClient();
+  const row = toDbRow(subadmin);
 
-  const updated = [newSub, ...list];
-  saveStoredSubadmins(updated);
-  globalMutate(SUBADMINS_KEY, updated, false);
-  return newSub;
+  const colors = ['bg-[#b2823e]', 'bg-[#1a1a1a]', 'bg-[#7c5b24]', 'bg-[#4a3b2c]', 'bg-[#2563eb]'];
+  if (!row.color) {
+    row.color = colors[Math.floor(Math.random() * colors.length)];
+  }
+  if (!row.avatar && row.full_name) {
+    row.avatar = row.full_name.split(' ').map((n: string) => n[0]).join('').substring(0, 2).toUpperCase();
+  }
+
+  const { data, error } = await supabase.from('subadmins').insert(row).select().single();
+  if (error) throw error;
+  globalMutate(SUBADMINS_KEY);
+  return mapRow(data);
 }
 
 export async function updateSubadmin(id: string, subadmin: Partial<Subadmin>) {
-  const list = getStoredSubadmins();
-  const updated = list.map(s => {
-    if (s.id !== id) return s;
-    return {
-      ...s,
-      ...subadmin,
-      avatar: subadmin.fullName ? subadmin.fullName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() : s.avatar,
-    };
-  });
-  saveStoredSubadmins(updated);
-  globalMutate(SUBADMINS_KEY, updated, false);
-  globalMutate(`subadmin/${id}`, updated.find(s => s.id === id), false);
-  return updated.find(s => s.id === id);
+  const supabase = createClient();
+  const row = toDbRow(subadmin);
+
+  if (row.full_name && !row.avatar) {
+    row.avatar = row.full_name.split(' ').map((n: string) => n[0]).join('').substring(0, 2).toUpperCase();
+  }
+
+  const { data, error } = await supabase.from('subadmins').update(row).eq('id', id).select().single();
+  if (error) throw error;
+  globalMutate(SUBADMINS_KEY);
+  globalMutate(`subadmin/${id}`);
+  return mapRow(data);
 }
 
 export async function deleteSubadmin(id: string) {
-  const list = getStoredSubadmins();
-  const updated = list.filter(s => s.id !== id);
-  saveStoredSubadmins(updated);
-  globalMutate(SUBADMINS_KEY, updated, false);
+  const supabase = createClient();
+  const { error } = await supabase.from('subadmins').delete().eq('id', id);
+  if (error) throw error;
+  globalMutate(SUBADMINS_KEY);
 }
 
-// Generate realistic activity heatmap data
+// Generate realistic activity heatmap data or fetch from activities if present
 export function useActivities(subadminId: string | null) {
   const { data, error, isLoading, mutate } = useSWR<SubadminActivity[]>(
     subadminId ? `subadmin_activities/${subadminId}` : null,
