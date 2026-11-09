@@ -17,7 +17,8 @@ function isUnoptimizedImg(src?: string): boolean {
 export default function EventsHero() {
   const { events } = useEvents();
   const featured =
-    events.find((e) => e.id === "annual-youth-conference-2026") ||
+    events.find((e) => e.id === "revelation-encounter-2026") ||
+    events.find((e) => e.id === "christmas-music-festival") ||
     events.find((e) => e.status === "Open" || e.status === "Upcoming") ||
     events[0];
 

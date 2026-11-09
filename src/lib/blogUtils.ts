@@ -6,7 +6,12 @@ export function mapDbRowToBlogPost(row: any): BlogPost {
       ? row.content.map((item: any, idx: number) =>
           typeof item === "string"
             ? { heading: idx === 0 ? "Understanding the foundation" : "Deep Dive", text: item }
-            : { heading: item?.heading || "", text: item?.text || "" }
+            : {
+                heading: item?.heading || "",
+                text: item?.text || "",
+                image: item?.image || undefined,
+                videoEmbedUrl: item?.videoEmbedUrl || undefined,
+              }
         )
       : [{ heading: "", text: "" }];
 

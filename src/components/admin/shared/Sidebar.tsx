@@ -10,7 +10,7 @@ import {
   BellOff, HelpCircle, LogOut,
   CheckCircle2, Sparkles, PanelLeftClose, PanelLeftOpen, X
 } from 'lucide-react';
-import { useAdminAuth } from './AdminAuthProvider';
+import { useAdminAuth, signOutAdmin } from './AdminAuthProvider';
 
 export const ADMIN_SIDEBAR_TOGGLE_EVENT = 'crc:toggle-admin-sidebar';
 export const ADMIN_SIDEBAR_STATE_EVENT = 'crc:admin-sidebar-state';
@@ -36,10 +36,9 @@ function ProfileDropdown({
   const [status, setStatus] = useState<Status>('online');
   const [notifPaused, setNotifPaused] = useState(false);
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
     onClose();
-    document.cookie = 'admin_authenticated=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-    router.push('/');
+    await signOutAdmin();
   };
 
   return (

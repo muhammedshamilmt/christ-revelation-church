@@ -11,7 +11,7 @@ export type BlogPost = {
   id: string;
   title: string;
   excerpt: string;
-  content: { heading?: string; text: string }[];
+  content: { heading?: string; text: string; image?: string; videoEmbedUrl?: string }[];
   pullQuote?: string;
   category: string;
   tags: string[];
@@ -183,9 +183,21 @@ export function useAllBlogPosts() {
 }
 
 export function findBlogPostById(posts: BlogPost[], id: string): BlogPost | undefined {
-  const targetId = decodeURIComponent(id);
+  const targetId = decodeURIComponent(id).trim();
+  const aliasMap: Record<string, string> = {
+    "blog-1": "worship-opens-doors",
+    "1": "worship-opens-doors",
+    "blog-2": "prayer-is-the-key",
+    "2": "prayer-is-the-key",
+    "blog-3": "christmas-music-festival",
+    "3": "christmas-music-festival",
+    "blog-4": "our-story-and-mission",
+    "4": "our-story-and-mission",
+  };
+  const mappedId = aliasMap[targetId] || targetId;
   return (
     posts.find((p) => p.id === targetId) ||
+    posts.find((p) => p.id === mappedId) ||
     posts.find((p) => p.id === `blog-${targetId}`) ||
     posts.find((p) => p.id.replace(/^blog-/, "") === targetId) ||
     posts.find((p) => p.id === id)

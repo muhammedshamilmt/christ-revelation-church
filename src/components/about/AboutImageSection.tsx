@@ -8,7 +8,7 @@ export default function AboutImageSection() {
         {/* Large Image */}
         <div className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden rounded-sm">
           <Image
-            src="/images/hero-bg.png" // Using placeholder image from existing assets
+            src="https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3554-scaled.jpeg"
             alt="Community engagement"
             fill
             className="object-cover object-center"

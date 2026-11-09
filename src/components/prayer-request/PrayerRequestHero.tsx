@@ -6,7 +6,7 @@ export default function PrayerRequestHero() {
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
         <Image
-          src="/images/hero-bg.png" // using placeholder
+          src="https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/08/360_F_680119422_Kyy4ruum4CnBAaZwCWanmsrsfJ4vDxgV.jpg"
           alt="Prayer Request Hero Background"
           fill
           className="object-cover opacity-60"

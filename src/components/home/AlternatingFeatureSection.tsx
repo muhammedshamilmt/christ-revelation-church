@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import TextReveal from "@/components/ui/TextReveal";
 
 export default function AlternatingFeatureSection() {
@@ -10,7 +11,7 @@ export default function AlternatingFeatureSection() {
         {/* Left Half: Image */}
         <div className="w-full md:w-1/2 h-[50vh] md:h-auto relative">
           <Image
-            src="/images/hero-bg.png" // using placeholder image
+            src="https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/08/pexels-dominikagregus-696295-1536x1024.jpg"
             alt="Community Gatherings"
             fill
             className="object-cover object-center"
@@ -27,9 +28,9 @@ export default function AlternatingFeatureSection() {
             Join us in our various gatherings tailored to nurture your faith, bring the community together, and equip you for a life of purpose. Our programs are designed for all ages and walks of life.
           </p>
           <div className="mt-12">
-            <a href="#more" className="font-open-sauce text-sm sm:text-base font-semibold tracking-wider uppercase border-b border-[#0c0c0c]/30 hover:border-[#0c0c0c] pb-1 transition-colors">
+            <Link href="/ministries" className="font-open-sauce text-sm sm:text-base font-semibold tracking-wider uppercase border-b border-[#0c0c0c]/30 hover:border-[#0c0c0c] pb-1 transition-colors">
               Explore Ministries
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -47,16 +48,16 @@ export default function AlternatingFeatureSection() {
             Our worship services are an opportunity to experience the presence of God through music, prayer, and profound teachings. Come as you are and find a welcoming family ready to embrace you.
           </p>
           <div className="mt-12">
-            <a href="#more" className="font-open-sauce text-sm sm:text-base font-semibold tracking-wider uppercase border-b border-[#0c0c0c]/30 hover:border-[#0c0c0c] pb-1 transition-colors">
+            <Link href="/ministries/worship-ministry" className="font-open-sauce text-sm sm:text-base font-semibold tracking-wider uppercase border-b border-[#0c0c0c]/30 hover:border-[#0c0c0c] pb-1 transition-colors">
               Join a Service
-            </a>
+            </Link>
           </div>
         </div>
 
         {/* Right Half: Image */}
         <div className="w-full md:w-1/2 h-[50vh] md:h-auto relative">
           <Image
-            src="/images/hero-bg.png" // using placeholder image
+            src="https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3345-scaled.jpeg"
             alt="Worship Together"
             fill
             className="object-cover object-center"

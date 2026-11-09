@@ -1,7 +1,16 @@
 import Image from "next/image";
 
 export default function AboutGallerySection() {
-  const images = Array(8).fill("/images/hero-bg.png");
+  const images = [
+    "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3562-scaled.jpeg",
+    "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3549-scaled.jpeg",
+    "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3531-scaled.jpeg",
+    "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3526-scaled.jpeg",
+    "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3539-scaled.jpeg",
+    "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3340-scaled.jpeg",
+    "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3363-scaled.jpeg",
+    "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3209-scaled.jpeg",
+  ];
 
   return (
     <section className="w-full bg-white text-[#0c0c0c] py-16 sm:py-24 px-4 sm:px-8 lg:px-12">

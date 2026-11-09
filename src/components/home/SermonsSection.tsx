@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import TextReveal from "@/components/ui/TextReveal";
 
 export default function SermonsSection() {
@@ -27,7 +28,7 @@ export default function SermonsSection() {
         {/* Images Grid */}
         <div className="w-full lg:w-3/4 grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Card 1 */}
-          <div className="flex flex-col group cursor-pointer">
+          <Link href="/sermons/worship-opens-doors" className="flex flex-col group cursor-pointer">
             <div className="relative w-full aspect-[3/4] sm:aspect-[4/5] overflow-hidden bg-[#0c0c0c] mb-4">
               <Image 
                 src="/sermon1.jpg" 
@@ -37,13 +38,13 @@ export default function SermonsSection() {
                 className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" 
               />
             </div>
-            <a href="#" className="font-open-sauce text-xs font-medium uppercase tracking-widest underline underline-offset-4 decoration-1 decoration-[#0c0c0c]/30 hover:decoration-[#0c0c0c] transition-colors">
+            <span className="font-open-sauce text-xs font-medium uppercase tracking-widest underline underline-offset-4 decoration-1 decoration-[#0c0c0c]/30 group-hover:decoration-[#0c0c0c] transition-colors">
               Worship Opens Doors
-            </a>
-          </div>
+            </span>
+          </Link>
 
           {/* Card 2 */}
-          <div className="flex flex-col group cursor-pointer">
+          <Link href="/sermons/prayer-is-the-key" className="flex flex-col group cursor-pointer">
             <div className="relative w-full aspect-[3/4] sm:aspect-[4/5] overflow-hidden bg-[#0c0c0c] mb-4">
               <Image 
                 src="/sermon2.jpg" 
@@ -53,13 +54,13 @@ export default function SermonsSection() {
                 className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" 
               />
             </div>
-            <a href="#" className="font-open-sauce text-xs font-medium uppercase tracking-widest underline underline-offset-4 decoration-1 decoration-[#0c0c0c]/30 hover:decoration-[#0c0c0c] transition-colors">
+            <span className="font-open-sauce text-xs font-medium uppercase tracking-widest underline underline-offset-4 decoration-1 decoration-[#0c0c0c]/30 group-hover:decoration-[#0c0c0c] transition-colors">
               Prayer is the Key
-            </a>
-          </div>
+            </span>
+          </Link>
 
           {/* Card 3 */}
-          <div className="flex flex-col group cursor-pointer">
+          <Link href="/sermons/christmas-music-festival" className="flex flex-col group cursor-pointer">
             <div className="relative w-full aspect-[3/4] sm:aspect-[4/5] overflow-hidden bg-[#0c0c0c] mb-4">
               <Image 
                 src="/sermon3.jpg" 
@@ -69,10 +70,10 @@ export default function SermonsSection() {
                 className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105" 
               />
             </div>
-            <a href="#" className="font-open-sauce text-xs font-medium uppercase tracking-widest underline underline-offset-4 decoration-1 decoration-[#0c0c0c]/30 hover:decoration-[#0c0c0c] transition-colors">
+            <span className="font-open-sauce text-xs font-medium uppercase tracking-widest underline underline-offset-4 decoration-1 decoration-[#0c0c0c]/30 group-hover:decoration-[#0c0c0c] transition-colors">
               Christmas Music Festival
-            </a>
-          </div>
+            </span>
+          </Link>
         </div>
 
       </div>

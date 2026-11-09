@@ -6,7 +6,7 @@ export default function AboutMeetSection() {
       {/* Top Image Section */}
       <div className="relative w-full h-[60vh] md:h-[75vh] lg:h-[85vh]">
         <Image
-          src="/images/hero-bg.png" // Using placeholder image from existing assets
+          src="https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/08/pexels-pixabay-40783-scaled.jpg"
           alt="Meet our community"
           fill
           className="object-cover object-center"

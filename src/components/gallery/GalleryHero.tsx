@@ -170,7 +170,7 @@ export default function GalleryHero() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 pt-12 sm:pt-16 mt-8 border-t border-[#0c0c0c]/10">
           <div>
             <h4 className="font-open-sauce text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#0c0c0c]">
-              150<span className="text-[#0048ff]">+</span>
+              176<span className="text-[#0048ff]">+</span>
             </h4>
             <p className="font-open-sauce text-xs sm:text-sm text-[#0c0c0c]/60 uppercase tracking-widest mt-1">
               Moments Captured

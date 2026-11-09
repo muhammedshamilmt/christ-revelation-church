@@ -84,7 +84,7 @@ export default function ContactSection() {
         {/* Large Image */}
         <div className="w-full relative h-[40vh] sm:h-[50vh] md:h-[60vh] overflow-hidden bg-gray-100 mt-auto">
           <Image
-            src="/images/hero-bg.png" // using placeholder
+            src="https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3561-scaled.jpeg"
             alt="Church interior"
             fill
             className="object-cover"

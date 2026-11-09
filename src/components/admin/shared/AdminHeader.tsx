@@ -7,7 +7,7 @@ import {
   Menu, PanelLeftOpen, PanelLeftClose
 } from 'lucide-react';
 
-import { useAdminAuth } from './AdminAuthProvider';
+import { useAdminAuth, signOutAdmin } from './AdminAuthProvider';
 import { toggleAdminSidebar, ADMIN_SIDEBAR_STATE_EVENT } from './Sidebar';
 import { createClient } from '@/lib/supabase/client';
 
@@ -359,9 +359,7 @@ export default function AdminHeader({
               <div className="p-2">
                 <button 
                   onClick={async () => {
-                    const supabase = createClient();
-                    await supabase.auth.signOut();
-                    window.location.href = '/';
+                    await signOutAdmin();
                   }}
                   className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[13px] font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors"
                 >

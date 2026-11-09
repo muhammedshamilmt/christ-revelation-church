@@ -22,7 +22,7 @@ export default function SermonsHero() {
             Listen Now
           </Link>
           <Link
-            href="#series"
+            href="/sermons/worship-opens-doors"
             className="px-8 py-4 bg-transparent border border-[#0c0c0c]/20 text-[#0c0c0c] font-open-sauce text-sm font-semibold tracking-wide hover:border-[#0c0c0c] transition-colors uppercase "
           >
             Watch Video

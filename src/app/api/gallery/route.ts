@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 import { mapDbRowToGalleryItem, mapGalleryItemToDbRow } from "@/lib/galleryUtils";
-import type { GalleryItem } from "@/lib/gallery";
+import { GALLERY_ITEMS, type GalleryItem } from "@/lib/gallery";
 import { applyRateLimit, uploadLimiter, generalLimiter } from "@/lib/rateLimit";
 import { galleryItemSchema } from "@/lib/validation";
 import { DANGEROUS_EXTENSIONS } from "@/lib/fileSecurity";
@@ -43,7 +43,10 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    const items: GalleryItem[] = (data || []).map(mapDbRowToGalleryItem);
+    let items: GalleryItem[] = (data || []).map(mapDbRowToGalleryItem);
+    if (items.length === 0 && (!category || category === "All") && (!mediaType || mediaType === "all") && !search?.trim()) {
+      items = GALLERY_ITEMS;
+    }
 
     return NextResponse.json(items, {
       headers: {

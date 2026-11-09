@@ -19,11 +19,14 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const isAdminRoute = pathname?.startsWith('/admin');
 
-  if (pathname?.startsWith('/admin')) return null;
-
-  // Prevent scrolling when menu is open
+  // Prevent scrolling when menu is open (always called before any early return to satisfy Rules of Hooks)
   useEffect(() => {
+    if (isAdminRoute) {
+      document.body.style.overflow = "unset";
+      return;
+    }
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
@@ -32,7 +35,9 @@ export default function Navbar() {
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [isOpen]);
+  }, [isOpen, isAdminRoute]);
+
+  if (isAdminRoute) return null;
 
   const menuVariants: Variants = {
     initial: { y: "-100%" },

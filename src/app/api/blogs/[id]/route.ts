@@ -12,12 +12,23 @@ export async function GET(
   try {
     const { id } = await params;
     const decodedId = decodeURIComponent(id);
+    const aliasMap: Record<string, string> = {
+      "blog-1": "worship-opens-doors",
+      "1": "worship-opens-doors",
+      "blog-2": "prayer-is-the-key",
+      "2": "prayer-is-the-key",
+      "blog-3": "christmas-music-festival",
+      "3": "christmas-music-festival",
+      "blog-4": "our-story-and-mission",
+      "4": "our-story-and-mission",
+    };
+    const mappedId = aliasMap[decodedId] || decodedId;
     const altId = id.startsWith("blog-") ? id.replace(/^blog-/, "") : `blog-${id}`;
 
     const { data, error } = await supabase
       .from("blogs")
       .select("*")
-      .or(`id.eq."${id}",id.eq."${decodedId}",id.eq."${altId}"`)
+      .or(`id.eq."${id}",id.eq."${decodedId}",id.eq."${mappedId}",id.eq."${altId}"`)
       .limit(1)
       .maybeSingle();
 

@@ -67,25 +67,25 @@ export const EVENT_HOST_PRESETS = [
     name: "Pastor David Vance",
     role: "Senior Pastor",
     image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3526-scaled.jpeg",
   },
   {
     name: "Sarah Jenkins",
     role: "Youth Director",
     image:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3531-scaled.jpeg",
   },
   {
     name: "Emily Davis",
     role: "Community Outreach Coordinator",
     image:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3546-scaled.jpeg",
   },
   {
     name: "Elder Marcus Cole",
     role: "Christian Education Director",
     image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3544-scaled.jpeg",
   },
 ];
 

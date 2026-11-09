@@ -153,6 +153,30 @@ export default function BlogDetail({ id }: { id: string }) {
                 <p className="font-open-sauce text-[#0c0c0c]/80 text-base sm:text-lg font-light leading-relaxed whitespace-pre-line">
                   {item.text}
                 </p>
+                {item.image && (
+                  <div className="w-full aspect-[16/10] relative rounded-2xl overflow-hidden bg-[#0c0c0c]/5 my-4">
+                    <Image
+                      src={item.image}
+                      alt={item.heading || blog.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+                {item.videoEmbedUrl && (
+                  <div className="w-full my-4">
+                    <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-lg">
+                      <iframe
+                        title={item.heading || blog.title}
+                        src={item.videoEmbedUrl}
+                        className="absolute inset-0 w-full h-full border-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>

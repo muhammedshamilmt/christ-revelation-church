@@ -6,7 +6,7 @@ export default function AboutHero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero-bg.png" // Using the existing hero bg as a placeholder
+          src="https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3517-scaled.jpeg"
           alt="About Hero background"
           fill
           priority

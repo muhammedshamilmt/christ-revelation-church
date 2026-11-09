@@ -6,7 +6,7 @@ export default function AboutCultureSection() {
       {/* Top Image Section */}
       <div className="relative w-full h-[50vh] md:h-[70vh] lg:h-[80vh]">
         <Image
-          src="/images/hero-bg.png" // Placeholder
+          src="https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/08/hands.avif"
           alt="The Culture"
           fill
           className="object-cover object-center"

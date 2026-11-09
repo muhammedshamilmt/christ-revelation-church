@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import PixelTransition from "@/components/ui/PixelTransition";
 
 export default function ServicesSection() {
@@ -28,14 +29,14 @@ export default function ServicesSection() {
       <div className="w-full max-w-[1400px]">
         <div className="flex justify-between items-end font-open-sauce text-sm sm:text-base font-medium mb-8">
           <p>Transforming lives through faith.</p>
-          <a href="#" className="flex items-center gap-2 hover:opacity-70 transition-opacity">
+          <Link href="/ministries" className="flex items-center gap-2 hover:opacity-70 transition-opacity">
             <span className="text-xl leading-none">↳</span> See more
-          </a>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-          {/* Card 1 */}
-          <div className="relative w-full aspect-[3/4] sm:aspect-[2/3] overflow-hidden group cursor-pointer bg-[#0c0c0c]">
+          {/* Card 1: Our Story */}
+          <Link href="/about" className="relative w-full aspect-[3/4] sm:aspect-[2/3] overflow-hidden group cursor-pointer bg-[#0c0c0c] block">
             <PixelTransition
               gridSize={10}
               pixelColor="#0048FF"
@@ -66,13 +67,14 @@ export default function ServicesSection() {
                 <div className="w-full h-full flex flex-col items-center justify-center bg-[#0048FF] p-8 text-center">
                   <h3 className="text-white font-ancola text-3xl sm:text-4xl lowercase tracking-tight mb-4">Our Story</h3>
                   <p className="text-white/80 font-open-sauce text-sm leading-relaxed">At Christ Revelation Church, we believe that church is more than a building—it’s a family bound by love, strengthened by faith, and sustained by God’s grace.</p>
+                  <span className="text-white font-open-sauce text-xs font-bold uppercase tracking-widest mt-6 underline underline-offset-4">Read More →</span>
                 </div>
               }
             />
-          </div>
+          </Link>
 
-          {/* Card 2 */}
-          <div className="relative w-full aspect-[3/4] sm:aspect-[2/3] overflow-hidden group cursor-pointer bg-[#0c0c0c]">
+          {/* Card 2: Our Ministries */}
+          <Link href="/ministries" className="relative w-full aspect-[3/4] sm:aspect-[2/3] overflow-hidden group cursor-pointer bg-[#0c0c0c] block">
             <PixelTransition
               gridSize={10}
               pixelColor="#0048FF"
@@ -103,13 +105,14 @@ export default function ServicesSection() {
                 <div className="w-full h-full flex flex-col items-center justify-center bg-[#0048FF] p-8 text-center">
                   <h3 className="text-white font-ancola text-3xl sm:text-4xl lowercase tracking-tight mb-4">Our Ministries</h3>
                   <p className="text-white/80 font-open-sauce text-sm leading-relaxed">We are dedicated to the uplifting message of the Christian gospel. Our goal is to nurture spiritual growth and bring hope to those facing difficult times.</p>
+                  <span className="text-white font-open-sauce text-xs font-bold uppercase tracking-widest mt-6 underline underline-offset-4">Learn More →</span>
                 </div>
               }
             />
-          </div>
+          </Link>
 
-          {/* Card 3 */}
-          <div className="relative w-full aspect-[3/4] sm:aspect-[2/3] overflow-hidden group cursor-pointer bg-[#0c0c0c]">
+          {/* Card 3: Outreach Missions */}
+          <Link href="/ministries/outreach-ministry" className="relative w-full aspect-[3/4] sm:aspect-[2/3] overflow-hidden group cursor-pointer bg-[#0c0c0c] block">
             <PixelTransition
               gridSize={10}
               pixelColor="#0048FF"
@@ -138,10 +141,11 @@ export default function ServicesSection() {
                 <div className="w-full h-full flex flex-col items-center justify-center bg-[#0048FF] p-8 text-center">
                   <h3 className="text-white font-ancola text-3xl sm:text-4xl lowercase tracking-tight mb-4">Outreach Missions</h3>
                   <p className="text-white/80 font-open-sauce text-sm leading-relaxed">With a heartfelt focus on compassion and an awareness of the urgency of our mission, we live in anticipation of Jesus’s return.</p>
+                  <span className="text-white font-open-sauce text-xs font-bold uppercase tracking-widest mt-6 underline underline-offset-4">Join Our Outreach →</span>
                 </div>
               }
             />
-          </div>
+          </Link>
         </div>
       </div>
 

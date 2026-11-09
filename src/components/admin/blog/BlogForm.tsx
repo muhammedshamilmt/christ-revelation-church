@@ -44,28 +44,28 @@ export const AUTHOR_PRESETS = [
     name: "Pastor David Vance",
     role: "Senior Pastor",
     avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3526-scaled.jpeg",
     bio: "Dedicated to sharing insights and stories from our vibrant community.",
   },
   {
     name: "Sarah Jenkins",
     role: "Youth Director",
     avatar:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3531-scaled.jpeg",
     bio: "Passionate about mentoring young believers and building transformative youth ministry spaces.",
   },
   {
     name: "Rev. Michael Smith",
     role: "Associate Minister",
     avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3544-scaled.jpeg",
     bio: "Guiding congregations in contemplative prayer, biblical foundations, and spiritual formation.",
   },
   {
     name: "Emily Davis",
     role: "Community Outreach Coordinator",
     avatar:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3546-scaled.jpeg",
     bio: "Serving local families through compassionate outreach, food drives, and community partnerships.",
   },
 ];
@@ -73,19 +73,19 @@ export const AUTHOR_PRESETS = [
 export const BLOG_IMAGE_PRESETS = [
   {
     label: "Worship Sanctuary",
-    url: "https://images.unsplash.com/photo-1510525009512-ad7fc13eefab?auto=format&fit=crop&w=1200&q=80",
+    url: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/08/pexels-pixabay-236321-scaled.jpg",
   },
   {
     label: "Youth Retreat",
-    url: "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1200&q=80",
+    url: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3450-scaled.jpeg",
   },
   {
     label: "Bible & Prayer",
-    url: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=1200&q=80",
+    url: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/08/pexels-pavel-danilyuk-8814997-scaled.jpg",
   },
   {
     label: "Community Outreach",
-    url: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80",
+    url: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/09/Pfeatured1280.webp",
   },
   { label: "Church Hero", url: "/images/hero-bg.png" },
 ];

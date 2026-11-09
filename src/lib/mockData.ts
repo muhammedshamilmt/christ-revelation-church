@@ -7,7 +7,7 @@ export const INITIAL_CAMPAIGNS = [
     goal: 35000,
     daysLeft: 14,
     status: "Active" as const,
-    image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
+    image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3553-scaled.jpeg",
     description: [
       "Upgrading our sanctuary audio-visual system to deliver crystal-clear acoustics and high-definition livestreaming to thousands of believers around the world.",
       "This initiative will replace 12-year-old mixing consoles, install low-latency stage monitors, and add professional robotic PTZ cameras for global broadcast."
@@ -34,7 +34,7 @@ export const INITIAL_CAMPAIGNS = [
     goal: 15000,
     daysLeft: 6,
     status: "Active" as const,
-    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80",
+    image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/09/Pfeatured1280.webp",
     description: [
       "Providing weekly nutritious food packages and fresh produce to over 400 vulnerable families and pensioners in our local area.",
       "Every £25 sponsors a family grocery pack filled with staples, grains, baby formula, and personal hygiene essentials."
@@ -56,7 +56,7 @@ export const INITIAL_CAMPAIGNS = [
     goal: 12000,
     daysLeft: 22,
     status: "Active" as const,
-    image: "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1200&q=80",
+    image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3450-scaled.jpeg",
     description: [
       "A 4-day transformational mountain retreat for 150 youth, featuring biblical teaching, worship, team challenges, and mentorship workshops.",
       "Sponsorship funds ensure that no student is left behind due to financial circumstances."
@@ -72,7 +72,7 @@ export const INITIAL_CAMPAIGNS = [
     goal: 42000,
     daysLeft: 0,
     status: "Completed" as const,
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80",
+    image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3361-scaled.jpeg",
     description: [
       "Acquiring a 16-passenger accessible minibus to assist elderly church members, Sunday school children, and outreach teams.",
       "Fully funded through special anniversary pledges and thanksgiving offerings!"
@@ -94,7 +94,7 @@ export const INITIAL_CAMPAIGNS = [
     goal: 20000,
     daysLeft: 45,
     status: "Draft" as const,
-    image: "https://images.unsplash.com/photo-1578357078586-491adf1aa5ba?auto=format&fit=crop&w=1200&q=80",
+    image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/08/pexels-pixabay-62285-scaled.jpg",
     description: [
       "Drilling two solar-powered clean water boreholes and providing medical aid kits in partner communities in East Africa.",
       "Collaborating with local pastors to provide long-term spiritual and community development."
@@ -105,6 +105,114 @@ export const INITIAL_CAMPAIGNS = [
 ];
 
 export const INITIAL_EVENTS = [
+  {
+    id: "revelation-encounter-2026",
+    title: "Revelation Encounter – 2026",
+    subtitle: "Three unforgettable days of prophetic worship, transformative encounters in the Holy Spirit, and Kingdom ministry.",
+    type: "CONFERENCE",
+    date: "July 17 - 19, 2026",
+    time: "09:00 AM - 09:00 PM",
+    location: "CRC Auditorium, United Kingdom",
+    capacity: "Open Registration",
+    accessibility: "Wheelchair accessible, Family friendly, Pastoral prayer rooms",
+    price: "Free Registration",
+    status: "Open" as const,
+    images: [
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2026/06/Revelation-Encounter.jpeg",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3526-scaled.jpeg",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3345-scaled.jpeg"
+    ],
+    description: [
+      "Join Christ Revelation Church for Revelation Encounter – 2026 across July 17, July 18, and July 19, 2026. Guided by the Holy Spirit, our Pentecostal church envisions a gathering where believers and ministers passionately pursue God's presence, experience transformative encounters, and radiate His love to the world.",
+      "Open to all believers, families, and those serving in Christian ministry (Pastors, Reverends, and Church Leadership). Register your attendance for one or all three days of the conference."
+    ],
+    perfectFor: ["Believers & Families", "Pastors & Christian Ministers", "Worshippers & Intercessors", "Youth & Young Adults"],
+    agenda: [
+      { time: "Day 1 • July 17, 2026", title: "Opening Night of Worship & Revelation", desc: "Registration, congregational praise, and opening prophetic message." },
+      { time: "Day 2 • July 18, 2026", title: "Ministers & Believers Empowerment Sessions", desc: "Morning and afternoon teachings, leadership impartation, and healing prayer." },
+      { time: "Day 3 • July 19, 2026", title: "Commissioning & Miracle Encounter Service", desc: "United Sunday celebration, thanksgiving worship, and altar ministry." }
+    ],
+    highlights: ["3 Days of Live Worship & Word", "Ministry & Leadership Impartation", "Healing & Deliverance Prayer", "Free Group & Family Registration"],
+    host: {
+      name: "Pastor Manoj Nair & Shiny Nair",
+      role: "Christ Revelation Church",
+      image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3526-scaled.jpeg"
+    },
+    views: 412,
+    createdAt: "2026-06-01T09:00:00.000Z"
+  },
+  {
+    id: "christmas-music-festival",
+    title: "Christmas Music Festival",
+    subtitle: "Celebrate the birth of Jesus Christ with an uplifting afternoon and evening of worship, carols, and festive joy.",
+    type: "CONFERENCE",
+    date: "December 25, 2025",
+    time: "3:00 PM - 7:00 PM",
+    location: "CRC Auditorium",
+    capacity: "Open to All",
+    accessibility: "Wheelchair accessible, Family friendly",
+    price: "Free",
+    status: "Upcoming" as const,
+    images: [
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3200-scaled.jpeg",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/08/pexels-pixabay-236310-scaled.jpg",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3549-scaled.jpeg"
+    ],
+    description: [
+      "Join Christ Revelation Church at the CRC Auditorium on December 25, 2025 from 3:00 pm to 7:00 pm for our annual Christmas Music Festival.",
+      "Experience anointed live music, Christmas carols, congregational praise, and a joyful celebration of the birth of our Savior Jesus Christ with the entire church family."
+    ],
+    perfectFor: ["Families", "All Ages", "Music & Carol Lovers", "Community Guests"],
+    agenda: [
+      { time: "03:00 PM", title: "Welcome & Christmas Carols", desc: "Opening praise and classic Christmas hymns." },
+      { time: "04:30 PM", title: "Special Choir & Worship Presentations", desc: "Performances by the CRC Worship Ministry and Kids Ministry." },
+      { time: "06:00 PM", title: "Christmas Message & Candlelight Prayer", desc: "Christmas blessing and fellowship." }
+    ],
+    highlights: ["Live Christmas Worship & Carols", "Kids & Choir Presentations", "Family Fellowship", "Free Admission"],
+    host: {
+      name: "Pastor Manoj Nair",
+      role: "Senior Pastor",
+      image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3526-scaled.jpeg"
+    },
+    views: 540,
+    createdAt: "2025-12-01T09:00:00.000Z"
+  },
+  {
+    id: "christmas-carols",
+    title: "Christmas Carols",
+    subtitle: "An evening of joyful Christmas carols, candlelit worship, and fellowship celebrating the birth of Jesus Christ.",
+    type: "GENERAL",
+    date: "December 20, 2025",
+    time: "4:00 PM - 8:00 PM",
+    location: "CRC Auditorium",
+    capacity: "Open to All",
+    accessibility: "Wheelchair accessible, Family & Kids friendly",
+    price: "Free",
+    status: "Upcoming" as const,
+    images: [
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3549-scaled.jpeg",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3322-scaled.jpeg",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3562-scaled.jpeg"
+    ],
+    description: [
+      "Celebrate the season of hope and joy with the Christ Revelation Church family at our annual Christmas Carols service on December 20, 2025 from 4:00 pm to 8:00 pm.",
+      "Enjoy traditional and contemporary carols led by our Worship & Kids Ministries, Scripture readings, and warm festive fellowship for the whole community."
+    ],
+    perfectFor: ["Families & Children", "Choir & Carol Lovers", "Community Guests", "All Ages"],
+    agenda: [
+      { time: "04:00 PM", title: "Welcome & Festive Fellowship", desc: "Warm refreshments and Christmas greetings." },
+      { time: "04:30 PM", title: "Candlelight Carols & Kids Presentation", desc: "Traditional carols and nativity songs by the Worship and Kids Ministries." },
+      { time: "06:30 PM", title: "Christmas Gospel Message & Prayer", desc: "A message of hope, peace, and salvation in Jesus Christ." }
+    ],
+    highlights: ["Traditional & Contemporary Carols", "Kids Ministry Presentation", "Christmas Message of Hope", "Festive Community Fellowship"],
+    host: {
+      name: "Pastor Manoj Nair",
+      role: "Senior Pastor",
+      image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3526-scaled.jpeg"
+    },
+    views: 295,
+    createdAt: "2025-12-01T10:00:00.000Z"
+  },
   {
     id: "annual-youth-conference-2026",
     title: "Annual Youth Conference 2026",
@@ -118,9 +226,9 @@ export const INITIAL_EVENTS = [
     price: "Free Registration",
     status: "Open" as const,
     images: [
-      "/images/hero-bg.png",
-      "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1200&q=80"
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2026/06/Revelation-Encounter.jpeg",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3450-scaled.jpeg",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3540-scaled.jpeg"
     ],
     description: [
       "Join thousands of young believers for five unforgettable days celebrating faith, culture, and community at the heart of our vibrant congregation.",
@@ -137,7 +245,7 @@ export const INITIAL_EVENTS = [
     host: {
       name: "Sarah Jenkins",
       role: "Youth Director",
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80"
+      image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3531-scaled.jpeg"
     },
     views: 940,
     createdAt: "2026-02-10T09:00:00.000Z"
@@ -155,9 +263,9 @@ export const INITIAL_EVENTS = [
     price: "Free",
     status: "Open" as const,
     images: [
-      "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80",
-      "/images/hero-bg.png",
-      "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=1200&q=80"
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/09/Pfeatured1280.webp",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3361-scaled.jpeg",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/09/360_F.jpg"
     ],
     description: [
       "A day dedicated to serving our local community with fresh grocery distribution, free health and wellness screenings, hot meals, and compassionate prayer support.",
@@ -174,7 +282,7 @@ export const INITIAL_EVENTS = [
     host: {
       name: "Emily Davis",
       role: "Community Outreach Coordinator",
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
+      image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3546-scaled.jpeg"
     },
     views: 520,
     createdAt: "2026-02-14T10:00:00.000Z"
@@ -192,8 +300,8 @@ export const INITIAL_EVENTS = [
     price: "Free Admission",
     status: "Upcoming" as const,
     images: [
-      "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1510525009512-ad7fc13eefab?auto=format&fit=crop&w=1200&q=80"
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3549-scaled.jpeg",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3322-scaled.jpeg"
     ],
     description: [
       "An extended evening of prophetic worship and prayer. Come experience a transformative encounter with the Holy Spirit in an atmosphere of unhurried praise.",
@@ -209,7 +317,7 @@ export const INITIAL_EVENTS = [
     host: {
       name: "Pastor David Vance",
       role: "Senior Pastor",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80"
+      image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3526-scaled.jpeg"
     },
     views: 618,
     createdAt: "2026-02-20T11:00:00.000Z"
@@ -227,8 +335,8 @@ export const INITIAL_EVENTS = [
     price: "Free",
     status: "Upcoming" as const,
     images: [
-      "https://images.unsplash.com/photo-1510525009512-ad7fc13eefab?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1445445290350-18a3b86e0b5b?auto=format&fit=crop&w=1200&q=80"
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3562-scaled.jpeg",
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3517-scaled.jpeg"
     ],
     description: [
       "Join us for our main Sunday gathering where we worship together, break bread in holy communion, and hear an uplifting sermon from Pastor David.",
@@ -245,7 +353,7 @@ export const INITIAL_EVENTS = [
     host: {
       name: "Pastor David Vance",
       role: "Senior Pastor",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80"
+      image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3526-scaled.jpeg"
     },
     views: 342,
     createdAt: "2026-02-15T09:00:00.000Z"
@@ -263,7 +371,7 @@ export const INITIAL_EVENTS = [
     price: "Free",
     status: "Open" as const,
     images: [
-      "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=1200&q=80"
+      "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/08/woman-sitting-with-hand-together-book-her-lap-scaled.jpg"
     ],
     description: [
       "Dig into the profound truths of grace, justification, and living by the Spirit with our pastoral team.",
@@ -279,7 +387,7 @@ export const INITIAL_EVENTS = [
     host: {
       name: "Elder Marcus Cole",
       role: "Christian Education Director",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80"
+      image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3544-scaled.jpeg"
     },
     views: 184,
     createdAt: "2026-03-02T14:00:00.000Z"
@@ -455,90 +563,142 @@ export const INITIAL_TEAMS = [
 
 export const INITIAL_BLOGS = [
   {
-    id: "blog-1",
-    title: "The Power of Community Worship in Modern Times",
-    excerpt: "Discover how gathering together strengthens our faith, deepens love, and brings us into God's presence.",
+    id: "worship-opens-doors",
+    title: "Worship Opens Doors",
+    excerpt: "Worship is more than the songs we sing or the words we speak—it is the key that opens doors into the very presence of God.",
     content: [
-      { heading: "Understanding the foundation", text: "Worship is more than singing songs on Sunday morning; it is the collective heartbeat of believers who choose unity over isolation. In our fast-paced modern world, taking time to gather with fellow believers has never been more vital." },
-      { heading: "Overcoming Digital Fragmentation", text: "In an era of hyper-connected screens, standing shoulder-to-shoulder with brothers and sisters in Christ reminds us that we are members of one body, called to encourage and uplift one another daily." }
+      {
+        heading: "The Key Into God’s Presence",
+        text: "Worship is more than the songs we sing or the words we speak—it is the key that opens doors into the very presence of God. When we enter into genuine, heartfelt worship, we step through a spiritual doorway that leads us from the ordinary into the extraordinary, from struggle into strength, from fear into faith, and from chaos into peace."
+      },
+      {
+        heading: "Shifting the Atmosphere",
+        text: "In the Bible, worship consistently unlocks divine encounters. When Paul and Silas sang hymns in a prison cell, the doors literally swung open and chains fell off (Acts 16:25-26). Their worship didn’t just invite God’s presence—it shifted the atmosphere. That same spiritual principle applies today: worship opens doors that no man can shut. It opens the door of heaven to pour grace over hardship, the door of joy in times of sorrow, and the door of revelation when we need direction.",
+        videoEmbedUrl: "https://www.youtube.com/embed/nNyo7lREMq8?feature=oembed"
+      },
+      {
+        heading: "Entering the Throne Room of God",
+        text: "Worship transforms locked situations. Every time you choose to praise instead of panic, heaven responds. Every song lifted in faith breaks barriers in the spirit. Through worship, you’re not just entering a church building—you’re entering the throne room of God. And where His presence dwells, blessings overflow, healing is released, and freedom is found."
+      },
+      {
+        heading: "Worship in Your Waiting",
+        text: "Don’t wait for the door to open to start worshiping—begin now. Worship in your waiting, and watch how God turns your waiting room into a birthing room for miracles. When you lift your hands, you’re not just reaching up—you’re unlocking heaven. The door of blessing, favor, and breakthrough is opened to those who worship in spirit and in truth."
+      }
     ],
-    pullQuote: "Worship is our highest calling and the soil in which deep community flourishes.",
+    pullQuote: "Don’t wait for the door to open to start worshiping—begin now. The door of blessing, favor, and breakthrough is opened to those who worship in spirit and in truth.",
     category: "Faith",
-    tags: ["WORSHIP", "COMMUNITY"],
-    date: "10 June 2026",
-    readTime: "5 MIN",
-    image: "https://images.unsplash.com/photo-1510525009512-ad7fc13eefab?auto=format&fit=crop&w=1200&q=80",
+    tags: ["WORSHIP", "SERMONS"],
+    date: "28 August 2025",
+    readTime: "4 MIN",
+    image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/08/pexels-pixabay-236321-scaled.jpg",
     author: {
-      name: "Pastor David Vance",
+      name: "Pastor Manoj Nair",
       role: "Senior Pastor",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
-      bio: "Dedicated to sharing insights and stories from our vibrant community."
+      avatar: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3526-scaled.jpeg",
+      bio: "Driven by a profound mission to bring sinners to Christ, extend a guiding hand to those battling with addiction and alcoholism, and prepare believers for their divine purpose."
     },
     views: 1240
   },
   {
-    id: "blog-2",
-    title: "Youth Outreach: Building the Next Generation",
-    excerpt: "Our recent youth initiatives demonstrate the immense potential and passion of young disciples.",
+    id: "prayer-is-the-key",
+    title: "Prayer is the Key",
+    excerpt: "Prayer is not just a spiritual practice—it is the master key that unlocks heaven’s doors and brings God’s power into our lives.",
     content: [
-      { heading: "Understanding the foundation", text: "The youth are not just the future of the church; they are the church of today. Our recent youth outreach program saw incredible participation and spiritual growth among teenagers in our community." },
-      { heading: "Leading with Authenticity", text: "Young people are looking for genuine mentors who listen before they preach, living out grace in everyday decisions and empowering the next generation to lead with boldness." }
+      {
+        heading: "The Master Key That Unlocks Heaven’s Doors",
+        text: "Prayer is not just a spiritual practice—it is the master key that unlocks heaven’s doors and brings God’s power into our lives. It is the divine connection between humanity and our Creator—the sacred line where we speak, listen, and align our hearts with His perfect will. Through prayer, the ordinary becomes extraordinary, and what seems impossible becomes possible through faith in God."
+      },
+      {
+        heading: "The Foundation of a Victorious Life",
+        text: "When Jesus walked the earth, He demonstrated that prayer was essential, not optional. Before He healed the sick, called the disciples, or faced the cross, He prayed. From the mountaintops to the garden of Gethsemane, Jesus showed us that prayer is not a backup plan—it is the foundation of a victorious life. The Son of God, in His moments of strength and struggle alike, sought His Father through intimate, passionate prayer (Luke 6:12; Matthew 26:39)."
+      },
+      {
+        heading: "Prayer Is the Key That Opens Doors",
+        text: "• The door of peace when anxiety overwhelms.\n• The door of strength when weakness takes hold.\n• The door of wisdom when confusion clouds our minds.\n• The door of deliverance when we face bondage or fear.\n• The door of God’s presence when we feel alone or forgotten.\n\nThe Bible reminds us that “The effective, fervent prayer of a righteous man avails much” (James 5:16). Prayer moves the hand of God—not because He is bound by our words, but because He delights in communion with His children. Prayer changes circumstances, yes, but most importantly, it changes us. It molds our will to match His, filling us with peace, power, and purpose.",
+        image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/08/pexels-ranit-das-2154541727-33572731-scaled.jpg"
+      },
+      {
+        heading: "Sincerity Over Fancy Words",
+        text: "You don’t need fancy words or perfect timing. The key is sincerity. God hears even the whisper of a heart that truly seeks Him. When we pray according to His Word, mountains move, doors open, and breakthroughs manifest. Every answered prayer is evidence that heaven responds to humble faith.\n\nSo, keep your spiritual keys close—pray when the way seems closed, when the load feels heavy, when the path is unclear. The same God who opened prison doors for Paul and Silas can open every locked door in your life (Acts 16:25-26)."
+      }
     ],
-    pullQuote: "The youth are not merely the church of tomorrow; they are active ministers today.",
-    category: "Outreach",
-    tags: ["YOUTH", "EVENTS"],
-    date: "15 July 2026",
-    readTime: "4 MIN",
-    image: "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1200&q=80",
-    author: {
-      name: "Sarah Jenkins",
-      role: "Youth Director",
-      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
-      bio: "Passionate about mentoring young believers and building transformative youth ministry spaces."
-    },
-    views: 890
-  },
-  {
-    id: "blog-3",
-    title: "Finding Peace Through Daily Prayer & Contemplation",
-    excerpt: "Practical steps to cultivate an unshakeable inner calm amidst life's storms.",
-    content: [
-      { heading: "Understanding the foundation", text: "Prayer is our direct line of communication with our Creator. Yet, finding time to pray effectively can often feel like a challenge in the midst of our daily responsibilities." },
-      { heading: "Quieting the Mind", text: "Start your morning with scripture recitation before checking your smartphone notifications, inviting God's presence into the very first moments of your day." }
-    ],
-    pullQuote: "When we pray, we trade our anxieties for His peace that surpasses understanding.",
+    pullQuote: "The effective, fervent prayer of a righteous man avails much (James 5:16). Prayer changes circumstances, yes, but most importantly, it changes us.",
     category: "Spiritual Growth",
-    tags: ["PRAYER", "GUIDANCE"],
-    date: "22 August 2026",
-    readTime: "6 MIN",
-    image: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=1200&q=80",
+    tags: ["PRAYER", "SERMONS"],
+    date: "28 August 2025",
+    readTime: "5 MIN",
+    image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/08/pexels-pavel-danilyuk-8814997-scaled.jpg",
     author: {
-      name: "Rev. Michael Smith",
-      role: "Associate Minister",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
-      bio: "Guiding congregations in contemplative prayer, biblical foundations, and spiritual formation."
+      name: "Pastor Manoj Nair",
+      role: "Senior Pastor",
+      avatar: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3526-scaled.jpeg",
+      bio: "Driven by a profound mission to bring sinners to Christ, extend a guiding hand to those battling with addiction and alcoholism, and prepare believers for their divine purpose."
     },
     views: 1530
   },
   {
-    id: "blog-4",
-    title: "Annual Charity Drive Success",
-    excerpt: "How our community came together to provide for over 500 families this season.",
+    id: "christmas-music-festival",
+    title: "Christmas Music Festival",
+    excerpt: "Celebrate the joy and wonder of the Christmas season with Christ Revelation Church at our Christmas Music Festival!",
     content: [
-      { heading: "Understanding the foundation", text: "We are overwhelmed with gratitude for the generosity shown by our congregation during the annual charity drive. Together, we were able to provide essential supplies, food, and clothing to over 500 families." },
-      { heading: "Deep Dive", text: "Every volunteer hour and donated parcel reflects the tangible love of Christ in action, strengthening the bonds between our church family and the wider neighborhood." }
+      {
+        heading: "Celebrating the Birth of Our Lord and Savior",
+        text: "Celebrate the joy and wonder of the Christmas season with Christ Revelation Church at our Christmas Music Festival! Join us for an evening filled with uplifting worship, beautiful carols, and inspiring musical performances that capture the true spirit of Christmas—the celebration of the birth of our Lord and Savior, Jesus Christ."
+      },
+      {
+        heading: "Hymns of Hope and Contemporary Worship",
+        text: "Our festival features a wonderful lineup of choirs, soloists, and musicians, blending traditional Christmas hymns with contemporary worship songs. It’s a perfect occasion for families and friends to come together, rejoice in God’s gift of hope, and experience the joyous sounds that mark this holy season.",
+        image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3200-scaled.jpeg"
+      },
+      {
+        heading: "Renewed Faith, Peace, and Thanksgiving",
+        text: "Whether you are a long-time member of our church or visiting for the first time, this event promises to warm your heart, renew your faith, and fill your spirit with peace and thanksgiving. Enjoy the festive atmosphere, delightful refreshments, and opportunities to connect with our church family."
+      }
     ],
-    pullQuote: "Generosity is faith made visible in the lives of our neighbors.",
+    pullQuote: "Capture the true spirit of Christmas—the celebration of the birth of our Lord and Savior, Jesus Christ.",
     category: "Community",
-    tags: ["CHARITY", "LOVE"],
-    date: "05 September 2026",
+    tags: ["CHRISTMAS", "CHURCH ACTIVITIES"],
+    date: "25 December 2025",
     readTime: "3 MIN",
-    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80",
+    image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/08/pexels-pixabay-236310-scaled.jpg",
     author: {
-      name: "Emily Davis",
-      role: "Community Outreach Coordinator",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
-      bio: "Serving local families through compassionate outreach, food drives, and community partnerships."
+      name: "Pastor Manoj Nair",
+      role: "Senior Pastor",
+      avatar: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3526-scaled.jpeg",
+      bio: "Driven by a profound mission to bring sinners to Christ, extend a guiding hand to those battling with addiction and alcoholism, and prepare believers for their divine purpose."
+    },
+    views: 890
+  },
+  {
+    id: "our-story-and-mission",
+    title: "All About Christ Revelation Church: Our Story & Mission",
+    excerpt: "At Christ Revelation Church, we believe that church is more than a building—it’s a family bound by love, strengthened by faith, and sustained by God’s grace.",
+    content: [
+      {
+        heading: "All About Christ Revelation Church",
+        text: "In addition to our commitment to evangelism and outreach, we help and encourage families to understand the importance of family life and leading them to Christ by giving bible studies. We are also engaged in rehabilitation for individuals grappling with drug addiction by offering them the help they need to get their life back on track and understand the love of God."
+      },
+      {
+        heading: "Transformative Power of the Gospel",
+        text: "We believe in the transformative power of the Christian gospel, fostering spiritual growth and offering hope to those facing life’s challenges. With a strong emphasis on compassion, urgency, and readiness for the return of Jesus, our community strives to create a welcoming space for all.",
+        image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3215-scaled.jpeg"
+      },
+      {
+        heading: "Our Mission & Why Worship With Us",
+        text: "At Christ Revelation Church, our mission is simple yet profound: Guided by the Holy Spirit, our Pentecostal church envisions a community where individuals passionately pursue God’s presence, experience transformative encounters, and radiate His love to the world.\n\nJoin us on this journey of love, redemption, and holistic support for individuals and families in need. We strive to be a beacon of spiritual vitality, impacting lives and empowering believers to fulfil their divine purpose."
+      }
+    ],
+    pullQuote: "When Christ died, He died for all. When He rose, He rose for all. Now, it is our calling to reveal the love of the crucified Christ and the glory of the living Christ to the world.",
+    category: "Outreach",
+    tags: ["OUR STORY", "MISSION"],
+    date: "28 August 2025",
+    readTime: "4 MIN",
+    image: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3554-scaled.jpeg",
+    author: {
+      name: "Pastor Manoj Nair",
+      role: "Senior Pastor",
+      avatar: "https://christrevelationchurch.theglobalpeacemakers.org/wp-content/uploads/2025/12/IMG_3526-scaled.jpeg",
+      bio: "Driven by a profound mission to bring sinners to Christ, extend a guiding hand to those battling with addiction and alcoholism, and prepare believers for their divine purpose."
     },
     views: 740
   }

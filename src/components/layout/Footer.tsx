@@ -40,10 +40,10 @@ export default function Footer() {
           </div>
           <div className="flex flex-col gap-2">
             <h4 className="text-white/50 text-xs uppercase tracking-widest mb-2">Our Ministries</h4>
-            <Link href="/ministries" className="hover:opacity-70 transition-opacity">Worship Ministry</Link>
-            <Link href="/ministries" className="hover:opacity-70 transition-opacity">Outreach Ministry</Link>
-            <Link href="/ministries" className="hover:opacity-70 transition-opacity">Prayer Ministry</Link>
-            <Link href="/ministries" className="hover:opacity-70 transition-opacity">Kids Ministry</Link>
+            <Link href="/ministries/worship-ministry" className="hover:opacity-70 transition-opacity">Worship Ministry</Link>
+            <Link href="/ministries/outreach-ministry" className="hover:opacity-70 transition-opacity">Outreach Ministry</Link>
+            <Link href="/ministries/prayer-ministry" className="hover:opacity-70 transition-opacity">Prayer Ministry</Link>
+            <Link href="/ministries/kids-ministry" className="hover:opacity-70 transition-opacity">Kids Ministry</Link>
           </div>
           <div className="flex flex-col gap-2">
             <h4 className="text-white/50 text-xs uppercase tracking-widest mb-2">Legal</h4>
