@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useMemo, useState } from 'react';
-import { 
-  DollarSign, Heart, Activity, Calendar, Users, 
-  Sparkles, BookOpen, Image as ImageIcon, ArrowUpRight, 
+import {
+  DollarSign, Heart, Activity, Calendar, Users,
+  Sparkles, BookOpen, Image as ImageIcon, ArrowUpRight,
   TrendingUp, Clock
 } from 'lucide-react';
 import Link from 'next/link';
@@ -40,8 +40,8 @@ export default function AdminDashboardPage() {
       const amount = typeof txn.rawAmount === 'number'
         ? txn.rawAmount
         : typeof txn.amount === 'string'
-        ? parseFloat(txn.amount.replace(/[^0-9.-]+/g, ""))
-        : txn.amount;
+          ? parseFloat(txn.amount.replace(/[^0-9.-]+/g, ""))
+          : txn.amount;
       sum += (amount || 0);
     });
 
@@ -75,17 +75,16 @@ export default function AdminDashboardPage() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 bg-white border border-gray-200/80 rounded-full p-1 shadow-xs self-start md:self-auto">
+          <div className="flex items-center gap-2 bg-white border border-gray-200/80 rounded-full p-1  self-start md:self-auto">
             {(['All', 'Month', 'Week'] as const).map(tab => (
               <button
                 key={tab}
                 type="button"
                 onClick={() => setTimeFilter(tab)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                  timeFilter === tab 
-                    ? 'bg-[#0ea5e9] text-white shadow-xs' 
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                }`}
+                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${timeFilter === tab
+                  ? 'bg-[#0ea5e9] text-white shadow-xs'
+                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
               >
                 {tab === 'All' ? 'All Time' : tab === 'Month' ? 'This Month' : 'This Week'}
               </button>
@@ -208,7 +207,7 @@ export default function AdminDashboardPage() {
             </div>
 
             {/* Chart Area */}
-            <div 
+            <div
               className="rounded-[20px] p-2 bg-[#f8f9fa] border border-gray-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] w-full flex flex-col"
               style={{ backgroundImage: 'repeating-linear-gradient(-45deg, transparent, transparent 4px, rgba(0,0,0,0.01) 4px, rgba(0,0,0,0.01) 8px)' }}
             >
@@ -246,7 +245,7 @@ export default function AdminDashboardPage() {
 
           {/* Right Column: Live Ministry Timeline */}
           <div className="lg:col-span-1">
-            <div 
+            <div
               className="rounded-[20px] p-2 bg-[#f8f9fa] border border-gray-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] w-full flex flex-col h-full min-h-[500px]"
               style={{ backgroundImage: 'repeating-linear-gradient(-45deg, transparent, transparent 4px, rgba(0,0,0,0.01) 4px, rgba(0,0,0,0.01) 8px)' }}
             >

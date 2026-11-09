@@ -251,3 +251,4 @@ export function validateMediaUrl(urlStr: string): { valid: boolean; error?: stri
     return { valid: false, error: 'Invalid URL format' };
   }
 }
+

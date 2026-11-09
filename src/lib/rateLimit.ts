@@ -151,3 +151,4 @@ export const generalLimiter: RateLimitOptions = {
   windowMs: 60 * 1000,
   name: 'API requests',
 };
+
