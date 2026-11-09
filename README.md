@@ -234,7 +234,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ```env
 # Admin Whitelist (Comma-separated)
-NEXT_PUBLIC_ADMIN_EMAIL=pastor.david@christrevelation.org,shaz80170@gmail.com,austinjherald01@gmail.com
+NEXT_PUBLIC_ADMIN_EMAIL=admin@domain.com
 
 # Supabase Public Configuration
 NEXT_PUBLIC_SUPABASE_URL=https://psxdxygtenkaurdbxgvq.supabase.co
