@@ -59,8 +59,12 @@ export default function Footer() {
         <div className="mb-6 sm:mb-0 leading-relaxed max-w-xl">
           <p>“to bring sinners to Christ, extend a guiding hand to those battling with addiction and alcoholism, and to prepare the church for the second coming of Jesus.”</p>
         </div>
-        <div className="flex flex-col sm:flex-row gap-6 sm:gap-16 lg:gap-32">
-          <a href="#" className="hover:text-white transition-colors">
+        <div className="flex flex-col sm:flex-row sm:items-end gap-6 sm:gap-16 lg:gap-24">
+          <p className="leading-relaxed">
+            Ground Floor, 100 Windsor St S,<br />
+            Birmingham, B7 4HZ, UK
+          </p>
+          <a href="mailto:info@christrevelation.org" className="hover:text-white transition-colors">
             info@christrevelation.org
           </a>
           <p>© 2026 Christ Revelation Church</p>

@@ -268,7 +268,7 @@ export default function Navbar() {
                 </div>
                 <div className="overflow-hidden">
                   <motion.p variants={itemVariants} className="font-open-sauce text-xs font-medium leading-relaxed">
-                    123 Main St,<br />San Francisco,<br />CA 94105
+                    Ground Floor, 100 Windsor St S,<br />Birmingham, B7 4HZ, UK
                   </motion.p>
                 </div>
               </div>

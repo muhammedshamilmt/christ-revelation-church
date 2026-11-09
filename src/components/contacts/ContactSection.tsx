@@ -74,8 +74,8 @@ export default function ContactSection() {
               Address
             </h3>
             <p className="font-open-sauce text-lg sm:text-xl font-medium leading-relaxed">
-              123 Main St, San Francisco,<br />
-              CA 94105
+              Ground Floor, 100 Windsor St S,<br />
+              Birmingham, B7 4HZ, UK
             </p>
           </div>
 
