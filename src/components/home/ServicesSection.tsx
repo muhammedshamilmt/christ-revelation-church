@@ -29,7 +29,10 @@ export default function ServicesSection() {
       <div className="w-full max-w-[1400px]">
         <div className="flex justify-between items-end font-open-sauce text-sm sm:text-base font-medium mb-8">
           <p>Transforming lives through faith.</p>
-          <Link href="/ministries" className="flex items-center gap-2 hover:opacity-70 transition-opacity">
+          {/* <Link href="/ministries" className="flex items-center gap-2 hover:opacity-70 transition-opacity">
+            <span className="text-xl leading-none">↳</span> See more
+          </Link> */}
+          <Link href="/about" className="flex items-center gap-2 hover:opacity-70 transition-opacity">
             <span className="text-xl leading-none">↳</span> See more
           </Link>
         </div>
@@ -73,8 +76,9 @@ export default function ServicesSection() {
             />
           </Link>
 
-          {/* Card 2: Our Ministries */}
-          <Link href="/ministries" className="relative w-full aspect-[3/4] sm:aspect-[2/3] overflow-hidden group cursor-pointer bg-[#0c0c0c] block">
+          {/* Card 2: Our Ministries (commented out /ministries link) */}
+          {/* <Link href="/ministries" className="relative w-full aspect-[3/4] sm:aspect-[2/3] overflow-hidden group cursor-pointer bg-[#0c0c0c] block"> */}
+          <div className="relative w-full aspect-[3/4] sm:aspect-[2/3] overflow-hidden group cursor-pointer bg-[#0c0c0c] block">
             <PixelTransition
               gridSize={10}
               pixelColor="#0048FF"
@@ -105,14 +109,15 @@ export default function ServicesSection() {
                 <div className="w-full h-full flex flex-col items-center justify-center bg-[#0048FF] p-8 text-center">
                   <h3 className="text-white font-ancola text-3xl sm:text-4xl lowercase tracking-tight mb-4">Our Ministries</h3>
                   <p className="text-white/80 font-open-sauce text-sm leading-relaxed">We are dedicated to the uplifting message of the Christian gospel. Our goal is to nurture spiritual growth and bring hope to those facing difficult times.</p>
-                  <span className="text-white font-open-sauce text-xs font-bold uppercase tracking-widest mt-6 underline underline-offset-4">Learn More →</span>
                 </div>
               }
             />
-          </Link>
+          </div>
+          {/* </Link> */}
 
-          {/* Card 3: Outreach Missions */}
-          <Link href="/ministries/outreach-ministry" className="relative w-full aspect-[3/4] sm:aspect-[2/3] overflow-hidden group cursor-pointer bg-[#0c0c0c] block">
+          {/* Card 3: Outreach Missions (commented out /ministries/outreach-ministry link) */}
+          {/* <Link href="/ministries/outreach-ministry" className="relative w-full aspect-[3/4] sm:aspect-[2/3] overflow-hidden group cursor-pointer bg-[#0c0c0c] block"> */}
+          <Link href="/about" className="relative w-full aspect-[3/4] sm:aspect-[2/3] overflow-hidden group cursor-pointer bg-[#0c0c0c] block">
             <PixelTransition
               gridSize={10}
               pixelColor="#0048FF"

@@ -28,9 +28,9 @@ export default function AlternatingFeatureSection() {
             Join us in our various gatherings tailored to nurture your faith, bring the community together, and equip you for a life of purpose. Our programs are designed for all ages and walks of life.
           </p>
           <div className="mt-12">
-            <Link href="/ministries" className="font-open-sauce text-sm sm:text-base font-semibold tracking-wider uppercase border-b border-[#0c0c0c]/30 hover:border-[#0c0c0c] pb-1 transition-colors">
+            {/* <Link href="/ministries" className="font-open-sauce text-sm sm:text-base font-semibold tracking-wider uppercase border-b border-[#0c0c0c]/30 hover:border-[#0c0c0c] pb-1 transition-colors">
               Explore Ministries
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>
@@ -48,7 +48,10 @@ export default function AlternatingFeatureSection() {
             Our worship services are an opportunity to experience the presence of God through music, prayer, and profound teachings. Come as you are and find a welcoming family ready to embrace you.
           </p>
           <div className="mt-12">
-            <Link href="/ministries/worship-ministry" className="font-open-sauce text-sm sm:text-base font-semibold tracking-wider uppercase border-b border-[#0c0c0c]/30 hover:border-[#0c0c0c] pb-1 transition-colors">
+            {/* <Link href="/ministries/worship-ministry" className="font-open-sauce text-sm sm:text-base font-semibold tracking-wider uppercase border-b border-[#0c0c0c]/30 hover:border-[#0c0c0c] pb-1 transition-colors">
+              Join a Service
+            </Link> */}
+            <Link href="/events" className="font-open-sauce text-sm sm:text-base font-semibold tracking-wider uppercase border-b border-[#0c0c0c]/30 hover:border-[#0c0c0c] pb-1 transition-colors">
               Join a Service
             </Link>
           </div>
